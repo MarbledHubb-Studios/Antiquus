@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class ModBlocks {
     public static DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Antiquus.MODID);
 
-    //public static final DeferredBlock<Block> PROTOTAXITE_STEM = BLOCKS.registerBlock("prototaxite_stem", properties -> new Block(BlockBehaviour.Properties.of().sound(SoundType.FUNGUS).strength(2f)));
+    public static final DeferredBlock<Block> PROTOTAXITE_STEM = BLOCKS.registerBlock("prototaxite_stem", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
 
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties,T> function) {
         return BLOCKS.registerBlock(name, function);
