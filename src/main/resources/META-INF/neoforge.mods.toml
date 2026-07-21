@@ -1,0 +1,33 @@
+license="All Rights Reserved"
+
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+
+[[mods]]
+
+modId="antiquus"
+version="1.0.0.0"
+displayName="Antiquus"
+#logoFile="examplemod.png"
+credits="MarbledHubb Studios"
+authors="MarbledNull, Aimiwi"
+
+description='''
+N/A
+'''
+
+#[[mixins]]
+#config="${mod_id}.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
