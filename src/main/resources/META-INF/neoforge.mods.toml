@@ -18,14 +18,14 @@ N/A
 #[[mixins]]
 #config="${mod_id}.mixins.json"
 
-[[dependencies.${mod_id}]]
+[[dependencies.antiquus]]
     modId="neoforge"
     type="required"
     versionRange="[${neo_version},)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.antiquus]]
     modId="minecraft"
     type="required"
     versionRange="${minecraft_version_range}"
