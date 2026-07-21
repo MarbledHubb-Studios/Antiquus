@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(Antiquus.MODID);
 
-    public static final DeferredItem<Item> PROTOTAXITE_STEM = ITEMS.registerItem("prototaxite_stem.json", properties -> new BlockItem(ModBlocks.PROTOTAXITE_STEM.get(), properties));
+    public static final DeferredItem<Item> PROTOTAXITE_STEM = ITEMS.registerItem("prototaxite_stem", properties -> new BlockItem(ModBlocks.PROTOTAXITE_STEM.get(), properties.useBlockDescriptionPrefix()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
