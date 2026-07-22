@@ -17,6 +17,7 @@ public class ModBlocks {
     public static DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Antiquus.MODID);
 
     public static final DeferredBlock<OldMossyCarpetBlock> OLD_MOSS_CARPET = BLOCKS.registerBlock("old_moss_carpet", properties -> new OldMossyCarpetBlock(properties.sound(SoundType.MOSS_CARPET).strength(0.1f).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> OLD_SOIL = BLOCKS.registerBlock("old_soil", properties -> new Block(properties.sound(SoundType.MUD).strength(2f)));
 
     public static final DeferredBlock<Block> PROTOTAXITE_STEM = BLOCKS.registerBlock("prototaxite_stem", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> PROTOTAXITE_BUD = BLOCKS.registerBlock("prototaxite_bud", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(0.1f).pushReaction(PushReaction.DESTROY).noOcclusion()));
