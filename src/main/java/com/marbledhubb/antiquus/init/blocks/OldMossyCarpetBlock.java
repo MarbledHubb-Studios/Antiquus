@@ -50,7 +50,7 @@ public class OldMossyCarpetBlock extends Block {
     public Function<BlockState, VoxelShape> makeShapes() {
         Map<Direction, VoxelShape> low = Shapes.rotateHorizontal(Block.boxZ(16.0, 0.0, 10.0, 0.0, 1.0));
         return this.getShapeForEachState((state) -> {
-            VoxelShape shape = (Boolean)state.getValue(BASE) ? (VoxelShape)low.get(Direction.DOWN) : Shapes.empty();
+            VoxelShape shape = (Boolean)state.getValue(BASE) ? (VoxelShape)tall.get(Direction.DOWN) : Shapes.empty();
             Iterator i$ = PROPERTY_BY_DIRECTION.entrySet().iterator();
 
             while(i$.hasNext()) {
