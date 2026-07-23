@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "antiquus:block/prototaxite_bud"
+    "model": "antiquus:item/prototaxite_bud"
   }
 }
