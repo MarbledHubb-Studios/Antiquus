@@ -1,11 +1,15 @@
 package com.marbledhubb.antiquus.init.blocks;
 
+import com.marbledhubb.antiquus.init.ModBlockStateProperties;
 import com.marbledhubb.antiquus.init.ModBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
@@ -15,12 +19,15 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.common.CommonHooks;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class PrototaxiteStemBlock extends Block {
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
+    public static final IntegerProperty MAX_GROWING_HEIGHT = ModBlockStateProperties.MAX_PROTOTAXITE_STEM_GROWING_HEIGHT;
 
-    public static final int MAX_AGE = 7;
-    private static final int MAX_PROTOTAXITE_STEM_GROWING_HEIGHT = 10;
+    private static final int MAX_AGE = 4;
+    private static final int MAX_PROTOTAXITE_STEM_LOWER_LIMIT = 2;
+    private static final int MAX_PROTOTAXITE_STEM_UPPER_LIMIT = 8;
 
     public PrototaxiteStemBlock(Properties properties) {
         super(properties);
@@ -28,7 +35,7 @@ public class PrototaxiteStemBlock extends Block {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
+        builder.add(AGE, MAX_GROWING_HEIGHT);
     }
 
     @Override
@@ -44,25 +51,27 @@ public class PrototaxiteStemBlock extends Block {
     protected void randomTick(@NonNull BlockState state, ServerLevel level, BlockPos pos, @NonNull RandomSource random) {
         BlockPos above = pos.above();
         if (level.isEmptyBlock(above)) {
-            int height = 1;
-            int age = state.getValue(AGE);
             if (CommonHooks.canCropGrow(level, above, state, true)) {
+                int height = 1;
+                int age = state.getValue(AGE);
+                int maxGrowingHeight = state.getValue(MAX_GROWING_HEIGHT);
+
                 while (level.getBlockState(pos.below(height)).is(this)) {
                     ++height;
-                    if (height == MAX_PROTOTAXITE_STEM_GROWING_HEIGHT && age == MAX_AGE) {
+                    if (height == maxGrowingHeight && age == MAX_AGE) {
                         return;
                     }
                 }
 
-                if (age == MAX_AGE && height < MAX_PROTOTAXITE_STEM_GROWING_HEIGHT) {
-                    level.setBlockAndUpdate(above, this.defaultBlockState());
-                    BlockState aboveBlock = state.setValue(AGE, 0);
-                    level.setBlock(pos, aboveBlock, 260);
-                    level.neighborChanged(aboveBlock, above, this, null, false);
-                }
-
-                if (age < MAX_AGE) {
-                    level.setBlock(pos, state.setValue(AGE, age + 1), 260);
+                if (age == MAX_AGE) {
+                    if (height < maxGrowingHeight) {
+                        BlockState grownState = state.setValue(AGE, 0);
+                        level.setBlockAndUpdate(above, grownState);
+                        level.setBlock(pos, grownState, Block.UPDATE_NONE);
+                        level.neighborChanged(grownState, above, this, null, false);
+                    }
+                } else {
+                    level.setBlock(pos, state.setValue(AGE, age + 1), Block.UPDATE_NONE);
                 }
 
                 CommonHooks.fireCropGrowPost(level, pos, state);
@@ -87,6 +96,20 @@ public class PrototaxiteStemBlock extends Block {
             return soilDecision.isTrue();
         } else {
             return (belowState.is(this) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE));
+        }
+    }
+
+    @Override
+    public void setPlacedBy(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable LivingEntity by, @NonNull ItemStack itemStack) {
+        super.setPlacedBy(level, pos, state, by, itemStack);
+        if (!level.isClientSide()) {
+            BlockState belowState = level.getBlockState(pos.below());
+            if (belowState.is(this)) {
+                level.setBlock(pos, state.setValue(MAX_GROWING_HEIGHT, belowState.getValue(MAX_GROWING_HEIGHT)), Block.UPDATE_NONE);
+            } else {
+                RandomSource random = level.getRandom();
+                level.setBlock(pos, state.setValue(MAX_GROWING_HEIGHT, random.nextInt(MAX_PROTOTAXITE_STEM_LOWER_LIMIT, MAX_PROTOTAXITE_STEM_UPPER_LIMIT)), Block.UPDATE_NONE);
+            }
         }
     }
 }
