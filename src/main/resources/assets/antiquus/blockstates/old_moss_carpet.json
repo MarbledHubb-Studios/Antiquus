@@ -3,21 +3,6 @@
     {
       "apply": {
         "model": "antiquus:block/old_moss_carpet"
-      },
-      "when": {
-        "bottom": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "antiquus:block/old_moss_carpet"
-      },
-      "when": {
-        "bottom": "false",
-        "east": "none",
-        "north": "none",
-        "south": "none",
-        "west": "none"
       }
     },
     {
@@ -25,7 +10,7 @@
         "model": "antiquus:block/old_moss_carpet_side"
       },
       "when": {
-        "north": "low"
+        "north": "true"
       }
     },
     {
@@ -35,7 +20,7 @@
         "y": 90
       },
       "when": {
-        "east": "low"
+        "east": "true"
       }
     },
     {
@@ -45,7 +30,7 @@
         "y": 180
       },
       "when": {
-        "south": "low"
+        "south": "true"
       }
     },
     {
@@ -55,7 +40,7 @@
         "y": 270
       },
       "when": {
-        "west": "low"
+        "west": "true"
       }
     }
   ]
