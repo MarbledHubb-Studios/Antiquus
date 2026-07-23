@@ -43,6 +43,11 @@ public class AncientMossyCarpetBlock extends Block {
         this.shapes = this.makeShapes();
     }
 
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(NORTH, EAST, SOUTH, WEST);
+    }
+
     public Function<BlockState, VoxelShape> makeShapes() {
         Map<Direction, VoxelShape> directionShapes = Shapes.rotateHorizontal(Block.boxZ(16.0, 0.0, 10.0, 0.0, 1.0));
         return this.getShapeForEachState((state) -> {
@@ -109,11 +114,6 @@ public class AncientMossyCarpetBlock extends Block {
     @Override
     protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess ticks, @NonNull BlockPos pos, @NonNull Direction directionToNeighbour, @NonNull BlockPos neighbourPos, @NonNull BlockState neighbourState, @NonNull RandomSource random) {
         return state.canSurvive(level, pos) ? getUpdatedState(state, level, pos) : Blocks.AIR.defaultBlockState();
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(NORTH, EAST, SOUTH, WEST);
     }
 
     @Override
