@@ -2,12 +2,12 @@
   "multipart": [
     {
       "apply": {
-        "model": "antiquus:block/old_moss_carpet"
+        "model": "antiquus:block/ancient_moss_carpet"
       }
     },
     {
       "apply": {
-        "model": "antiquus:block/old_moss_carpet_side"
+        "model": "antiquus:block/ancient_moss_carpet_side"
       },
       "when": {
         "north": "true"
@@ -15,7 +15,7 @@
     },
     {
       "apply": {
-        "model": "antiquus:block/old_moss_carpet_side",
+        "model": "antiquus:block/ancient_moss_carpet_side",
         "uvlock": true,
         "y": 90
       },
@@ -25,7 +25,7 @@
     },
     {
       "apply": {
-        "model": "antiquus:block/old_moss_carpet_side",
+        "model": "antiquus:block/ancient_moss_carpet_side",
         "uvlock": true,
         "y": 180
       },
@@ -35,7 +35,7 @@
     },
     {
       "apply": {
-        "model": "antiquus:block/old_moss_carpet_side",
+        "model": "antiquus:block/ancient_moss_carpet_side",
         "uvlock": true,
         "y": 270
       },

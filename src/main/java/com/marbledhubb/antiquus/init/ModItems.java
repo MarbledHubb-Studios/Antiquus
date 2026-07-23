@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(Antiquus.MODID);
 
-    public static final DeferredItem<Item> OLD_MOSS_CARPET = ITEMS.registerItem("old_moss_carpet", properties -> new BlockItem(ModBlocks.OLD_MOSS_CARPET.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> ANCIENT_MOSS_CARPET = ITEMS.registerItem("ancient_moss_carpet", properties -> new BlockItem(ModBlocks.ANCIENT_MOSS_CARPET.get(), properties.useBlockDescriptionPrefix()));
 
     public static final DeferredItem<Item> PROTOTAXITE_STEM = ITEMS.registerItem("prototaxite_stem", properties -> new BlockItem(ModBlocks.PROTOTAXITE_STEM.get(), properties.useBlockDescriptionPrefix()));
     public static final DeferredItem<Item> PROTOTAXITE_BUD = ITEMS.registerItem("prototaxite_bud", properties -> new BlockItem(ModBlocks.PROTOTAXITE_BUD.get(), properties.useBlockDescriptionPrefix()));

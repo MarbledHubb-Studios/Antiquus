@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Function;
 
-public class OldMossyCarpetBlock extends Block {
-    public static final MapCodec<OldMossyCarpetBlock> CODEC = simpleCodec(OldMossyCarpetBlock::new);
+public class AncientMossyCarpetBlock extends Block {
+    public static final MapCodec<AncientMossyCarpetBlock> CODEC = simpleCodec(AncientMossyCarpetBlock::new);
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
@@ -33,11 +33,11 @@ public class OldMossyCarpetBlock extends Block {
     private final Function<BlockState, VoxelShape> shapes;
 
     @Override
-    public @NonNull MapCodec<OldMossyCarpetBlock> codec() {
+    public @NonNull MapCodec<AncientMossyCarpetBlock> codec() {
         return CODEC;
     }
 
-    public OldMossyCarpetBlock(Properties properties) {
+    public AncientMossyCarpetBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
         this.shapes = this.makeShapes();
@@ -101,7 +101,7 @@ public class OldMossyCarpetBlock extends Block {
 
     // TODO unused. should we remove it? -aimi
     public static void placeAt(LevelAccessor level, BlockPos pos, @UpdateFlags int updateType) {
-        BlockState simpleCarpetLayer = ModBlocks.OLD_MOSS_CARPET.get().defaultBlockState();
+        BlockState simpleCarpetLayer = ModBlocks.ANCIENT_MOSS_CARPET.get().defaultBlockState();
         BlockState adjustedCarpetLayer = getUpdatedState(simpleCarpetLayer, level, pos);
         level.setBlock(pos, adjustedCarpetLayer, updateType);
     }
