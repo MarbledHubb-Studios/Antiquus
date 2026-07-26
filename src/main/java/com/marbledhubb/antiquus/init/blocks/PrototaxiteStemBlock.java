@@ -107,9 +107,12 @@ public class PrototaxiteStemBlock extends Block {
             if (belowState.is(this)) {
                 level.setBlock(pos, state.setValue(MAX_GROWING_HEIGHT, belowState.getValue(MAX_GROWING_HEIGHT)), Block.UPDATE_NONE);
             } else {
-                RandomSource random = level.getRandom();
-                level.setBlock(pos, state.setValue(MAX_GROWING_HEIGHT, random.nextInt(MAX_PROTOTAXITE_STEM_LOWER_LIMIT, MAX_PROTOTAXITE_STEM_UPPER_LIMIT)), Block.UPDATE_NONE);
+                level.setBlock(pos, withRandomMaxGrowingHeight(state, level.getRandom()), Block.UPDATE_NONE);
             }
         }
+    }
+
+    public static BlockState withRandomMaxGrowingHeight(BlockState state, RandomSource random) {
+        return state.setValue(MAX_GROWING_HEIGHT, random.nextInt(MAX_PROTOTAXITE_STEM_LOWER_LIMIT, MAX_PROTOTAXITE_STEM_UPPER_LIMIT));
     }
 }

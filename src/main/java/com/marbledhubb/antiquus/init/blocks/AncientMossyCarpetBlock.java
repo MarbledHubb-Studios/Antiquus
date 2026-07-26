@@ -2,7 +2,6 @@ package com.marbledhubb.antiquus.init.blocks;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.marbledhubb.antiquus.init.ModBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -102,14 +101,6 @@ public class AncientMossyCarpetBlock extends Block {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         return getUpdatedState(this.defaultBlockState(), context.getLevel(), context.getClickedPos());
-    }
-
-    // TODO unused. should we remove it? -aimi
-    // TODO yes, it can be removed -mn
-    public static void placeAt(LevelAccessor level, BlockPos pos, @UpdateFlags int updateType) {
-        BlockState simpleCarpetLayer = ModBlocks.ANCIENT_MOSS_CARPET.get().defaultBlockState();
-        BlockState adjustedCarpetLayer = getUpdatedState(simpleCarpetLayer, level, pos);
-        level.setBlock(pos, adjustedCarpetLayer, updateType);
     }
 
     @Override

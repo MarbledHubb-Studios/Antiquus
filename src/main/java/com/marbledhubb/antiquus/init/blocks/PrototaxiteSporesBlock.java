@@ -17,10 +17,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 
-public class PrototaxiteBudBlock extends Block {
-    private static final VoxelShape SHAPE = Block.column(6, 0, 6);
+public class PrototaxiteSporesBlock extends Block {
+    private static final VoxelShape SHAPE = Block.column(16, 0, 1.5);
 
-    public PrototaxiteBudBlock(Properties properties) {
+    public PrototaxiteSporesBlock(Properties properties) {
         super(properties);
     }
 
@@ -32,7 +32,7 @@ public class PrototaxiteBudBlock extends Block {
     @Override
     protected void randomTick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, RandomSource random) {
         if (random.nextInt(5) == 0) {
-            level.setBlockAndUpdate(pos, PrototaxiteStemBlock.withRandomMaxGrowingHeight(ModBlocks.PROTOTAXITE_STEM.get().defaultBlockState(), random));
+            level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
         }
     }
 
