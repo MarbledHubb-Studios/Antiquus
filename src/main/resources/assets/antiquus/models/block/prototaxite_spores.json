@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "antiquus:block/prototaxite_spores"
+  }
+}
