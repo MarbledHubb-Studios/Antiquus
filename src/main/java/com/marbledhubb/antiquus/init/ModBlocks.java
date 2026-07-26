@@ -2,9 +2,13 @@ package com.marbledhubb.antiquus.init;
 
 import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.init.blocks.AncientMossyCarpetBlock;
+import com.marbledhubb.antiquus.init.blocks.PrototaxiteBudBlock;
 import com.marbledhubb.antiquus.init.blocks.PrototaxiteStemBlock;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.PushReaction;
@@ -12,6 +16,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class ModBlocks {
@@ -19,9 +24,12 @@ public class ModBlocks {
 
     public static final DeferredBlock<AncientMossyCarpetBlock> ANCIENT_MOSS_CARPET = registerBlockWithItem("ancient_moss_carpet", properties -> new AncientMossyCarpetBlock(properties.sound(SoundType.MOSS_CARPET).strength(0.1f).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> ANCIENT_SOIL = registerBlockWithItem("ancient_soil", properties -> new Block(properties.sound(SoundType.MUD).strength(2f)));
+    public static final DeferredBlock<Block> COOKSONIA = registerBlockWithItem("cooksonia", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY,properties.sound(SoundType.WET_GRASS).strength(2f).pushReaction(PushReaction.DESTROY).noOcclusion().noCollision()));
 
     public static final DeferredBlock<PrototaxiteStemBlock> PROTOTAXITE_STEM = registerBlockWithItem("prototaxite_stem", properties -> new PrototaxiteStemBlock(properties.randomTicks().sound(SoundType.FUNGUS).strength(2f)));
-    public static final DeferredBlock<Block> PROTOTAXITE_BUD = registerBlockWithItem("prototaxite_bud", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(0.1f).pushReaction(PushReaction.DESTROY).noOcclusion()));
+    public static final DeferredBlock<Block> PROTOTAXITE_BUD = registerBlockWithItem("prototaxite_bud", properties -> new PrototaxiteBudBlock(properties.sound(SoundType.FUNGUS).strength(0.1f).pushReaction(PushReaction.DESTROY).noOcclusion().noCollision()));
+    public static final DeferredBlock<Block> PROTOTAXITE_BLOCK = registerBlockWithItem("prototaxite_block", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
+    public static final DeferredBlock<Block> PROTOTAXITE_SPORES = registerBlockWithItem("prototaxite_spores", properties -> new Block(properties.sound(SoundType.FUNGUS).noOcclusion().noCollision().instabreak().pushReaction(PushReaction.DESTROY)));
 
     private static <B extends Block> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
         DeferredBlock<B> toReturn = BLOCKS.registerBlock(name, func);

@@ -105,6 +105,7 @@ public class AncientMossyCarpetBlock extends Block {
     }
 
     // TODO unused. should we remove it? -aimi
+    // TODO yes, it can be removed -mn
     public static void placeAt(LevelAccessor level, BlockPos pos, @UpdateFlags int updateType) {
         BlockState simpleCarpetLayer = ModBlocks.ANCIENT_MOSS_CARPET.get().defaultBlockState();
         BlockState adjustedCarpetLayer = getUpdatedState(simpleCarpetLayer, level, pos);
