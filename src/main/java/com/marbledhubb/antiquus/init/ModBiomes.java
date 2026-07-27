@@ -12,6 +12,4 @@ public class ModBiomes {
     private static ResourceKey<Biome> register(String name) {
         return ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Antiquus.MODID, name));
     }
-
-    public static void register() {}
 }

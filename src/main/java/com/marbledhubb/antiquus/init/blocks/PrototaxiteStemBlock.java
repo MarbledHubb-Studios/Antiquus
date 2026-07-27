@@ -2,6 +2,7 @@ package com.marbledhubb.antiquus.init.blocks;
 
 import com.marbledhubb.antiquus.init.ModBlockStateProperties;
 import com.marbledhubb.antiquus.init.ModBlockTags;
+import com.marbledhubb.antiquus.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -114,5 +115,22 @@ public class PrototaxiteStemBlock extends Block {
 
     public static BlockState withRandomMaxGrowingHeight(BlockState state, RandomSource random) {
         return state.setValue(MAX_GROWING_HEIGHT, random.nextInt(MAX_PROTOTAXITE_STEM_LOWER_LIMIT, MAX_PROTOTAXITE_STEM_UPPER_LIMIT));
+    }
+
+    @Override
+    public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
+        if (level.getBlockState(pos.above()).is(this) || random.nextInt(5) != 0) return;
+
+        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+        BlockPos relativePos = pos.relative(direction);
+        if (level.getBlockState(relativePos).isSolidRender()) return;
+
+        level.addParticle(ModParticles.PROTOTAXITE_SPORE.get(),
+                relativePos.getX() + 0.5 - direction.getStepX() * random.nextDouble(),
+                relativePos.getY() + 0.5 + random.nextDouble() * 2 - 1,
+                relativePos.getZ() + 0.5 - direction.getStepZ() * random.nextDouble(),
+                0,
+                0,
+                0);
     }
 }

@@ -46,7 +46,9 @@ public class PrototaxiteSporesBlock extends Block {
             );
             level.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.ANCIENT_SOIL_PATCH)).ifPresent((ancientSoilPatch) -> ancientSoilPatch.value().place(level, level.getChunkSource().getGenerator(), random, pos));
             level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
-            level.setBlockAndUpdate(pos.below(), ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
+            BlockState belowState = level.getBlockState(pos.below());
+            if (!belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE) && belowState.is(ModBlockTags.ANCIENT_SOIL_REPLACEABLE))
+                level.setBlockAndUpdate(pos.below(), ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
         }
     }
 
