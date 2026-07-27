@@ -2,6 +2,7 @@ package com.marbledhubb.antiquus;
 
 import com.marbledhubb.antiquus.init.ModBlocks;
 import com.marbledhubb.antiquus.init.ModItems;
+import com.marbledhubb.antiquus.init.ModTabs;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -27,6 +28,7 @@ public class Antiquus {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModTabs.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
