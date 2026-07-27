@@ -48,7 +48,7 @@ public class PrototaxiteBudBlock extends Block {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         } else {
-            return (belowState.is(this) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE));
+            return belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE);
         }
     }
 }

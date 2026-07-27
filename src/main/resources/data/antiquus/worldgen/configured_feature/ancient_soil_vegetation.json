@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "antiquus:ancient_moss_carpet"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "antiquus:cooksonia"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

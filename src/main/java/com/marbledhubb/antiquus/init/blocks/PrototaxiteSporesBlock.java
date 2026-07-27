@@ -1,9 +1,13 @@
 package com.marbledhubb.antiquus.init.blocks;
 
+import com.marbledhubb.antiquus.init.ModBiomes;
 import com.marbledhubb.antiquus.init.ModBlockTags;
 import com.marbledhubb.antiquus.init.ModBlocks;
+import com.marbledhubb.antiquus.init.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.server.commands.FillBiomeCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
@@ -32,7 +36,17 @@ public class PrototaxiteSporesBlock extends Block {
     @Override
     protected void randomTick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, RandomSource random) {
         if (random.nextInt(5) == 0) {
+            FillBiomeCommand.fill(
+                    level,
+                    pos.offset(-5, -5, -5),
+                    pos.offset(5, 5, 5),
+                    level.registryAccess()
+                            .lookupOrThrow(Registries.BIOME)
+                            .getOrThrow(ModBiomes.ANCIENT_WETLANDS)
+            );
+            level.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.ANCIENT_SOIL_PATCH)).ifPresent((ancientSoilPatch) -> ancientSoilPatch.value().place(level, level.getChunkSource().getGenerator(), random, pos));
             level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
+            level.setBlockAndUpdate(pos.below(), ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
         }
     }
 
@@ -48,7 +62,7 @@ public class PrototaxiteSporesBlock extends Block {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         } else {
-            return (belowState.is(this) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE));
+            return belowState.is(ModBlockTags.ANCIENT_SOIL_REPLACEABLE) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE);
         }
     }
 }
