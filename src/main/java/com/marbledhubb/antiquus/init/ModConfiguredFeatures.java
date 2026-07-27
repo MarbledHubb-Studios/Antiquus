@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ANCIENT_SOIL_PATCH = createKey("ancient_soil_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SILURIAN_PATCH = createKey("silurian_patch");
 
     private static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Antiquus.MODID, name));

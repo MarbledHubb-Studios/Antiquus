@@ -8,13 +8,19 @@
           "data": {
             "Name": "antiquus:ancient_moss_carpet"
           },
-          "weight": 2
+          "weight": 3
         },
         {
           "data": {
             "Name": "antiquus:cooksonia"
           },
-          "weight": 1
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "antiquus:prototaxite_bud"
+          },
+          "weight": 0.25
         }
       ]
     }

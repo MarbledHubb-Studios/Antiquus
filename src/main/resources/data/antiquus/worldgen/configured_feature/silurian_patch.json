@@ -5,16 +5,30 @@
     "extra_bottom_block_chance": 0.0,
     "extra_edge_column_chance": 0.75,
     "ground_state": {
-      "type": "minecraft:simple_state_provider",
+      "type": "minecraft:weighted_state_provider",
       "state": {
         "Name": "antiquus:ancient_soil"
-      }
+      },
+      "entries": [
+        {
+          "weight": 5,
+          "data": {
+            "Name": "antiquus:ancient_soil"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "antiquus:ancient_moss_block"
+          }
+        }
+      ]
     },
-    "replaceable": "#antiquus:ancient_soil_replaceable",
+    "replaceable": "#antiquus:silurian_replaceable",
     "surface": "floor",
     "vegetation_chance": 0.6,
     "vegetation_feature": {
-      "feature": "antiquus:ancient_soil_vegetation",
+      "feature": "antiquus:silurian_vegetation",
       "placement": []
     },
     "vertical_range": 5,
