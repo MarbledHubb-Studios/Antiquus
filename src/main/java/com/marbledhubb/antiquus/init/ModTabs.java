@@ -26,7 +26,9 @@ public class ModTabs {
                 output.accept(ModBlocks.ANCIENT_MOSS_BLOCK);
                 output.accept(ModBlocks.ANCIENT_MOSS_CARPET);
                 output.accept(ModBlocks.COOKSONIA);
+                output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
+                output.accept(ModItems.FOSSILIZED_COOKSONIA);
             })
             .build());
 
