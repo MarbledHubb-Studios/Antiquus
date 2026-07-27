@@ -18,13 +18,13 @@ public class ModTabs {
             .title(Component.translatable("itemGroup." + MODID + ".antiquus_tab"))
             .icon(() -> new ItemStack(ModBlocks.COOKSONIA))
             .displayItems((params, output) -> {
+                output.accept(ModBlocks.ANCIENT_SOIL);
+                output.accept(ModBlocks.ANCIENT_MOSS_BLOCK);
+                output.accept(ModBlocks.ANCIENT_MOSS_CARPET);
                 output.accept(ModBlocks.PROTOTAXITE_STEM);
                 output.accept(ModBlocks.PROTOTAXITE_BLOCK);
                 output.accept(ModBlocks.PROTOTAXITE_BUD);
                 output.accept(ModBlocks.PROTOTAXITE_SPORES);
-                output.accept(ModBlocks.ANCIENT_SOIL);
-                output.accept(ModBlocks.ANCIENT_MOSS_BLOCK);
-                output.accept(ModBlocks.ANCIENT_MOSS_CARPET);
                 output.accept(ModBlocks.COOKSONIA);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
