@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:base_stone_overworld",
+    "#minecraft:dirt",
+    "#minecraft:mud",
+    "#minecraft:moss_blocks",
+    "#minecraft:grass_blocks"
+  ]
+}

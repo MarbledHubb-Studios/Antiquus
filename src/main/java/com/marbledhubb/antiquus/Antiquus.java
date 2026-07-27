@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.init.ModBiomes;
 import com.marbledhubb.antiquus.init.ModBlocks;
 import com.marbledhubb.antiquus.init.ModItems;
 import com.mojang.logging.LogUtils;
@@ -27,6 +28,7 @@ public class Antiquus {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBiomes.register();
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
