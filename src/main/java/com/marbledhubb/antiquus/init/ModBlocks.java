@@ -4,10 +4,7 @@ import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.init.blocks.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -19,9 +16,9 @@ import java.util.function.Function;
 public class ModBlocks {
     public static DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Antiquus.MODID);
 
-    public static final DeferredBlock<Block> ANCIENT_MOSS_BLOCK = registerBlockWithItem("ancient_moss_block", properties -> new Block(properties.sound(SoundType.MOSS).strength(0.1f).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<AncientMossyCarpetBlock> ANCIENT_MOSS_CARPET = registerBlockWithItem("ancient_moss_carpet", properties -> new AncientMossyCarpetBlock(properties.sound(SoundType.MOSS_CARPET).strength(0.1f).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> ANCIENT_SOIL = registerBlockWithItem("ancient_soil", properties -> new Block(properties.sound(SoundType.ROOTED_DIRT).strength(2f)));
+    public static final DeferredBlock<Block> ANCIENT_MOSS_BLOCK = registerBlockWithItem("ancient_moss_block", properties -> new BonemealableFeaturePlacerBlock(ModConfiguredFeatures.ANCIENT_MOSS_PATCH_BONEMEAL, properties.ignitedByLava().sound(SoundType.MOSS).strength(0.1f).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<AncientMossyCarpetBlock> ANCIENT_MOSS_CARPET = registerBlockWithItem("ancient_moss_carpet", properties -> new AncientMossyCarpetBlock(properties.ignitedByLava().sound(SoundType.MOSS_CARPET).strength(0.1f).pushReaction(PushReaction.DESTROY).noOcclusion()));
+    public static final DeferredBlock<Block> ANCIENT_SOIL = registerBlockWithItem("ancient_soil", properties -> new Block(properties.sound(SoundType.MUD).strength(2f)));
     public static final DeferredBlock<Block> COOKSONIA = registerBlockWithItem("cooksonia", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY,properties.noCollision().sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ).instabreak().pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> POTTED_COOKSONIA = registerBlockWithItem("potted_cooksonia", properties -> new FlowerPotBlock(COOKSONIA.get(),properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));
 

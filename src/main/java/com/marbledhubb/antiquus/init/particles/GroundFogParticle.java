@@ -15,6 +15,7 @@ public class GroundFogParticle extends SingleQuadParticle {
 
     public GroundFogParticle(ClientLevel level, double x, double y, double z, TextureAtlasSprite sprite) {
         super(level, x, y, z, sprite);
+        this.setSize(0.1f, 0.1f);
         this.setAlpha(0);
         this.quadSize = this.random.nextFloat() * 0.8f + 1.6f;
         this.lifetime = random.nextInt(35, 96);
@@ -50,16 +51,13 @@ public class GroundFogParticle extends SingleQuadParticle {
             this.age = (int) (this.lifetime * 0.8f);
 
         float progress = (float) this.age / (float) this.lifetime;
-        float alpha;
         if (progress < 0.2f) {
-            alpha = progress / 0.2f;
+            setAlpha(progress / 0.2f);
         } else if (progress > 0.8f) {
-            alpha = (1f - progress) / 0.2f;
+            setAlpha((1f - Math.min(progress, 1)) / 0.2f);
         } else {
-            alpha = 1f;
+            setAlpha(1f);
         }
-
-        this.setAlpha(alpha);
     }
 
     public static class Provider implements ParticleProvider<SimpleParticleType> {
