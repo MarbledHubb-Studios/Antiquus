@@ -1,0 +1,36 @@
+{
+  "parent": "antiquus:antiquus/creaks_of_the_past",
+  "criteria": {
+    "not_quite_a_fun_guy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "antiquus:prototaxite_stem",
+              "antiquus:prototaxite_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.antiquus.not_quite_a_fun_guy.description"
+    },
+    "icon": {
+      "id": "antiquus:prototaxite_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.antiquus.not_quite_a_fun_guy.title"
+    }
+  },
+  "requirements": [
+    [
+      "not_quite_a_fun_guy"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

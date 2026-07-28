@@ -1,0 +1,43 @@
+{
+  "parent": "antiquus:antiquus/creaks_of_the_past",
+  "criteria": {
+    "a_familiar_place": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "location_check",
+            "predicate": {
+              "block": {
+                "blocks": "sniffer_egg"
+              },
+              "biome": "antiquus:ancient_wetlands"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "frame": "challenge",
+    "description": {
+      "translate": "advancements.antiquus.a_familiar_place.description"
+    },
+    "icon": {
+      "id": "minecraft:sniffer_egg"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.antiquus.a_familiar_place.title"
+    }
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "requirements": [
+    [
+      "a_familiar_place"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

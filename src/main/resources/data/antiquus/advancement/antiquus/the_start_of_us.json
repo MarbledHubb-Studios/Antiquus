@@ -1,0 +1,34 @@
+{
+  "parent": "antiquus:antiquus/root",
+  "criteria": {
+    "spores": {
+      "conditions": {
+        "items": [
+          {
+            "items": "antiquus:prototaxite_spores"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.antiquus.the_start_of_us.description"
+    },
+    "icon": {
+      "id": "antiquus:prototaxite_spores"
+    },
+    "show_toast": true,
+    "hidden": true,
+    "title": {
+      "translate": "advancements.antiquus.the_start_of_us.title"
+    }
+  },
+  "requirements": [
+    [
+      "spores"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

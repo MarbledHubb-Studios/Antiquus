@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "fossils": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "antiquus:fossilized_prototaxite_spores",
+              "antiquus:fossilized_prototaxite_bud",
+              "antiquus:cooksonia"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "antiquus:block/ancient_soil",
+    "description": {
+      "translate": "advancements.antiquus.root.description"
+    },
+    "icon": {
+      "id": "antiquus:fossilized_cooksonia"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.antiquus.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "fossils"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
