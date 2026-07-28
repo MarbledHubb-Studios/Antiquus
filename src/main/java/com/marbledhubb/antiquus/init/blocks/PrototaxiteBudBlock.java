@@ -51,4 +51,12 @@ public class PrototaxiteBudBlock extends Block {
             return belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE);
         }
     }
+
+    @Override
+    protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
+        BlockPos belowPos = pos.below();
+        if (!level.getBlockState(belowPos).is(ModBlockTags.SUPPORTS_PROTOTAXITE)) {
+            level.setBlockAndUpdate(belowPos, ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
+        }
+    }
 }
