@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "antiquus:block/prototaxite_stem"
+    "end": "antiquus:block/prototaxite_stem_inside",
+    "side": "antiquus:block/prototaxite_stem"
   }
 }
