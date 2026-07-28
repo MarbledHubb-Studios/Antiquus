@@ -15,6 +15,7 @@ public class ModParticles {
             DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, Antiquus.MODID);
 
     public static final Supplier<SimpleParticleType> PROTOTAXITE_SPORE = PARTICLE_TYPES.register("prototaxite_spore", () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> GROUND_FOG = PARTICLE_TYPES.register("ground_fog", () -> new SimpleParticleType(false));
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);

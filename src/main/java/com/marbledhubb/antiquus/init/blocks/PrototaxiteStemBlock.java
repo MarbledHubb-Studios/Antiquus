@@ -7,7 +7,6 @@ import com.marbledhubb.antiquus.init.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
@@ -126,19 +125,8 @@ public class PrototaxiteStemBlock extends Block {
         BlockState aboveState = level.getBlockState(pos.above());
         if (aboveState.is(this)) return;
 
-        if (random.nextInt(5) == 0) {
-            Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-            BlockPos relativePos = pos.relative(direction);
-            if (!level.getBlockState(relativePos).isSolidRender()) {
-                level.addParticle(ModParticles.PROTOTAXITE_SPORE.get(),
-                        relativePos.getX() + 0.5 - direction.getStepX() * random.nextDouble(),
-                        relativePos.getY() + 0.5 + random.nextDouble() * 2 - 1,
-                        relativePos.getZ() + 0.5 - direction.getStepZ() * random.nextDouble(),
-                        0,
-                        0,
-                        0);
-            }
-        }
+        if (random.nextInt(5) == 0)
+            level.addParticle(ModParticles.PROTOTAXITE_SPORE.get(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);
 
         if (aboveState.isAir() && random.nextInt(getAmbientSoundChance(state, level, pos)) == 0)
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.PROTOTAXITE_STEM_CREAKING_AMBIENCE.get(), SoundSource.AMBIENT, 0.8F, 1.4F / (level.getRandom().nextFloat() + 0.2F), false);
@@ -151,10 +139,10 @@ public class PrototaxiteStemBlock extends Block {
         while (level.getBlockState(pos.below(height)).is(this)) {
             ++height;
             if (height == maxGrowingHeight) {
-                return 130;
+                return 150;
             }
         }
 
-        return 90;
+        return 110;
     }
 }

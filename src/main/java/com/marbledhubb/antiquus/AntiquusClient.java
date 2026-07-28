@@ -1,6 +1,7 @@
 package com.marbledhubb.antiquus;
 
 import com.marbledhubb.antiquus.init.ModParticles;
+import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -34,15 +35,17 @@ public class AntiquusClient {
     @SubscribeEvent
     static void registerParticleProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticles.PROTOTAXITE_SPORE.get(), PrototaxiteSporeProvider::new);
+        event.registerSpriteSet(ModParticles.GROUND_FOG.get(), GroundFogParticle.Provider::new);
     }
 
     private record PrototaxiteSporeProvider(SpriteSet sprite) implements ParticleProvider<SimpleParticleType> {
         @Override
         public Particle createParticle(@NonNull SimpleParticleType options, @NonNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, RandomSource random) {
-            double xa = random.nextGaussian() * 1.0E-8d;
-            double ya = random.nextGaussian() * 1.0E-6d - 2.0E-6d;
-            double za = random.nextGaussian() * 1.0E-8d;
-            SuspendedParticle particle = new SuspendedParticle(level, x, y, z, xa, ya, za, this.sprite.get(random));
+            SuspendedParticle particle = new SuspendedParticle(level, x, y, z,
+                    random.nextGaussian() * 1.0E-8d,
+                    random.nextGaussian() * 1.0E-6d - 2.0E-6d,
+                    random.nextGaussian() * 1.0E-8d,
+                    this.sprite.get(random));
             particle.setColor(0.8274509803921568f, 0.788235294117647f, 0.7215686274509804f);
             particle.setLifetime((int) (16d / random.nextFloat() * 0.6d + 60d));
             return particle;

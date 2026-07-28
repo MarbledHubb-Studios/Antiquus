@@ -2,6 +2,7 @@ package com.marbledhubb.antiquus.init.blocks;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.marbledhubb.antiquus.init.ModParticles;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -144,5 +145,12 @@ public class AncientMossyCarpetBlock extends Block {
 
     public static @Nullable BooleanProperty getPropertyForFace(Direction direction) {
         return PROPERTY_BY_DIRECTION.get(direction);
+    }
+
+    @Override
+    public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
+        if (level.getBlockState(pos.west()).isSolidRender() || random.nextInt(180) != 0) return;
+
+        level.addParticle(ModParticles.GROUND_FOG.get(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);
     }
 }

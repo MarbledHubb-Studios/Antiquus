@@ -4,9 +4,9 @@ license="All Rights Reserved"
 
 [[mods]]
 
-modId="antiquus"
-version="1.0.0.0"
-displayName="Antiquus"
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
 #logoFile="examplemod.png"
 credits="MarbledHubb Studios"
 authors="MarbledNull, Aimiwi"
@@ -18,14 +18,14 @@ N/A
 #[[mixins]]
 #config="${mod_id}.mixins.json"
 
-[[dependencies.antiquus]]
+[[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"
     versionRange="[${neo_version},)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.antiquus]]
+[[dependencies.${mod_id}]]
     modId="minecraft"
     type="required"
     versionRange="${minecraft_version_range}"
