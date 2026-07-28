@@ -3,6 +3,7 @@ package com.marbledhubb.antiquus.init.blocks;
 import com.marbledhubb.antiquus.init.ModBlockStateProperties;
 import com.marbledhubb.antiquus.init.ModBlockTags;
 import com.marbledhubb.antiquus.init.ModParticles;
+import com.marbledhubb.antiquus.init.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -140,7 +141,7 @@ public class PrototaxiteStemBlock extends Block {
         }
 
         if (aboveState.isAir() && random.nextInt(getAmbientSoundChance(state, level, pos)) == 0)
-            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.FUNGUS_PLACE, SoundSource.AMBIENT, 1.0F, 1.0F, false); // TODO replace with custom sound even -aimi
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.PROTOTAXITE_STEM_CREAKING_AMBIENCE.get(), SoundSource.AMBIENT, 0.8F, 1.4F / (level.getRandom().nextFloat() + 0.2F), false);
     }
 
     private int getAmbientSoundChance(BlockState state, BlockGetter level, BlockPos pos) {
