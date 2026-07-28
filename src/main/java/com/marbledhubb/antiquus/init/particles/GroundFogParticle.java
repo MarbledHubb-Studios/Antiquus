@@ -16,7 +16,7 @@ public class GroundFogParticle extends SingleQuadParticle {
     public GroundFogParticle(ClientLevel level, double x, double y, double z, TextureAtlasSprite sprite) {
         super(level, x, y, z, sprite);
         this.setAlpha(0);
-        this.quadSize = this.random.nextFloat() * 0.3f + 0.4f;
+        this.quadSize = this.random.nextFloat() * 0.8f + 1.6f;
         this.lifetime = random.nextInt(35, 96);
         this.hasPhysics = true;
         this.friction = 1f;
