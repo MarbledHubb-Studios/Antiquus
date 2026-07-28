@@ -1,0 +1,19 @@
+{
+  "values": {
+    "antiquus:ancient_moss_block": {
+      "chance": 0.65
+    },
+    "antiquus:ancient_moss_carpet": {
+      "chance": 0.3
+    },
+    "antiquus:prototaxite_block": {
+      "chance": 0.65
+    },
+    "antiquus:prototaxite_bud": {
+      "chance": 0.3
+    },
+    "antiquus:cooksonia": {
+      "chance": 0.65
+    }
+  }
+}
