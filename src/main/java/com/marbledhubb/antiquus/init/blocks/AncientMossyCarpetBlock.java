@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
@@ -80,6 +81,14 @@ public class AncientMossyCarpetBlock extends Block {
     @Override
     protected boolean canSurvive(@NonNull BlockState state, LevelReader level, BlockPos pos) {
         return !level.getBlockState(pos.below()).isAir();
+    }
+
+    @Override
+    protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
+        BlockState updated = getUpdatedState(state, level, pos);
+        if (updated != state) {
+            level.setBlock(pos, updated, Block.UPDATE_CLIENTS);
+        }
     }
 
     private static boolean canSupportAtFace(BlockGetter level, BlockPos pos, Direction direction) {

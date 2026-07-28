@@ -9,10 +9,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.commands.FillBiomeCommand;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
@@ -22,9 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
-
-import java.util.UUID;
 
 public class PrototaxiteSporesBlock extends Block {
     private static final VoxelShape SHAPE = Block.column(16, 0, 1.5);
@@ -50,10 +45,10 @@ public class PrototaxiteSporesBlock extends Block {
                             .getOrThrow(ModBiomes.ANCIENT_WETLANDS)
             );
             level.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.SILURIAN_PATCH)).ifPresent((silurianPatch) -> silurianPatch.value().place(level, level.getChunkSource().getGenerator(), random, pos));
-            level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
             BlockState belowState = level.getBlockState(pos.below());
             if (!belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE) && belowState.is(ModBlockTags.SILURIAN_REPLACEABLE))
                 level.setBlockAndUpdate(pos.below(), ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
+            level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
         }
     }
 
