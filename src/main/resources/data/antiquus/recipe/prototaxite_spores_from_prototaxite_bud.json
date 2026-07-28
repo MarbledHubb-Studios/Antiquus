@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "antiquus:prototaxite_bud"
+  ],
+  "result": {
+    "count": 2,
+    "id": "antiquus:prototaxite_spores"
+  }
+}
