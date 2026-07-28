@@ -6,10 +6,13 @@ import com.marbledhubb.antiquus.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
@@ -119,18 +122,38 @@ public class PrototaxiteStemBlock extends Block {
 
     @Override
     public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
-        if (level.getBlockState(pos.above()).is(this) || random.nextInt(5) != 0) return;
+        BlockState aboveState = level.getBlockState(pos.above());
+        if (aboveState.is(this)) return;
 
-        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-        BlockPos relativePos = pos.relative(direction);
-        if (level.getBlockState(relativePos).isSolidRender()) return;
+        if (random.nextInt(5) == 0) {
+            Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+            BlockPos relativePos = pos.relative(direction);
+            if (!level.getBlockState(relativePos).isSolidRender()) {
+                level.addParticle(ModParticles.PROTOTAXITE_SPORE.get(),
+                        relativePos.getX() + 0.5 - direction.getStepX() * random.nextDouble(),
+                        relativePos.getY() + 0.5 + random.nextDouble() * 2 - 1,
+                        relativePos.getZ() + 0.5 - direction.getStepZ() * random.nextDouble(),
+                        0,
+                        0,
+                        0);
+            }
+        }
 
-        level.addParticle(ModParticles.PROTOTAXITE_SPORE.get(),
-                relativePos.getX() + 0.5 - direction.getStepX() * random.nextDouble(),
-                relativePos.getY() + 0.5 + random.nextDouble() * 2 - 1,
-                relativePos.getZ() + 0.5 - direction.getStepZ() * random.nextDouble(),
-                0,
-                0,
-                0);
+        if (aboveState.isAir() && random.nextInt(getAmbientSoundChance(state, level, pos)) == 0)
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.FUNGUS_PLACE, SoundSource.AMBIENT, 1.0F, 1.0F, false); // TODO replace with custom sound even -aimi
+    }
+
+    private int getAmbientSoundChance(BlockState state, BlockGetter level, BlockPos pos) {
+        int height = 1;
+        int maxGrowingHeight = state.getValue(MAX_GROWING_HEIGHT);
+
+        while (level.getBlockState(pos.below(height)).is(this)) {
+            ++height;
+            if (height == maxGrowingHeight) {
+                return 130;
+            }
+        }
+
+        return 90;
     }
 }
