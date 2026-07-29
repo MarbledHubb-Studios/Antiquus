@@ -149,7 +149,9 @@ public class AncientMossyCarpetBlock extends Block {
 
     @Override
     public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
-        if (level.getBlockState(pos.west()).isSolidRender() || random.nextInt(180) != 0) return;
+        for (int i = 1; i < 4; i++)
+            if (level.getBlockState(pos.west(i)).isSolidRender()) return;
+        if (random.nextInt(180) != 0) return;
 
         level.addParticle(ModParticles.GROUND_FOG.get(), pos.getX() + random.nextDouble(), pos.getY() + 0.125 / (level.getRandom().nextFloat() + 0.135), pos.getZ() + random.nextDouble(), 0, 0, 0);
     }

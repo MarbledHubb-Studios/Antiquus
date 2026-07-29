@@ -24,7 +24,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> POTTED_COOKSONIA = registerBlockWithItem("potted_cooksonia", properties -> new FlowerPotBlock(COOKSONIA.get(),properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<Block> PROTOTAXITE_SPORES = registerBlockWithItem("prototaxite_spores", properties -> new PrototaxiteSporesBlock(properties.noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> PROTOTAXITE_BUD = registerBlockWithItem("prototaxite_bud", properties -> new PrototaxiteBudBlock(properties.noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> PROTOTAXITE_BUD = registerBlockWithItem("prototaxite_bud", properties -> new PrototaxiteBudBlock(properties.noCollision().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<PrototaxiteStemBlock> PROTOTAXITE_STEM = registerBlockWithItem("prototaxite_stem", properties -> new PrototaxiteStemBlock(properties.randomTicks().sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> PROTOTAXITE_BLOCK = registerBlockWithItem("prototaxite_block", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> POTTED_PROTOTAXITE_BUD = registerBlockWithItem("potted_prototaxite_bud", properties -> new FlowerPotBlock(PROTOTAXITE_BUD.get(), properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));

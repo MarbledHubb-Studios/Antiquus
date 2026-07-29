@@ -1,27 +1,25 @@
 package com.marbledhubb.antiquus.init.blocks;
 
-import com.marbledhubb.antiquus.init.ModBiomes;
 import com.marbledhubb.antiquus.init.ModBlockTags;
 import com.marbledhubb.antiquus.init.ModBlocks;
-import com.marbledhubb.antiquus.init.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.server.commands.FillBiomeCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 
-public class PrototaxiteSporesBlock extends Block {
+public class PrototaxiteSporesBlock extends Block implements BonemealableBlock {
     private static final VoxelShape SHAPE = Block.column(16, 0, 1.5);
 
     public PrototaxiteSporesBlock(Properties properties) {
@@ -35,21 +33,23 @@ public class PrototaxiteSporesBlock extends Block {
 
     @Override
     protected void randomTick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, RandomSource random) {
-        if (random.nextInt(5) == 0) {
-            FillBiomeCommand.fill(
-                    level,
-                    pos.offset(-5, -5, -5),
-                    pos.offset(5, 5, 5),
-                    level.registryAccess()
-                            .lookupOrThrow(Registries.BIOME)
-                            .getOrThrow(ModBiomes.ANCIENT_WETLANDS)
-            );
-            level.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.SILURIAN_PATCH)).ifPresent((silurianPatch) -> silurianPatch.value().place(level, level.getChunkSource().getGenerator(), random, pos));
-            BlockState belowState = level.getBlockState(pos.below());
-            if (!belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH) && belowState.is(ModBlockTags.SILURIAN_REPLACEABLE))
-                level.setBlockAndUpdate(pos.below(), ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
+        if (random.nextInt(5) == 0)
             level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
-        }
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(@NonNull LevelReader levelReader, @NonNull BlockPos pos, @NonNull BlockState state) {
+        return true;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(@NonNull Level level, RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+        return random.nextFloat() < 0.4;
+    }
+
+    @Override
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+        level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
     }
 
     @Override
