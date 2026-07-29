@@ -29,6 +29,7 @@ public class ModTabs {
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
                 output.accept(ModItems.FOSSILIZED_COOKSONIA);
+                output.accept(ModBlocks.SUSPICIOUS_STONE);
             })
             .build());
 

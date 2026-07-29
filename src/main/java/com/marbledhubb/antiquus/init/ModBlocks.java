@@ -6,6 +6,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -27,6 +28,8 @@ public class ModBlocks {
     public static final DeferredBlock<PrototaxiteStemBlock> PROTOTAXITE_STEM = registerBlockWithItem("prototaxite_stem", properties -> new PrototaxiteStemBlock(properties.randomTicks().sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> PROTOTAXITE_BLOCK = registerBlockWithItem("prototaxite_block", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> POTTED_PROTOTAXITE_BUD = registerBlockWithItem("potted_prototaxite_bud", properties -> new FlowerPotBlock(PROTOTAXITE_BUD.get(), properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<SuspiciousStoneBlock> SUSPICIOUS_STONE = registerBlockWithItem("suspicious_stone", properties -> new SuspiciousStoneBlock(properties.mapColor(MapColor.STONE).instabreak().pushReaction(PushReaction.DESTROY).noLootTable()));
 
     private static <B extends Block> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
         DeferredBlock<B> toReturn = BLOCKS.registerBlock(name, func);
