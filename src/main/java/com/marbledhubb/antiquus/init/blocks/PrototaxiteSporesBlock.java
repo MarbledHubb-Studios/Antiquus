@@ -46,7 +46,7 @@ public class PrototaxiteSporesBlock extends Block {
             );
             level.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.SILURIAN_PATCH)).ifPresent((silurianPatch) -> silurianPatch.value().place(level, level.getChunkSource().getGenerator(), random, pos));
             BlockState belowState = level.getBlockState(pos.below());
-            if (!belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE) && belowState.is(ModBlockTags.SILURIAN_REPLACEABLE))
+            if (!belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH) && belowState.is(ModBlockTags.SILURIAN_REPLACEABLE))
                 level.setBlockAndUpdate(pos.below(), ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
             level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
         }
@@ -64,7 +64,7 @@ public class PrototaxiteSporesBlock extends Block {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         } else {
-            return belowState.is(ModBlockTags.SILURIAN_REPLACEABLE) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE);
+            return belowState.is(ModBlockTags.SILURIAN_REPLACEABLE) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH);
         }
     }
 }

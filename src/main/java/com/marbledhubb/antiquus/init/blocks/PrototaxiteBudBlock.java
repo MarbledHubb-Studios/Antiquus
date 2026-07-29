@@ -48,14 +48,14 @@ public class PrototaxiteBudBlock extends Block {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         } else {
-            return belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE);
+            return belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH);
         }
     }
 
     @Override
     protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         BlockPos belowPos = pos.below();
-        if (!level.getBlockState(belowPos).is(ModBlockTags.SUPPORTS_PROTOTAXITE)) {
+        if (!level.getBlockState(belowPos).is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH)) {
             level.setBlockAndUpdate(belowPos, ModBlocks.ANCIENT_SOIL.get().defaultBlockState());
         }
     }

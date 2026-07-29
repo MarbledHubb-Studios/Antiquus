@@ -1,21 +1,14 @@
 package com.marbledhubb.antiquus.init.blocks;
 
-import com.marbledhubb.antiquus.init.ModBlockStateProperties;
-import com.marbledhubb.antiquus.init.ModBlockTags;
-import com.marbledhubb.antiquus.init.ModParticles;
-import com.marbledhubb.antiquus.init.ModSounds;
+import com.marbledhubb.antiquus.init.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.TriState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -43,15 +36,6 @@ public class PrototaxiteStemBlock extends Block {
     }
 
     @Override
-    protected void tick(@NonNull BlockState state, ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
-        if (level.isAreaLoaded(pos, 1)) {
-            if (!state.canSurvive(level, pos)) {
-                level.destroyBlock(pos, true);
-            }
-        }
-    }
-
-    @Override
     protected void randomTick(@NonNull BlockState state, ServerLevel level, BlockPos pos, @NonNull RandomSource random) {
         BlockPos above = pos.above();
         if (level.isEmptyBlock(above)) {
@@ -60,9 +44,17 @@ public class PrototaxiteStemBlock extends Block {
                 int age = state.getValue(AGE);
                 int maxGrowingHeight = state.getValue(MAX_GROWING_HEIGHT);
 
-                while (level.getBlockState(pos.below(height)).is(this)) {
-                    ++height;
-                    if (height == maxGrowingHeight && age == MAX_AGE) {
+                while (true) {
+                    BlockState belowState = level.getBlockState(pos.below(height));
+                    if (!belowState.is(this)) {
+                        if (belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH)) {
+                            break;
+                        } else {
+                            return;
+                        }
+                    }
+
+                    if (++height == maxGrowingHeight && age == MAX_AGE) {
                         return;
                     }
                 }
@@ -80,26 +72,6 @@ public class PrototaxiteStemBlock extends Block {
 
                 CommonHooks.fireCropGrowPost(level, pos, state);
             }
-        }
-    }
-
-    @Override
-    protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess ticks, @NonNull BlockPos pos, @NonNull Direction directionToNeighbour, @NonNull BlockPos neighbourPos, @NonNull BlockState neighbourState, @NonNull RandomSource random) {
-        if (!state.canSurvive(level, pos)) {
-            ticks.scheduleTick(pos, this, 1);
-        }
-
-        return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
-    }
-
-    @Override
-    protected boolean canSurvive(@NonNull BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
-        BlockState belowState = level.getBlockState(pos.below());
-        TriState soilDecision = belowState.canSustainPlant(level, pos.below(), Direction.UP, state);
-        if (!soilDecision.isDefault()) {
-            return soilDecision.isTrue();
-        } else {
-            return (belowState.is(this) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE));
         }
     }
 
@@ -124,6 +96,19 @@ public class PrototaxiteStemBlock extends Block {
     public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         BlockState aboveState = level.getBlockState(pos.above());
         if (aboveState.is(this)) return;
+
+        int height = 1;
+        while (true) {
+            BlockState belowState = level.getBlockState(pos.below(height));
+            if (!belowState.is(this)) {
+                if (belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH)) {
+                    break;
+                } else {
+                    return;
+                }
+            }
+            height++;
+        }
 
         if (random.nextInt(5) == 0)
             level.addParticle(ModParticles.PROTOTAXITE_SPORE.get(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);

@@ -7,7 +7,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
 public class ModBlockTags {
-    public static final TagKey<Block> SUPPORTS_PROTOTAXITE = create("supports_prototaxite");
+    public static final TagKey<Block> SUPPORTS_PROTOTAXITE_GROWTH = create("supports_prototaxite_growth");
     public static final TagKey<Block> SILURIAN_REPLACEABLE = create("silurian_replaceable");
 
     private static TagKey<Block> create(String name) {
