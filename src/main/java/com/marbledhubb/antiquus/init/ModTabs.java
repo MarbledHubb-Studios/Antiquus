@@ -26,11 +26,10 @@ public class ModTabs {
                 output.accept(ModBlocks.PROTOTAXITE_BUD);
                 output.accept(ModBlocks.PROTOTAXITE_SPORES);
                 output.accept(ModBlocks.COOKSONIA);
+                output.accept(ModBlocks.SUSPICIOUS_STONE);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
-                output.accept(ModItems.FOSSILIZED_COOKSONIA);
-                output.accept(ModBlocks.SUSPICIOUS_STONE);
-            })
+                output.accept(ModItems.FOSSILIZED_COOKSONIA);})
             .build());
 
     public static void register(IEventBus eventBus) {

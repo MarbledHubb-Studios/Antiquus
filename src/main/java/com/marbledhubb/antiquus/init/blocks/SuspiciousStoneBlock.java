@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
@@ -30,6 +31,11 @@ public class SuspiciousStoneBlock extends BrushableBlock {
         BrushableBlockEntity blockEntity = new BrushableBlockEntity(pos, state);
         blockEntity.setLootTable(LOOT_TABLE, 0L);
         return blockEntity;
+    }
+
+    @Override
+    public SoundEvent getBrushCompletedSound() {
+        return SoundEvents.STONE_BREAK;
     }
 
     @Override
