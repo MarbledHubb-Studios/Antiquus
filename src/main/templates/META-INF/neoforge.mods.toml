@@ -9,7 +9,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 logoFile="aq_icon.png"
 credits="MarbledHubb Studios"
-authors="MarbledNull, Aimiwi"
+authors="MarbledNull, Aimiwi, WereF0X"
 
 description='''
 A mod that allows the player to bring back ancient life from past time periods
