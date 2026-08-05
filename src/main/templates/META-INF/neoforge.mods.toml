@@ -15,8 +15,8 @@ description='''
 A mod that allows the player to bring back ancient life from past time periods
 '''
 
-#[[mixins]]
-#config="${mod_id}.mixins.json"
+[[mixins]]
+config="${mod_id}.mixins.json"
 
 [[dependencies.${mod_id}]]
     modId="neoforge"

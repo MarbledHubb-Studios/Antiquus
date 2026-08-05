@@ -12,14 +12,10 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
 @Mod(Antiquus.MODID)
@@ -28,9 +24,9 @@ public class Antiquus {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Antiquus(IEventBus modEventBus, ModContainer modContainer) {
-        modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerCauldronInteractions);
-        NeoForge.EVENT_BUS.register(this);
+        modEventBus.addListener(ModNetworking::register);
+        //NeoForge.EVENT_BUS.register(this);
 
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -40,15 +36,6 @@ public class Antiquus {
         ModTabs.register(modEventBus);
         ModParticles.register(modEventBus);
         ModSounds.register(modEventBus);
-    }
-
-    private void commonSetup(FMLCommonSetupEvent event) {
-
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-
     }
 
     private void registerCauldronInteractions(RegisterCauldronInteractionEvent.Interaction event) {

@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.init.ModNetworking;
 import com.marbledhubb.antiquus.init.ModParticles;
 import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -25,6 +26,7 @@ import org.jspecify.annotations.NonNull;
 public class AntiquusClient {
     public AntiquusClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        container.getEventBus().addListener(ModNetworking::registerClient);
     }
 
     @SubscribeEvent
