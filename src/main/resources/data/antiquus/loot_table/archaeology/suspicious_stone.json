@@ -16,6 +16,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "antiquus:fossilized_zosterophyllum",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
           "name": "antiquus:fossilized_prototaxite_bud",
           "weight": 1
         }

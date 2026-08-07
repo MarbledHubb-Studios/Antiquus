@@ -12,6 +12,7 @@ public class ModItems {
     public static final DeferredItem<Item> FOSSILIZED_PROTOTAXITE_SPORES = ITEMS.registerSimpleItem("fossilized_prototaxite_spores");
     public static final DeferredItem<Item> FOSSILIZED_PROTOTAXITE_BUD = ITEMS.registerSimpleItem("fossilized_prototaxite_bud");
     public static final DeferredItem<Item> FOSSILIZED_COOKSONIA = ITEMS.registerSimpleItem("fossilized_cooksonia");
+    public static final DeferredItem<Item> FOSSILIZED_ZOSTEROPHYLLUM = ITEMS.registerSimpleItem("fossilized_zosterophyllum");
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

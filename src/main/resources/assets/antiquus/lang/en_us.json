@@ -8,6 +8,7 @@
   "block.antiquus.ancient_moss_block": "Ancient Moss Block",
   "block.antiquus.ancient_soil": "Ancient Soil",
   "block.antiquus.cooksonia": "Cooksonia",
+  "block.antiquus.zosterophyllum": "Zosterophyllum",
   "block.antiquus.suspicious_stone": "Suspicious Stone",
   "item.antiquus.fossilized_prototaxite_spores": "Fossilized Prototaxite Spores",
   "item.antiquus.fossilized_prototaxite_bud": "Fossilized Prototaxite Bud",
@@ -23,5 +24,6 @@
   "advancements.antiquus.a_familiar_place.title": "A Familiar Place",
   "advancements.antiquus.a_familiar_place.description": "Place a Sniffer Egg in an Ancient Wetlands Biome",
   "advancements.antiquus.not_quite_a_fun_guy.title": "Not Quite a Fun-guy",
-  "advancements.antiquus.not_quite_a_fun_guy.description": "Obtain any Prototaxite block"
+  "advancements.antiquus.not_quite_a_fun_guy.description": "Obtain any Prototaxite block",
+  "antiquus.music.game.forgotten_life": "Forgotten Life - X_a_n_d_e_r"
 }
