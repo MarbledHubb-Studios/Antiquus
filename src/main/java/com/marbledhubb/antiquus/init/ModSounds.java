@@ -1,6 +1,7 @@
 package com.marbledhubb.antiquus.init;
 
 import com.marbledhubb.antiquus.Antiquus;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
@@ -14,6 +15,8 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, Antiquus.MODID);
 
     public static final Supplier<SoundEvent> PROTOTAXITE_STEM_CREAKING_AMBIENCE = registerSoundEvents("prototaxite_stem_creaking_ambience");
+    public static final Holder<SoundEvent> MUSIC_BIOME_ANCIENT_WETLANDS = registerSoundEvents("music.overworld.ancient_wetlands");
+
     public static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(Antiquus.MODID, name)));
     }

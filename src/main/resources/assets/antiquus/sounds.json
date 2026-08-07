@@ -4,5 +4,18 @@
     "sounds": [
       "antiquus:prototaxite_stem_creaking_ambience"
     ]
+  },
+  "music.overworld.ancient_wetlands": {
+    "sounds": [
+      {
+        "name": "antiquus:music/game/forgotten_life",
+        "stream": true,
+        "weight": 2
+      },
+      {
+        "name": "music/game/ebb",
+        "stream": true
+      }
+    ]
   }
 }
