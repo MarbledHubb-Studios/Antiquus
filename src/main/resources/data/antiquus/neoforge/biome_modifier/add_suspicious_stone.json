@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "minecraft:stony_shore",
+  "biomes": ["minecraft:stony_shore", "minecraft:stony_peaks", "windswept_hills"],
   "features": "antiquus:ore_suspicious_stone",
   "step": "underground_ores"
 }
