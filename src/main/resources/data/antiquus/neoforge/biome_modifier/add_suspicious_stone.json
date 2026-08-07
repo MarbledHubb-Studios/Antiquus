@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:stony_shore",
+  "features": "antiquus:ore_suspicious_stone",
+  "step": "underground_ores"
+}
