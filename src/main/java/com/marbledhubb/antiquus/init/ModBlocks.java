@@ -2,6 +2,9 @@ package com.marbledhubb.antiquus.init;
 
 import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.init.blocks.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.block.*;
@@ -15,7 +18,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Function;
 
 public class ModBlocks {
-    public static DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Antiquus.MODID);
+    public static DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Antiquus.MOD_ID);
 
     public static final DeferredBlock<Block> ANCIENT_MOSS_BLOCK = registerBlockWithItem("ancient_moss_block", properties -> new BonemealableFeaturePlacerBlock(ModConfiguredFeatures.ANCIENT_MOSS_PATCH_BONEMEAL, properties.ignitedByLava().sound(SoundType.MOSS).strength(0.1f).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<AncientMossyCarpetBlock> ANCIENT_MOSS_CARPET = registerBlockWithItem("ancient_moss_carpet", properties -> new AncientMossyCarpetBlock(properties.ignitedByLava().sound(SoundType.MOSS_CARPET).strength(0.1f).pushReaction(PushReaction.DESTROY).noOcclusion()));
@@ -30,7 +33,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> PROTOTAXITE_BLOCK = registerBlockWithItem("prototaxite_block", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> POTTED_PROTOTAXITE_BUD = registerBlockWithItem("potted_prototaxite_bud", properties -> new FlowerPotBlock(PROTOTAXITE_BUD.get(), properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));
 
-    public static final DeferredBlock<SuspiciousStoneBlock> SUSPICIOUS_STONE = registerBlockWithItem("suspicious_stone", properties -> new SuspiciousStoneBlock(properties.mapColor(MapColor.STONE).instabreak().pushReaction(PushReaction.DESTROY).noLootTable()));
+    public static final DeferredBlock<ChiselableBlock> SUSPICIOUS_STONE = registerBlockWithItem("suspicious_stone", properties -> new ChiselableBlock(
+            Blocks.STONE,
+            SoundType.STONE.getStepSound(),
+            SoundType.STONE.getBreakSound(),
+            ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "archaeology/suspicious_stone")),
+            properties.mapColor(MapColor.STONE).instabreak().pushReaction(PushReaction.DESTROY).noLootTable()));
 
     private static <B extends Block> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
         DeferredBlock<B> toReturn = BLOCKS.registerBlock(name, func);

@@ -10,6 +10,6 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ANCIENT_WETLANDS = register("ancient_wetlands");
 
     private static ResourceKey<Biome> register(String name) {
-        return ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Antiquus.MODID, name));
+        return ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, name));
     }
 }

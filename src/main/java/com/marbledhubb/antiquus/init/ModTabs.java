@@ -9,13 +9,13 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-import static com.marbledhubb.antiquus.Antiquus.MODID;
+import static com.marbledhubb.antiquus.Antiquus.MOD_ID;
 
 public class ModTabs {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
     public static final Supplier<CreativeModeTab> ANTIQUUS_TAB = CREATIVE_MODE_TABS.register("antiquus_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup." + MODID + ".antiquus_tab"))
+            .title(Component.translatable("itemGroup.%s.antiquus_tab".formatted(MOD_ID)))
             .icon(() -> new ItemStack(ModBlocks.COOKSONIA))
             .displayItems((params, output) -> {
                 output.accept(ModBlocks.ANCIENT_SOIL);
@@ -32,6 +32,8 @@ public class ModTabs {
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
                 output.accept(ModItems.FOSSILIZED_COOKSONIA);
                 output.accept(ModItems.FOSSILIZED_ZOSTEROPHYLLUM);
+                output.accept(ModItems.ROCK_HAMMER);
+                output.accept(ModItems.ROCK_CHISEL);
 
             }).build());
 

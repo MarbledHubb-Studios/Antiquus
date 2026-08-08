@@ -1,7 +1,11 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
+import com.marbledhubb.antiquus.init.ModBlockEntityTypes;
+import com.marbledhubb.antiquus.init.ModItems;
 import com.marbledhubb.antiquus.init.ModNetworking;
 import com.marbledhubb.antiquus.init.ModParticles;
+import com.marbledhubb.antiquus.init.items.ModClientItemExtensions;
 import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -15,14 +19,15 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.jspecify.annotations.NonNull;
 
-@Mod(value = Antiquus.MODID, dist = Dist.CLIENT)
-@EventBusSubscriber(modid = Antiquus.MODID, value = Dist.CLIENT)
+@Mod(value = Antiquus.MOD_ID, dist = Dist.CLIENT)
+@EventBusSubscriber(modid = Antiquus.MOD_ID, value = Dist.CLIENT)
 public class AntiquusClient {
     public AntiquusClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
@@ -30,8 +35,20 @@ public class AntiquusClient {
     }
 
     @SubscribeEvent
-    static void onClientSetup(FMLClientSetupEvent event) {
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerItem(
+                new ModClientItemExtensions(),
+                ModItems.ROCK_HAMMER.get(),
+                ModItems.ROCK_CHISEL.get()
+        );
+    }
 
+    @SubscribeEvent
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(
+                ModBlockEntityTypes.CHISELABLE_BLOCK.get(),
+                ChiselableBlockRenderer::new
+        );
     }
 
     @SubscribeEvent

@@ -18,9 +18,9 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
 import org.slf4j.Logger;
 
-@Mod(Antiquus.MODID)
+@Mod(Antiquus.MOD_ID)
 public class Antiquus {
-    public static final String MODID = "antiquus";
+    public static final String MOD_ID = "antiquus";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Antiquus(IEventBus modEventBus, ModContainer modContainer) {
@@ -33,6 +33,7 @@ public class Antiquus {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntityTypes.register(modEventBus);
         ModTabs.register(modEventBus);
         ModParticles.register(modEventBus);
         ModSounds.register(modEventBus);

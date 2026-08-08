@@ -13,7 +13,7 @@ import org.jspecify.annotations.NonNull;
 
 public record BonemealFacePayload(Direction face) implements CustomPacketPayload {
     public static final Type<BonemealFacePayload> TYPE =
-            new Type<>(Identifier.fromNamespaceAndPath(Antiquus.MODID, "bonemeal_face"));
+            new Type<>(Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "bonemeal_face"));
 
     public static final StreamCodec<FriendlyByteBuf, BonemealFacePayload> STREAM_CODEC =
             StreamCodec.composite(

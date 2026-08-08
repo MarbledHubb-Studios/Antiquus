@@ -11,6 +11,6 @@ public class ModBlockTags {
     public static final TagKey<Block> SILURIAN_REPLACEABLE = create("silurian_replaceable");
 
     private static TagKey<Block> create(String name) {
-        return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Antiquus.MODID, name));
+        return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, name));
     }
 }

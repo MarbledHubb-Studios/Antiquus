@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/item/ItemUseAnimation",
+      "name": "ANTIQUUS_ROCK_HAMMER",
+      "constructor": "(ILjava/lang/String;)V",
+      "parameters": [
+        -1,
+        "antiquus:rock_hammer"
+      ]
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "ANTIQUUS_ROCK_HAMMER",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/marbledhubb/antiquus/client/ModClientEnumParams",
+        "field": "ROCK_HAMMER"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/ItemUseAnimation",
+      "name": "ANTIQUUS_ROCK_CHISEL",
+      "constructor": "(ILjava/lang/String;)V",
+      "parameters": [
+        -1,
+        "antiquus:rock_chisel"
+      ]
+    }
+  ]
+}
