@@ -1,6 +1,26 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "antiquus:item/rock_hammer"
+    "type": "minecraft:condition",
+    "property": "minecraft:using_item",
+
+    "on_true": {
+      "type": "minecraft:condition",
+      "property": "antiquus:holding_rock_chisel_in_opposite_hand",
+
+      "on_true": {
+        "type": "minecraft:model",
+        "model": "antiquus:item/rock_hammer"
+      },
+
+      "on_false": {
+        "type": "minecraft:model",
+        "model": "antiquus:item/rock_hammer_flipped"
+      }
+    },
+
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "antiquus:item/rock_hammer"
+    }
   }
 }
