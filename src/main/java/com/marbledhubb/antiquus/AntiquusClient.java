@@ -1,8 +1,8 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
 import com.marbledhubb.antiquus.init.*;
-import com.marbledhubb.antiquus.init.items.ModClientItemExtensions;
 import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;
