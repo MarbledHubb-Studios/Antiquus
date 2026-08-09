@@ -1,35 +1,6 @@
 {
   "model": {
-    "type": "minecraft:range_dispatch",
-    "entries": [
-      {
-        "model": {
-          "type": "minecraft:model",
-          "model": "antiquus:item/rock_hammer"
-        },
-        "threshold": 0.25
-      },
-      {
-        "model": {
-          "type": "minecraft:model",
-          "model": "antiquus:item/rock_hammer"
-        },
-        "threshold": 0.5
-      },
-      {
-        "model": {
-          "type": "minecraft:model",
-          "model": "antiquus:item/rock_hammer"
-        },
-        "threshold": 0.75
-      }
-    ],
-    "fallback": {
-      "type": "minecraft:model",
-      "model": "antiquus:item/rock_hammer"
-    },
-    "period": 10.0,
-    "property": "minecraft:use_cycle",
-    "scale": 0.1
+    "type": "minecraft:model",
+    "model": "antiquus:item/rock_hammer"
   }
 }

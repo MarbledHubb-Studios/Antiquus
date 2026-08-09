@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "antiquus:item/handheld_rock_chisel",
   "textures": {
     "layer0": "antiquus:item/rock_chisel"
   }

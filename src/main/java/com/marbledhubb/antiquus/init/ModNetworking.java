@@ -13,12 +13,20 @@ public class ModNetworking {
                 BonemealFacePayload.TYPE,
                 BonemealFacePayload.STREAM_CODEC
         );
+        registrar.playToClient(
+                ChiselBlockCompletePayload.TYPE,
+                ChiselBlockCompletePayload.STREAM_CODEC
+        );
     }
 
     public static void registerClient(RegisterClientPayloadHandlersEvent event) {
         event.register(
                 BonemealFacePayload.TYPE,
                 BonemealFacePayload::handle
+        );
+        event.register(
+                ChiselBlockCompletePayload.TYPE,
+                ChiselBlockCompletePayload::handle
         );
     }
 }

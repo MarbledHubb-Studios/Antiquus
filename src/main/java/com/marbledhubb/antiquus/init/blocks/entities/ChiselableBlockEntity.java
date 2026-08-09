@@ -3,6 +3,7 @@ package com.marbledhubb.antiquus.init.blocks.entities;
 import com.marbledhubb.antiquus.init.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.init.ModBlockStateProperties;
 import com.marbledhubb.antiquus.init.blocks.ChiselableBlock;
+import com.marbledhubb.antiquus.init.network.ChiselBlockCompletePayload;
 import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.advancements.triggers.CriteriaTriggers;
@@ -33,6 +34,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -46,6 +48,7 @@ public class ChiselableBlockEntity extends BlockEntity {
     private static final String HIT_DIRECTION_TAG = "hit_direction";
     private static final String ITEM_TAG = "item";
     private static final int CHISEL_COOLDOWN_TICKS = 10;
+    private static final int CHISEL_HAMMER_ONLY_COOLDOWN_TICKS = 20;
     private static final int CHISEL_RESET_TICKS = 40;
     private static final int REQUIRED_CHISELS_TO_BREAK = 10;
     private int chiselCount;
@@ -61,7 +64,7 @@ public class ChiselableBlockEntity extends BlockEntity {
         this.item = ItemStack.EMPTY;
     }
 
-    public boolean chisel(long gameTime, ServerLevel level, LivingEntity user, Direction direction, ItemStack hammer) {
+    public boolean chisel(long gameTime, ServerLevel level, LivingEntity user, Direction direction, ItemStack hammer, ItemStack chisel) {
         if (this.hitDirection == null) {
             this.hitDirection = direction;
         }
@@ -70,11 +73,16 @@ public class ChiselableBlockEntity extends BlockEntity {
         if (gameTime < this.coolDownEndsAtTick) {
             return false;
         } else {
-            this.coolDownEndsAtTick = gameTime + CHISEL_COOLDOWN_TICKS;
+            if (chisel.isEmpty() && level.getRandom().nextInt(15) == 0) {
+                this.chiselingCompleted(level, user, hammer, false);
+                return true;
+            }
+
+            this.coolDownEndsAtTick = gameTime + (chisel.isEmpty() ? CHISEL_HAMMER_ONLY_COOLDOWN_TICKS : CHISEL_COOLDOWN_TICKS);
             this.unpackLootTable(level, user, hammer);
             int previousCompletionState = this.getCompletionState();
             if (++this.chiselCount >= REQUIRED_CHISELS_TO_BREAK) {
-                this.chiselingCompleted(level, user, hammer);
+                this.chiselingCompleted(level, user, hammer, true);
                 return true;
             } else {
                 level.scheduleTick(this.getBlockPos(), this.getBlockState().getBlock(), 2);
@@ -114,10 +122,9 @@ public class ChiselableBlockEntity extends BlockEntity {
 
     }
 
-    private void chiselingCompleted(ServerLevel level, LivingEntity user, ItemStack hammer) {
-        this.dropContent(level, user, hammer);
-        BlockState blockState = this.getBlockState();
-        level.levelEvent(3008, this.getBlockPos(), Block.getId(blockState));
+    private void chiselingCompleted(ServerLevel level, LivingEntity user, ItemStack hammer, boolean dropContent) {
+        if (dropContent) this.dropContent(level, user, hammer);
+        PacketDistributor.sendToAllPlayers(new ChiselBlockCompletePayload(this.getBlockPos()));
         Block turnsInto;
         if (this.getBlockState().getBlock() instanceof ChiselableBlock chiselableBlock) {
             turnsInto = chiselableBlock.getTurnsInto();
@@ -125,7 +132,7 @@ public class ChiselableBlockEntity extends BlockEntity {
             turnsInto = Blocks.AIR;
         }
 
-        level.setBlock(this.worldPosition, turnsInto.defaultBlockState(), 3);
+        level.setBlock(this.worldPosition, turnsInto.defaultBlockState(), Block.UPDATE_ALL);
     }
 
     private void dropContent(ServerLevel level, LivingEntity user, ItemStack hammer) {

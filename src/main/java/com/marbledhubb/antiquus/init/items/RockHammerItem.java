@@ -62,31 +62,37 @@ public class RockHammerItem extends Item {
     }
 
     @Override
-    public void onUseTick(@NonNull Level level, @NonNull LivingEntity livingEntity, @NonNull ItemStack itemStack, int ticksRemaining) {
-        if (ticksRemaining >= 0 && livingEntity instanceof Player player) {
+    public void onUseTick(@NonNull Level level, @NonNull LivingEntity entity, @NonNull ItemStack stack, int ticksRemaining) {
+        if (ticksRemaining >= 0 && entity instanceof Player player) {
             HitResult hitResult = this.calculateHitResult(player);
             if (hitResult instanceof BlockHitResult blockHitResult) {
                 if (hitResult.getType() == HitResult.Type.BLOCK) {
-                    int timeElapsed = this.getUseDuration(itemStack, livingEntity) - ticksRemaining + 1;
+                    int timeElapsed = this.getUseDuration(stack, entity) - ticksRemaining + 1;
                     boolean isImpactTick = timeElapsed % ANIMATION_DURATION == ANIMATION_IMPACT_TICK;
                     if (isImpactTick) {
                         BlockPos pos = blockHitResult.getBlockPos();
                         BlockState state = level.getBlockState(pos);
-                        HumanoidArm chiselingArm = livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite();
+                        HumanoidArm chiselingArm = entity.getUsedItemHand() == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite();
                         if (state.shouldSpawnTerrainParticles() && state.getRenderShape() != RenderShape.INVISIBLE) {
-                            this.spawnDustParticles(level, blockHitResult, state, livingEntity.getViewVector(0.0F), chiselingArm);
+                            this.spawnDustParticles(level, blockHitResult, state, entity.getViewVector(0.0F), chiselingArm);
                         }
 
-                        SoundEvent chiselSound = state.getSoundType(level, pos, livingEntity).getStepSound();
+                        SoundEvent chiselSound = state.getSoundType(level, pos, entity).getStepSound();
 
                         level.playSound(player, pos, chiselSound, SoundSource.BLOCKS, 0.5f, 1f);
                         if (level instanceof ServerLevel serverLevel) {
                             BlockEntity blockEntity = level.getBlockEntity(pos);
                             if (blockEntity instanceof ChiselableBlockEntity chiselableBlockEntity) {
-                                boolean chiselingUpdatedState = chiselableBlockEntity.chisel(level.getGameTime(), serverLevel, player, blockHitResult.getDirection(), itemStack);
-                                if (chiselingUpdatedState) {
-                                    EquipmentSlot equippedHand = itemStack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
-                                    itemStack.hurtAndBreak(1, player, equippedHand);
+                                ItemStack chisel = entity.getItemInHand(entity.getUsedItemHand() == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
+                                if (!chisel.canPerformAction(ModItemAbilities.ROCK_CHISEL_CHISEL)) chisel = ItemStack.EMPTY;
+
+                                if (chiselableBlockEntity.chisel(level.getGameTime(), serverLevel, player, blockHitResult.getDirection(), stack, chisel)) {
+                                    if (chisel.isEmpty()) {
+                                        stack.hurtAndBreak(2, player, stack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND);
+                                    } else {
+                                        stack.hurtAndBreak(1, player, stack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND);
+                                        chisel.hurtAndBreak(1, player, chisel.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND);
+                                    }
                                 }
                             }
 
@@ -98,9 +104,9 @@ public class RockHammerItem extends Item {
                 }
             }
 
-            livingEntity.releaseUsingItem();
+            entity.releaseUsingItem();
         } else {
-            livingEntity.releaseUsingItem();
+            entity.releaseUsingItem();
         }
 
     }

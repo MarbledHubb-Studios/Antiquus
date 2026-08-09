@@ -19,6 +19,15 @@
       }
     },
     {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "ANTIQUUS_ROCK_HAMMER_AND_CHISEL",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/marbledhubb/antiquus/client/ModClientEnumParams",
+        "field": "ROCK_HAMMER_AND_CHISEL"
+      }
+    },
+    {
       "enum": "net/minecraft/world/item/ItemUseAnimation",
       "name": "ANTIQUUS_ROCK_CHISEL",
       "constructor": "(ILjava/lang/String;)V",

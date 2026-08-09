@@ -16,8 +16,9 @@ public class ModItems {
     public static final DeferredItem<Item> FOSSILIZED_COOKSONIA = ITEMS.registerSimpleItem("fossilized_cooksonia");
     public static final DeferredItem<Item> FOSSILIZED_ZOSTEROPHYLLUM = ITEMS.registerSimpleItem("fossilized_zosterophyllum");
 
-    public static final DeferredItem<Item> ROCK_HAMMER = ITEMS.registerItem("rock_hammer", RockHammerItem::new);
-    public static final DeferredItem<Item> ROCK_CHISEL = ITEMS.registerItem("rock_chisel", RockChiselItem::new);
+    // TODO probably change the durability of these two. currently they have the same durability as a brush. it could be interesting if the chisel had a smaller durability -aimi
+    public static final DeferredItem<Item> ROCK_HAMMER = ITEMS.registerItem("rock_hammer", RockHammerItem::new, properties -> properties.durability(64));
+    public static final DeferredItem<Item> ROCK_CHISEL = ITEMS.registerItem("rock_chisel", RockChiselItem::new, properties -> properties.durability(64));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
