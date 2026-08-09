@@ -43,6 +43,7 @@ public class Antiquus {
         registerFossilizedItemCauldronIteration(event, ModItems.FOSSILIZED_PROTOTAXITE_SPORES.get(), ModBlocks.PROTOTAXITE_SPORES.asItem());
         registerFossilizedItemCauldronIteration(event, ModItems.FOSSILIZED_PROTOTAXITE_BUD.get(), ModBlocks.PROTOTAXITE_BUD.asItem());
         registerFossilizedItemCauldronIteration(event, ModItems.FOSSILIZED_COOKSONIA.get(), ModBlocks.COOKSONIA.asItem());
+        registerFossilizedItemCauldronIteration(event, ModItems.FOSSILIZED_ZOSTEROPHYLLUM.get(), ModBlocks.ZOSTEROPHYLLUM.asItem());
     }
 
     private static void registerFossilizedItemCauldronIteration(RegisterCauldronInteractionEvent.Interaction event, Item interactionItem, Item returnItem) {
