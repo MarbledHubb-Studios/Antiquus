@@ -25,13 +25,15 @@ public class ModClientItemExtensions implements IClientItemExtensions {
         if (player.isUsingItem() && player.getUseItemRemainingTicks() > 0) {
             if (usingArm == arm) {
                 if (stackInHand.getUseAnimation() == ModItemUseAnimations.ROCK_HAMMER) {
-                    applyItemArmTransform(poseStack, arm, equipProcess);
-                    applyRockHammerTransform(poseStack, partialTick, arm, player);
+                    int invert = getInvert(arm);
+                    applyItemArmTransform(poseStack, invert, equipProcess);
+                    applyRockHammerTransform(poseStack, partialTick, invert, player);
                     return true;
                 }
             } else if (player.getItemInHand(usedItemHand).getUseAnimation() == ModItemUseAnimations.ROCK_HAMMER && stackInHand.getUseAnimation() == ModItemUseAnimations.ROCK_CHISEL) {
-                applyItemArmTransform(poseStack, arm, equipProcess);
-                applyRockChiselTransform(poseStack, partialTick, arm, player);
+                int invert = getInvert(arm);
+                applyItemArmTransform(poseStack, invert, equipProcess);
+                applyRockChiselTransform(poseStack, partialTick, invert, player);
                 return true;
             }
         }
@@ -39,14 +41,15 @@ public class ModClientItemExtensions implements IClientItemExtensions {
         return false;
     }
 
-    private void applyItemArmTransform(PoseStack poseStack, HumanoidArm arm, float equipProcess) {
-        int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
+    private static int getInvert(HumanoidArm arm) {
+        return arm == HumanoidArm.RIGHT ? 1 : -1;
+    }
+
+    private static void applyItemArmTransform(PoseStack poseStack, int invert, float equipProcess) {
         poseStack.translate(invert * 0.56f, -0.52f + equipProcess * -0.6f, -0.72f);
     }
 
-    private void applyRockHammerTransform(PoseStack poseStack, float partialTick, HumanoidArm arm, Player player) {
-        int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
-
+    private static void applyRockHammerTransform(PoseStack poseStack, float partialTick, int invert, Player player) {
         float animationRemainingTicks = player.getUseItemRemainingTicks() % RockHammerItem.ANIMATION_DURATION;
         float deltaSinceLastUpdate = animationRemainingTicks - partialTick + 1f;
         float scaledUsageTime = 1f - deltaSinceLastUpdate / RockHammerItem.ANIMATION_DURATION;
@@ -57,15 +60,21 @@ public class ModClientItemExtensions implements IClientItemExtensions {
         poseStack.mulPose(Axis.YP.rotationDegrees(invert * (45f + ySwingRotation * -13f)));
         float xzSwingRotation = Mth.sin(Mth.sqrt(scaledUsageTime) * (float) Math.PI);
         poseStack.mulPose(Axis.ZP.rotationDegrees(invert * xzSwingRotation * -13f));
-        poseStack.mulPose(Axis.XP.rotationDegrees(xzSwingRotation * -52f/* - 5f*/));
+        poseStack.mulPose(Axis.XP.rotationDegrees(xzSwingRotation * -52f));
         poseStack.mulPose(Axis.YP.rotationDegrees(invert * -25f));
     }
 
-    private void applyRockChiselTransform(PoseStack poseStack, float partialTick, HumanoidArm arm, Player player) {
-        int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
-
+    private static void applyRockChiselTransform(PoseStack poseStack, float partialTick, int invert, Player player) {
         float animationRemainingTicks = player.getUseItemRemainingTicks() % RockHammerItem.ANIMATION_DURATION;
         float deltaSinceLastUpdate = animationRemainingTicks - partialTick + 1f;
+
+        poseStack.translate(invert * -0.48f, -0.2f - getChiselBounce(deltaSinceLastUpdate) * 0.03f, -0.25f);
+        poseStack.mulPose(Axis.YP.rotationDegrees(invert * 60f));
+        poseStack.mulPose(Axis.XP.rotationDegrees(-25f));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(invert * 25f));
+    }
+
+    private static float getChiselBounce(float deltaSinceLastUpdate) {
         float scaledUsageTime = 1f - deltaSinceLastUpdate / RockHammerItem.ANIMATION_DURATION;
 
         float impactStart = 0.15f;
@@ -81,16 +90,14 @@ public class ModClientItemExtensions implements IClientItemExtensions {
             float progress = (scaledUsageTime - impactPeak) / (impactEnd - impactPeak);
             chiselBounce = Mth.cos(progress * (float) Math.PI * 0.5f);
         }
-
-        poseStack.translate(invert * -0.48f, -0.2f - chiselBounce * 0.03f, -0.25f);
-        poseStack.mulPose(Axis.YP.rotationDegrees(invert * 60f));
-        poseStack.mulPose(Axis.XP.rotationDegrees(-25f));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(invert * 25f));
+        return chiselBounce;
     }
 
     @Override
     public HumanoidModel.ArmPose getArmPose(LivingEntity entity, @NonNull InteractionHand hand, @NonNull ItemStack stackInHand) {
         if (entity.isUsingItem() && entity.getUseItemRemainingTicks() > 0 && entity.getUsedItemHand() == hand && stackInHand.getUseAnimation() == ModItemUseAnimations.ROCK_HAMMER) {
+            if (entity.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND).getUseAnimation() == ModItemUseAnimations.ROCK_CHISEL)
+                return ModArmPoses.ROCK_HAMMER_AND_CHISEL;
             return ModArmPoses.ROCK_HAMMER;
         }
 
