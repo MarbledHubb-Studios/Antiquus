@@ -1,10 +1,12 @@
 package com.marbledhubb.antiquus.init.items;
 
+import com.marbledhubb.antiquus.init.ModItemAbilities;
 import com.marbledhubb.antiquus.init.ModItemUseAnimations;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jspecify.annotations.NonNull;
 
 public class RockChiselItem extends Item {
@@ -18,7 +20,7 @@ public class RockChiselItem extends Item {
     }
 
     @Override
-    public int getUseDuration(@NonNull ItemStack itemStack, @NonNull LivingEntity user) {
-        return 200;
+    public boolean canPerformAction(@NonNull ItemInstance stack, @NonNull ItemAbility itemAbility) {
+        return ModItemAbilities.DEFAULT_ROCK_CHISEL_ACTIONS.contains(itemAbility);
     }
 }
