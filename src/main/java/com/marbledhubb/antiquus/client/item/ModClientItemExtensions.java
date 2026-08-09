@@ -1,7 +1,8 @@
-package com.marbledhubb.antiquus.init.items;
+package com.marbledhubb.antiquus.client.item;
 
 import com.marbledhubb.antiquus.client.ModArmPoses;
 import com.marbledhubb.antiquus.init.ModItemUseAnimations;
+import com.marbledhubb.antiquus.init.items.RockHammerItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.HumanoidModel;
@@ -15,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.jspecify.annotations.NonNull;
 
-// TODO this class is fully client-side, but... there's no way to tell other than from the name, probably restructure the mod's folders to make this clearer -aimi
 public class ModClientItemExtensions implements IClientItemExtensions {
     @Override
     public boolean applyForgeHandTransform(@NonNull PoseStack poseStack, @NonNull LocalPlayer player, @NonNull HumanoidArm arm, @NonNull ItemStack stackInHand,

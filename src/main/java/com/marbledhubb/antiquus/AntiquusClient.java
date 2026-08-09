@@ -5,7 +5,7 @@ import com.marbledhubb.antiquus.init.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.init.ModItems;
 import com.marbledhubb.antiquus.init.ModNetworking;
 import com.marbledhubb.antiquus.init.ModParticles;
-import com.marbledhubb.antiquus.init.items.ModClientItemExtensions;
+import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
