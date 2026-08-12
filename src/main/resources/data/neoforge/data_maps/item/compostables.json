@@ -17,6 +17,9 @@
     },
     "antiquus:zosterophyllum": {
       "chance": 0.65
+    },
+    "antiquus:sporogonites": {
+      "chance": 0.65
     }
   }
 }
