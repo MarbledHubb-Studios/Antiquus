@@ -19,6 +19,12 @@
         },
         {
           "data": {
+            "Name": "antiquus:sporogonites"
+          },
+          "weight": 1.5
+        },
+        {
+          "data": {
             "Name": "antiquus:prototaxite_bud"
           },
           "weight": 0.75

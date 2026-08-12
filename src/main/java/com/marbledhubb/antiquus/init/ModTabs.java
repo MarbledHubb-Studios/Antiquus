@@ -27,6 +27,7 @@ public class ModTabs {
                 output.accept(ModBlocks.PROTOTAXITE_SPORES);
                 output.accept(ModBlocks.COOKSONIA);
                 output.accept(ModBlocks.ZOSTEROPHYLLUM);
+                output.accept(ModBlocks.SPOROGONITES);
                 output.accept(ModBlocks.SUSPICIOUS_STONE);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
