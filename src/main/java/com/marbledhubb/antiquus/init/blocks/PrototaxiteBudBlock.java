@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus.init.blocks;
 
+import com.marbledhubb.antiquus.data.BiomeOverrides;
 import com.marbledhubb.antiquus.init.ModBiomes;
 import com.marbledhubb.antiquus.init.ModBlockTags;
 import com.marbledhubb.antiquus.init.ModBlocks;
@@ -7,7 +8,6 @@ import com.marbledhubb.antiquus.init.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.server.commands.FillBiomeCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TriState;
@@ -47,13 +47,14 @@ public class PrototaxiteBudBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-        FillBiomeCommand.fill(
+        BiomeOverrides.add(
                 level,
-                pos.offset(-5, -5, -5),
-                pos.offset(5, 5, 5),
+                pos,
                 level.registryAccess()
                         .lookupOrThrow(Registries.BIOME)
-                        .getOrThrow(ModBiomes.ANCIENT_WETLANDS)
+                        .getOrThrow(ModBiomes.ANCIENT_WETLANDS),
+                pos.offset(-3, -3, -3),
+                pos.offset(3, 3, 3)
         );
         level.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.SILURIAN_PATCH)).ifPresent((silurianPatch) -> silurianPatch.value().place(level, level.getChunkSource().getGenerator(), random, pos));
         BlockState belowState = level.getBlockState(pos.below());

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BoneMealItem.class)
-public class BoneMealItemMixin {
+public abstract class BoneMealItemMixin {
     @Inject(method =  "useOn", at = @At("HEAD"))
     private void injectToUseOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Level level = context.getLevel();

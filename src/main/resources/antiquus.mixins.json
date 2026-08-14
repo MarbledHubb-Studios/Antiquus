@@ -4,7 +4,9 @@
   "refmap": "antiquus.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BoneMealItemMixin"
+    "BoneMealItemMixin",
+    "LevelReaderMixin",
+    "NaturalSpawnerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

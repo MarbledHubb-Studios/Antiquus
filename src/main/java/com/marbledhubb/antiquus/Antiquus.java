@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.data.BiomeOverrides;
 import com.marbledhubb.antiquus.init.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.Identifier;
@@ -15,6 +16,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
 import org.slf4j.Logger;
 
@@ -26,8 +28,7 @@ public class Antiquus {
     public Antiquus(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::registerCauldronInteractions);
         modEventBus.addListener(ModNetworking::register);
-        //NeoForge.EVENT_BUS.register(this);
-
+        NeoForge.EVENT_BUS.addListener(BiomeOverrides::onPlayerJoin);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 

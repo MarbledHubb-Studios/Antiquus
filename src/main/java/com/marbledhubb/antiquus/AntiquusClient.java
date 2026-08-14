@@ -2,6 +2,7 @@ package com.marbledhubb.antiquus;
 
 import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
+import com.marbledhubb.antiquus.data.BiomeOverride;
 import com.marbledhubb.antiquus.init.*;
 import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
 import com.mojang.serialization.MapCodec;
@@ -11,18 +12,22 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.SuspendedParticle;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
@@ -32,13 +37,22 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.jspecify.annotations.NonNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Mod(value = Antiquus.MOD_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = Antiquus.MOD_ID, value = Dist.CLIENT)
 public class AntiquusClient {
+    public static Map<ResourceKey<Level>, Map<BlockPos, BiomeOverride>> biomeOverrides = new HashMap<>();
+
     public AntiquusClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         container.getEventBus().addListener(ModNetworking::registerClient);
+    }
+
+    @SubscribeEvent
+    public static void onLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
+        biomeOverrides = new HashMap<>();
     }
 
     @SubscribeEvent

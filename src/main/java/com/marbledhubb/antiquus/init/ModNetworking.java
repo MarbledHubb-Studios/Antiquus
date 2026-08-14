@@ -10,6 +10,10 @@ public class ModNetworking {
         PayloadRegistrar registrar = event.registrar("1");
 
         registrar.playToClient(
+                BiomeOverridesPayload.TYPE,
+                BiomeOverridesPayload.STREAM_CODEC
+        );
+        registrar.playToClient(
                 BonemealFacePayload.TYPE,
                 BonemealFacePayload.STREAM_CODEC
         );
@@ -20,6 +24,10 @@ public class ModNetworking {
     }
 
     public static void registerClient(RegisterClientPayloadHandlersEvent event) {
+        event.register(
+                BiomeOverridesPayload.TYPE,
+                BiomeOverridesPayload::handle
+        );
         event.register(
                 BonemealFacePayload.TYPE,
                 BonemealFacePayload::handle

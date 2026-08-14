@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus.init.blocks;
 
+import com.marbledhubb.antiquus.data.BiomeOverrides;
 import com.marbledhubb.antiquus.init.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -138,6 +139,11 @@ public class PrototaxiteStemBlock extends Block implements BonemealableBlock {
         }
 
         return new Vec3(x, y, z);
+    }
+
+    @Override
+    protected void affectNeighborsAfterRemoval(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, boolean movedByPiston) {
+        BiomeOverrides.remove(level, pos);
     }
 
     @Override
