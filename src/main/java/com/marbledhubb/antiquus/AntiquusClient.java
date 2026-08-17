@@ -2,6 +2,7 @@ package com.marbledhubb.antiquus;
 
 import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
+import com.marbledhubb.antiquus.client.renderer.entity.TrigonotarbidRenderer;
 import com.marbledhubb.antiquus.data.BiomeOverride;
 import com.marbledhubb.antiquus.init.*;
 import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
@@ -48,6 +49,7 @@ public class AntiquusClient {
     public AntiquusClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         container.getEventBus().addListener(ModNetworking::registerClient);
+        container.getEventBus().addListener(ModModelLayers::registerDefinitions);
     }
 
     @SubscribeEvent
@@ -66,6 +68,10 @@ public class AntiquusClient {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(
+                ModEntityTypes.TRIGONOTARBID.get(),
+                TrigonotarbidRenderer::new
+        );
         event.registerBlockEntityRenderer(
                 ModBlockEntityTypes.CHISELABLE_BLOCK.get(),
                 ChiselableBlockRenderer::new

@@ -28,6 +28,7 @@ public class Antiquus {
     public Antiquus(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::registerCauldronInteractions);
         modEventBus.addListener(ModNetworking::register);
+        modEventBus.addListener(ModDefaultAttributes::register);
         NeoForge.EVENT_BUS.addListener(BiomeOverrides::onPlayerJoin);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -35,6 +36,8 @@ public class Antiquus {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntityTypes.register(modEventBus);
+        ModEntityTypes.register(modEventBus);
+        ModSensorTypes.register(modEventBus);
         ModTabs.register(modEventBus);
         ModParticles.register(modEventBus);
         ModSounds.register(modEventBus);

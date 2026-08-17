@@ -23,6 +23,8 @@ public class ModNetworking {
         );
     }
 
+
+
     public static void registerClient(RegisterClientPayloadHandlersEvent event) {
         event.register(
                 BiomeOverridesPayload.TYPE,
