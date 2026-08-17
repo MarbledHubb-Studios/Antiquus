@@ -1,10 +1,10 @@
 package com.marbledhubb.antiquus.client.renderer.entity;
 
 import com.marbledhubb.antiquus.Antiquus;
-import com.marbledhubb.antiquus.client.model.animal.TrigonotarbidModel;
+import com.marbledhubb.antiquus.client.model.custom.animal.TrigonotarbidModel;
 import com.marbledhubb.antiquus.client.renderer.entity.state.TrigonotarbidRenderState;
-import com.marbledhubb.antiquus.init.ModModelLayers;
-import com.marbledhubb.antiquus.init.entities.Trigonotarbid;
+import com.marbledhubb.antiquus.client.model.ModModelLayers;
+import com.marbledhubb.antiquus.level.entity.custom.animal.trigonotarbid.Trigonotarbid;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.Identifier;

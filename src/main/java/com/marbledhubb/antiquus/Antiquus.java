@@ -1,7 +1,16 @@
 package com.marbledhubb.antiquus;
 
-import com.marbledhubb.antiquus.data.BiomeOverrides;
-import com.marbledhubb.antiquus.init.*;
+import com.marbledhubb.antiquus.level.particle.ModParticleTypes;
+import com.marbledhubb.antiquus.level.saved_data.BiomeOverrides;
+import com.marbledhubb.antiquus.network.ModNetworking;
+import com.marbledhubb.antiquus.level.sound.ModSoundEvents;
+import com.marbledhubb.antiquus.level.block.ModBlocks;
+import com.marbledhubb.antiquus.level.block.entity.ModBlockEntityTypes;
+import com.marbledhubb.antiquus.level.entity.ModEntityTypes;
+import com.marbledhubb.antiquus.level.entity.ai.attributes.ModDefaultAttributes;
+import com.marbledhubb.antiquus.level.entity.ai.sensing.ModSensorTypes;
+import com.marbledhubb.antiquus.level.item.ModItems;
+import com.marbledhubb.antiquus.level.item.custom.ModCreativeModeTabs;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
@@ -38,9 +47,9 @@ public class Antiquus {
         ModBlockEntityTypes.register(modEventBus);
         ModEntityTypes.register(modEventBus);
         ModSensorTypes.register(modEventBus);
-        ModTabs.register(modEventBus);
-        ModParticles.register(modEventBus);
-        ModSounds.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);
+        ModParticleTypes.register(modEventBus);
+        ModSoundEvents.register(modEventBus);
     }
 
     private void registerCauldronInteractions(RegisterCauldronInteractionEvent.Interaction event) {

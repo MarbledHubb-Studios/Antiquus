@@ -1,8 +1,8 @@
 package com.marbledhubb.antiquus.mixin;
 
 import com.marbledhubb.antiquus.AntiquusClient;
-import com.marbledhubb.antiquus.data.BiomeOverride;
-import com.marbledhubb.antiquus.data.BiomeOverrides;
+import com.marbledhubb.antiquus.level.saved_data.BiomeOverride;
+import com.marbledhubb.antiquus.level.saved_data.BiomeOverrides;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;

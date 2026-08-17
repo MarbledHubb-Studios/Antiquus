@@ -1,8 +1,8 @@
 package com.marbledhubb.antiquus.client.renderer.blockentity;
 
 import com.marbledhubb.antiquus.client.renderer.blockentity.state.ChiselableBlockRenderState;
-import com.marbledhubb.antiquus.init.ModBlockStateProperties;
-import com.marbledhubb.antiquus.init.blocks.entities.ChiselableBlockEntity;
+import com.marbledhubb.antiquus.level.block.state.properties.ModBlockStateProperties;
+import com.marbledhubb.antiquus.level.block.entity.custom.ChiselableBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;

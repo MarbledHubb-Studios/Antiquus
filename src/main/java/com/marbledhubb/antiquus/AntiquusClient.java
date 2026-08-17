@@ -1,11 +1,17 @@
 package com.marbledhubb.antiquus;
 
 import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
+import com.marbledhubb.antiquus.client.model.ModModelLayers;
+import com.marbledhubb.antiquus.client.network.ModClientNetworking;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
 import com.marbledhubb.antiquus.client.renderer.entity.TrigonotarbidRenderer;
-import com.marbledhubb.antiquus.data.BiomeOverride;
-import com.marbledhubb.antiquus.init.*;
-import com.marbledhubb.antiquus.init.particles.GroundFogParticle;
+import com.marbledhubb.antiquus.level.particle.ModParticleTypes;
+import com.marbledhubb.antiquus.level.saved_data.BiomeOverride;
+import com.marbledhubb.antiquus.client.particle.GroundFogParticle;
+import com.marbledhubb.antiquus.level.block.entity.ModBlockEntityTypes;
+import com.marbledhubb.antiquus.level.entity.ModEntityTypes;
+import com.marbledhubb.antiquus.level.item.custom.ModItemUseAnimations;
+import com.marbledhubb.antiquus.level.item.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -48,7 +54,7 @@ public class AntiquusClient {
 
     public AntiquusClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-        container.getEventBus().addListener(ModNetworking::registerClient);
+        container.getEventBus().addListener(ModClientNetworking::register);
         container.getEventBus().addListener(ModModelLayers::registerDefinitions);
     }
 
@@ -80,8 +86,8 @@ public class AntiquusClient {
 
     @SubscribeEvent
     static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticles.PROTOTAXITE_SPORE.get(), PrototaxiteSporeProvider::new);
-        event.registerSpriteSet(ModParticles.GROUND_FOG.get(), GroundFogParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.PROTOTAXITE_SPORE.get(), PrototaxiteSporeProvider::new);
+        event.registerSpriteSet(ModParticleTypes.GROUND_FOG.get(), GroundFogParticle.Provider::new);
     }
 
     private record PrototaxiteSporeProvider(SpriteSet sprite) implements ParticleProvider<SimpleParticleType> {

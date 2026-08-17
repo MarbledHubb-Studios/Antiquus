@@ -1,7 +1,7 @@
 package com.marbledhubb.antiquus.mixin;
 
-import com.marbledhubb.antiquus.init.blocks.PrototaxiteStemBlock;
-import com.marbledhubb.antiquus.init.network.BonemealFacePayload;
+import com.marbledhubb.antiquus.level.block.custom.PrototaxiteStemBlock;
+import com.marbledhubb.antiquus.network.payload.BonemealFacePayload;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BoneMealItem;

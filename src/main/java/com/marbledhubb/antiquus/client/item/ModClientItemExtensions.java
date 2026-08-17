@@ -1,8 +1,8 @@
 package com.marbledhubb.antiquus.client.item;
 
 import com.marbledhubb.antiquus.client.ModArmPoses;
-import com.marbledhubb.antiquus.init.ModItemUseAnimations;
-import com.marbledhubb.antiquus.init.items.RockHammerItem;
+import com.marbledhubb.antiquus.level.item.custom.ModItemUseAnimations;
+import com.marbledhubb.antiquus.level.item.custom.RockHammerItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.HumanoidModel;
