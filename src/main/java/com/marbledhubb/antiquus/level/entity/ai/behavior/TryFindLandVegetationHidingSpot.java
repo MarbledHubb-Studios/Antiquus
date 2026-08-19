@@ -16,7 +16,7 @@ import org.apache.commons.lang3.mutable.MutableLong;
 
 import java.util.TreeMap;
 
-public class TryFindVegetationHidingSpot {
+public class TryFindLandVegetationHidingSpot {
     public static BehaviorControl<PathfinderMob> create(int range, float speedModifier) {
         MutableLong nextOkStartTime = new MutableLong(0);
         return BehaviorBuilder.create((i) -> i.group(i.absent(MemoryModuleType.ATTACK_TARGET), i.absent(MemoryModuleType.WALK_TARGET), i.registered(MemoryModuleType.LOOK_TARGET)).apply(i, (attackTarget, walkTarget, lookTarget) -> (level, body, timestamp) -> {
@@ -26,7 +26,7 @@ public class TryFindVegetationHidingSpot {
 
             TreeMap<Integer, Pair<BlockPos, Double>> potentialHidingSpots = new TreeMap<>();
             for(BlockPos pos : BlockPos.withinManhattan(body.blockPosition(), range, range, range)) {
-                if ((pos.getX() != bodyBlockPos.getX() || pos.getZ() != bodyBlockPos.getZ()) && level.getBlockState(pos).getBlock() instanceof VegetationBlock) {
+                if ((pos.getX() != bodyBlockPos.getX() || pos.getZ() != bodyBlockPos.getZ()) && level.getBlockState(pos).getBlock() instanceof VegetationBlock && level.getFluidState(pos).isEmpty()) {
                     Path path = body.getNavigation().createPath(pos, 0);
                     if (path != null && path.canReach()) {
                         int rating = getHidingSpotRating(level, pos);
@@ -38,11 +38,14 @@ public class TryFindVegetationHidingSpot {
                 }
             }
 
-            if (!potentialHidingSpots.isEmpty()) {
-                BlockPos pos = potentialHidingSpots.firstEntry().getValue().getFirst();
-                lookTarget.set(new BlockPosTracker(pos));
-                walkTarget.set(new WalkTarget(new BlockPosTracker(pos), speedModifier, 0));
+            if (potentialHidingSpots.isEmpty()) {
+                nextOkStartTime.setValue(timestamp + 40);
+                return false;
             }
+
+            BlockPos pos = potentialHidingSpots.firstEntry().getValue().getFirst();
+            lookTarget.set(new BlockPosTracker(pos));
+            walkTarget.set(new WalkTarget(new BlockPosTracker(pos), speedModifier, 0));
 
             nextOkStartTime.setValue(timestamp + 40);
             return true;

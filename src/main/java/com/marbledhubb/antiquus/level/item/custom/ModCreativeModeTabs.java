@@ -37,7 +37,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.FOSSILIZED_ZOSTEROPHYLLUM);
                 output.accept(ModItems.ROCK_HAMMER);
                 output.accept(ModItems.ROCK_CHISEL);
-
+                output.accept(ModItems.TRIGONOTARBID_SPAWN_EGG);
             }).build());
 
     public static void register(IEventBus eventBus) {

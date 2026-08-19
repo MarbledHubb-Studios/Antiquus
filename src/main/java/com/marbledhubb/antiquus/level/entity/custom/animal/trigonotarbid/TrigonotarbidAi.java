@@ -1,6 +1,7 @@
 package com.marbledhubb.antiquus.level.entity.custom.animal.trigonotarbid;
 
 import com.google.common.collect.ImmutableList;
+import com.marbledhubb.antiquus.level.entity.ai.behavior.TryFindLandVegetationHidingSpot;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityTypes;
@@ -24,6 +25,7 @@ public class TrigonotarbidAi {
 
     private static ActivityData<Trigonotarbid> initCoreActivity() {
         return ActivityData.create(Activity.CORE, 0, ImmutableList.of(
+                new Swim<>(0.8f),
                 new LookAtTargetSink(45, 90),
                 new MoveToTargetSink()
         ));
@@ -37,8 +39,9 @@ public class TrigonotarbidAi {
                 )),
                 //Pair.of(1, StartAttacking.create((level, body) -> canAttack(body), (level, body) -> body.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE))),
                 new RunOne<>(ImmutableList.of(
-                        Pair.of(new DoNothing(20, 100), 1),
-                        Pair.of(RandomStroll.stroll(0.6F), 2)
+                        Pair.of(new DoNothing(20, 100), 5),
+                        Pair.of(TryFindLandVegetationHidingSpot.create(20, 0.6f), 3),
+                        Pair.of(RandomStroll.stroll(0.6f), 1)
                 ))
                 )/*,
                 ImmutableSet.of(Pair.of(MemoryModuleType.IS_IN_WATER, MemoryStatus.VALUE_ABSENT))*/
