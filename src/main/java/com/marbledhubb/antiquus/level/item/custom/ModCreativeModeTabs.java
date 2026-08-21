@@ -30,6 +30,19 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.COOKSONIA);
                 output.accept(ModBlocks.ZOSTEROPHYLLUM);
                 output.accept(ModBlocks.SPOROGONITES);
+
+                output.accept(ModBlocks.ANCIENT_SAND);
+                output.accept(ModBlocks.ANCIENT_SANDSTONE);
+                output.accept(ModBlocks.ANCIENT_SANDSTONE_STAIRS);
+                output.accept(ModBlocks.ANCIENT_SANDSTONE_SLAB);
+                output.accept(ModBlocks.ANCIENT_SANDSTONE_WALL);
+                output.accept(ModBlocks.CHISELED_ANCIENT_SANDSTONE);
+                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE);
+                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE_STAIRS);
+                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE_SLAB);
+                output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE);
+                output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE_SLAB);
+
                 output.accept(ModBlocks.SUSPICIOUS_STONE);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
