@@ -27,20 +27,15 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ANCIENT_MOSS_BLOCK = registerBlockWithItem("ancient_moss_block", properties -> new BonemealableFeaturePlacerBlock(ModConfiguredFeatures.ANCIENT_MOSS_PATCH_BONEMEAL, properties.ignitedByLava().sound(SoundType.MOSS).strength(0.1f).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<AncientMossyCarpetBlock> ANCIENT_MOSS_CARPET = registerBlockWithItem("ancient_moss_carpet", properties -> new AncientMossyCarpetBlock(properties.ignitedByLava().sound(SoundType.MOSS_CARPET).strength(0.1f).pushReaction(PushReaction.DESTROY).noOcclusion()));
     public static final DeferredBlock<Block> ANCIENT_SOIL = registerBlockWithItem("ancient_soil", properties -> new Block(properties.sound(SoundType.ROOTED_DIRT).strength(2f)));
-
     public static final DeferredBlock<SandBlock> ANCIENT_SAND = registerBlockWithItem("ancient_sand", properties -> new SandBlock(new ColorRGBA(182159961), properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
-
     public static final DeferredBlock<Block> ANCIENT_SANDSTONE = registerBlockWithItem("ancient_sandstone", properties -> new Block(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final DeferredBlock<StairBlock> ANCIENT_SANDSTONE_STAIRS = registerBlockWithItem("ancient_sandstone_stairs", properties -> new StairBlock(ModBlocks.ANCIENT_SANDSTONE.get().defaultBlockState(), properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final DeferredBlock<SlabBlock> ANCIENT_SANDSTONE_SLAB = registerBlockWithItem("ancient_sandstone_slab", properties -> new SlabBlock(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final DeferredBlock<WallBlock> ANCIENT_SANDSTONE_WALL = registerBlockWithItem("ancient_sandstone_wall", properties -> new WallBlock(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
-
     public static final DeferredBlock<Block> CHISELED_ANCIENT_SANDSTONE = registerBlockWithItem("chiseled_ancient_sandstone", properties -> new Block(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
-
     public static final DeferredBlock<Block> SMOOTH_ANCIENT_SANDSTONE = registerBlockWithItem("smooth_ancient_sandstone", properties -> new Block(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final DeferredBlock<StairBlock> SMOOTH_ANCIENT_SANDSTONE_STAIRS = registerBlockWithItem("smooth_ancient_stairs", properties -> new StairBlock(ModBlocks.SMOOTH_ANCIENT_SANDSTONE.get().defaultBlockState(), properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final DeferredBlock<StairBlock> SMOOTH_ANCIENT_SANDSTONE_STAIRS = registerBlockWithItem("smooth_ancient_sandstone_stairs", properties -> new StairBlock(ModBlocks.SMOOTH_ANCIENT_SANDSTONE.get().defaultBlockState(), properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final DeferredBlock<SlabBlock> SMOOTH_ANCIENT_SANDSTONE_SLAB = registerBlockWithItem("smooth_ancient_sandstone_slab", properties -> new SlabBlock(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
-
     public static final DeferredBlock<Block> CUT_ANCIENT_SANDSTONE = registerBlockWithItem("cut_ancient_sandstone", properties -> new Block(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final DeferredBlock<SlabBlock> CUT_ANCIENT_SANDSTONE_SLAB = registerBlockWithItem("cut_ancient_sandstone_slab", properties -> new SlabBlock(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
 

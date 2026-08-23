@@ -1,5 +1,15 @@
 {
   "values": [
-    "antiquus:suspicious_stone"
+    "antiquus:suspicious_stone",
+    "antiquus:ancient_sandstone",
+    "antiquus:ancient_sandstone_stairs",
+    "antiquus:ancient_sandstone_slab",
+    "antiquus:ancient_sandstone_wall",
+    "antiquus:smooth_ancient_sandstone",
+    "antiquus:smooth_ancient_sandstone_stairs",
+    "antiquus:smooth_ancient_sandstone_slab",
+    "antiquus:cut_ancient_sandstone",
+    "antiquus:cut_ancient_sandstone_slab",
+    "antiquus:chiseled_ancient_sandstone"
   ]
 }

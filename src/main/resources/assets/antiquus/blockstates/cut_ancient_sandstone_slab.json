@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "antiquus:block/cut_ancient_sandstone_slab"
+    },
+    "type=double": {
+      "model": "antiquus:block/cut_ancient_sandstone"
+    },
+    "type=top": {
+      "model": "antiquus:block/cut_ancient_sandstone_slab_top"
+    }
+  }
+}
