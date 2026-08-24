@@ -43,6 +43,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE);
                 output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE_SLAB);
 
+                output.accept(ModBlocks.FOSSIL_ANALYSIS_STAND);
                 output.accept(ModBlocks.SUSPICIOUS_STONE);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_BUD);
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);

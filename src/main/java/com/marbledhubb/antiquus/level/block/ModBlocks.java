@@ -57,6 +57,8 @@ public class ModBlocks {
             ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "archaeology/suspicious_stone")),
             properties.mapColor(MapColor.STONE).instabreak().pushReaction(PushReaction.DESTROY).noLootTable()));
 
+    public static final DeferredBlock<FossilAnalysisStand> FOSSIL_ANALYSIS_STAND = registerBlockWithItem("fossil_analysis_stand", properties -> new FossilAnalysisStand(properties));
+
     private static <B extends Block> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
         DeferredBlock<B> toReturn = BLOCKS.registerBlock(name, func);
         ModItems.ITEMS.registerItem(name, properties -> new BlockItem(toReturn.get(), properties.useBlockDescriptionPrefix()));
