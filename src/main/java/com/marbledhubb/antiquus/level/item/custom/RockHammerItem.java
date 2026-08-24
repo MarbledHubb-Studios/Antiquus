@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus.level.item.custom;
 
+import com.marbledhubb.antiquus.level.block.custom.ChiselableBlock;
 import com.marbledhubb.antiquus.level.block.entity.custom.ChiselableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -75,7 +76,12 @@ public class RockHammerItem extends Item {
                             this.spawnDustParticles(level, blockHitResult, state, entity.getViewVector(0.0F), chiselingArm);
                         }
 
-                        SoundEvent chiselSound = state.getSoundType(level, pos, entity).getStepSound();
+                        SoundEvent chiselSound;
+                        if (state.getBlock() instanceof ChiselableBlock block) {
+                            chiselSound = block.getChiselSound();
+                        } else {
+                            chiselSound = state.getSoundType(level, pos, entity).getStepSound();
+                        }
 
                         level.playSound(player, pos, chiselSound, SoundSource.BLOCKS, 0.5f, 1f);
                         if (level instanceof ServerLevel serverLevel) {
