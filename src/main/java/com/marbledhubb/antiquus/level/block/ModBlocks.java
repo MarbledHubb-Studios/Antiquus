@@ -57,7 +57,11 @@ public class ModBlocks {
             ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "archaeology/suspicious_stone")),
             properties.mapColor(MapColor.STONE).instabreak().pushReaction(PushReaction.DESTROY).noLootTable()));
 
-    public static final DeferredBlock<FossilAnalysisStand> FOSSIL_ANALYSIS_STAND = registerBlockWithItem("fossil_analysis_stand", properties -> new FossilAnalysisStand(properties));
+    public static final DeferredBlock<FossilAnalysisStand> FOSSIL_ANALYSIS_STAND = registerBlockWithItem("fossil_analysis_stand", properties -> new FossilAnalysisStand(properties.strength(2f).sound(SoundType.IRON)));
+
+    public static final DeferredBlock<Block> AGLAOPHYTON_STEM = registerBlockWithItem("aglaophyton_stem", properties -> new Block(properties.strength(2f).sound(SoundType.CHERRY_WOOD)));
+    public static final DeferredBlock<Block> AGLAOPHYTON_BLOCK = registerBlockWithItem("aglaophyton_block", properties -> new Block(properties.strength(2f).sound(SoundType.CHERRY_WOOD)));
+    public static final DeferredBlock<FlowerBlock> AGLAOPHYTON_SPROUT = registerBlockWithItem("aglaophyton_sprout", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY, properties.instabreak().noCollision().pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS)));
 
     private static <B extends Block> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
         DeferredBlock<B> toReturn = BLOCKS.registerBlock(name, func);

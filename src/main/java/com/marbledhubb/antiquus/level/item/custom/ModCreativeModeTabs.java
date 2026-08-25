@@ -31,6 +31,10 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ZOSTEROPHYLLUM);
                 output.accept(ModBlocks.SPOROGONITES);
 
+                output.accept(ModBlocks.AGLAOPHYTON_STEM);
+                output.accept(ModBlocks.AGLAOPHYTON_BLOCK);
+                output.accept(ModBlocks.AGLAOPHYTON_SPROUT);
+
                 output.accept(ModBlocks.ANCIENT_SAND);
                 output.accept(ModBlocks.ANCIENT_SANDSTONE);
                 output.accept(ModBlocks.ANCIENT_SANDSTONE_STAIRS);
@@ -49,6 +53,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
                 output.accept(ModItems.FOSSILIZED_COOKSONIA);
                 output.accept(ModItems.FOSSILIZED_ZOSTEROPHYLLUM);
+                output.accept(ModItems.FOSSILIZED_AGLAOPHYTON_SPROUT);
                 output.accept(ModItems.ROCK_HAMMER);
                 output.accept(ModItems.ROCK_CHISEL);
                 output.accept(ModItems.TRIGONOTARBID_SPAWN_EGG);

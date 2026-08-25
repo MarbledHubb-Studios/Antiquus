@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "antiquus:block/aglaophyton_inside",
+    "side": "antiquus:block/aglaophyton_side"
+  }
+}
