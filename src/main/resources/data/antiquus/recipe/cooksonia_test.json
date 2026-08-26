@@ -1,0 +1,8 @@
+{
+  "type": "antiquus:fossil_reconstruction",
+  "fossil": "antiquus:fossilized_cooksonia",
+  "analogue": "minecraft:stick",
+  "result": {
+    "id": "antiquus:cooksonia"
+  }
+}

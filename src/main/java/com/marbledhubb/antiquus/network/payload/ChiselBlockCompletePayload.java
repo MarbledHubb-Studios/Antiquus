@@ -1,7 +1,7 @@
 package com.marbledhubb.antiquus.network.payload;
 
 import com.marbledhubb.antiquus.Antiquus;
-import com.marbledhubb.antiquus.level.block.custom.ChiselableBlock;
+import com.marbledhubb.antiquus.world.level.block.custom.ChiselableBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
