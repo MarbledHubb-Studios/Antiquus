@@ -24,26 +24,24 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
     private static final int RECONSTRUCTION_MEDIUM_SLOT = 2;
     private static final int RESULT_SLOT = 3;
     private static final int SLOT_COUNT = 4;
-    private static final int DATA_COUNT = 2; // TODO
     private static final int INV_SLOT_START = 4;
     private static final int INV_SLOT_END = 31;
     private static final int USE_ROW_SLOT_START = 31;
     private static final int USE_ROW_SLOT_END = 40;
     private final Container fossilAnalysisStand;
     private final ContainerData fossilAnalysisStandData;
-    private final Slot fossilSlot; // TODO
 
     public FossilAnalysisStandMenu(int containerId, Inventory inventory) {
-        this(containerId, inventory, new SimpleContainer(5), new SimpleContainerData(2));
+        this(containerId, inventory, new SimpleContainer(SLOT_COUNT), new SimpleContainerData(FossilAnalysisStandBlockEntity.NUM_DATA_VALUES));
     }
 
     public FossilAnalysisStandMenu(int containerId, Inventory inventory, Container fossilAnalysisStand, ContainerData fossilAnalysisStandData) {
         super(ModMenuTypes.FOSSIL_ANALYSIS_STAND.get(), containerId);
         checkContainerSize(fossilAnalysisStand, SLOT_COUNT);
-        checkContainerDataCount(fossilAnalysisStandData, DATA_COUNT);
+        checkContainerDataCount(fossilAnalysisStandData, FossilAnalysisStandBlockEntity.NUM_DATA_VALUES);
         this.fossilAnalysisStand = fossilAnalysisStand;
         this.fossilAnalysisStandData = fossilAnalysisStandData;
-        this.fossilSlot = this.addSlot(new FossilSlot(inventory.player.level().recipeAccess(), fossilAnalysisStand, FOSSIL_SLOT, 79, 17));
+        this.addSlot(new FossilSlot(inventory.player.level().recipeAccess(), fossilAnalysisStand, FOSSIL_SLOT, 79, 17));
         this.addSlot(new Slot(fossilAnalysisStand, ANALOGUE_SLOT, 102, 24));
         this.addSlot(new ReconstructionMediumSlot(fossilAnalysisStand, RECONSTRUCTION_MEDIUM_SLOT, 56, 24));
         this.addSlot(new Slot(fossilAnalysisStand, RESULT_SLOT, 79, 58));
@@ -64,30 +62,13 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
             ItemStack stack = slot.getItem();
             clicked = stack.copy();
             if (slotIndex >= INV_SLOT_START) {
-                // TODO
-                //if (ReconstructionMediumSlot.mayPlaceItem(clicked)) {
-                //    if (this.moveItemStackTo(stack, 4, 5, false) || this.fossilSlot.mayPlace(stack) && !this.moveItemStackTo(stack, 3, 4, false)) {
-                //        return ItemStack.EMPTY;
-                //    }
-                //} else if (this.fossilSlot.mayPlace(stack)) {
-                //    if (!this.moveItemStackTo(stack, 3, 4, false)) {
-                //        return ItemStack.EMPTY;
-                //    }
-                //} else if (ReconstructionMediumSlot.mayPlaceItem(player.level().potionBrewing(), clicked)) {
-                //    if (!this.moveItemStackTo(stack, 0, 3, false)) {
-                //        return ItemStack.EMPTY;
-                //    }
-                //} else if (slotIndex >= 5 && slotIndex < 32) {
-                //    if (!this.moveItemStackTo(stack, 32, 41, false)) {
-                //        return ItemStack.EMPTY;
-                //    }
-                //} else if (slotIndex >= 32 && slotIndex < 41) {
-                //    if (!this.moveItemStackTo(stack, 5, 32, false)) {
-                //        return ItemStack.EMPTY;
-                //    }
-                //} else if (!this.moveItemStackTo(stack, 5, 41, false)) {
-                //    return ItemStack.EMPTY;
-                //}
+                if (!(this.moveItemStackTo(stack, FOSSIL_SLOT, FOSSIL_SLOT + 1, false) ||
+                        this.moveItemStackTo(stack, RECONSTRUCTION_MEDIUM_SLOT, RECONSTRUCTION_MEDIUM_SLOT +1, false) ||
+                        this.moveItemStackTo(stack, ANALOGUE_SLOT, ANALOGUE_SLOT +1, false) ||
+                        (slotIndex >= USE_ROW_SLOT_START && slotIndex < USE_ROW_SLOT_END && this.moveItemStackTo(stack, INV_SLOT_START, INV_SLOT_END, false)) ||
+                        this.moveItemStackTo(stack, USE_ROW_SLOT_START, USE_ROW_SLOT_END, false))) {
+                    return ItemStack.EMPTY;
+                }
             } else {
                 if (!this.moveItemStackTo(stack, INV_SLOT_START, USE_ROW_SLOT_END, true)) {
                     return ItemStack.EMPTY;
@@ -113,7 +94,6 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
     }
 
     public int getReconstructionMedium() {
-        Antiquus.LOGGER.info("reconstruction medium is: " + this.fossilAnalysisStandData.get(FossilAnalysisStandBlockEntity.DATA_RECONSTRUCTION_MEDIUM_USES));
         return this.fossilAnalysisStandData.get(FossilAnalysisStandBlockEntity.DATA_RECONSTRUCTION_MEDIUM_USES);
     }
 

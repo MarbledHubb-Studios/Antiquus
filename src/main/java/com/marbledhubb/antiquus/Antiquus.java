@@ -1,6 +1,8 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.stats.ModStats;
 import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
+import com.marbledhubb.antiquus.world.item.crafting.ModRecipeBookCategories;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipeSerializers;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipeTypes;
 import com.marbledhubb.antiquus.world.level.block.ModBlocks;
@@ -55,7 +57,9 @@ public class Antiquus {
         ModSoundEvents.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
         ModRecipeSerializers.register(modEventBus);
+        ModRecipeBookCategories.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModStats.register(modEventBus);
     }
 
     private void registerCauldronInteractions(RegisterCauldronInteractionEvent.Interaction event) {

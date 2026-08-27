@@ -23,7 +23,6 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -41,7 +40,8 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
     private static final int[] SLOTS_FOR_UP = new int[]{FOSSIL_SLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{FOSSIL_SLOT, RESULT_SLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{ANALOGUE_SLOT, RECONSTRUCTION_MEDIUM_SLOT, RESULT_SLOT};
-    public static final int RECONSTRUCTION_MEDIUM_USES = 20;
+    private static final int RECONSTRUCTION_MEDIUM_USES = 20;
+    private static final int RECONSTRUCTION_DURATION = 400;
     public static final int DATA_RECONSTRUCTION_TIME = 0;
     public static final int DATA_RECONSTRUCTION_MEDIUM_USES = 1;
     public static final int NUM_DATA_VALUES = 2;
@@ -126,13 +126,13 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
             setChanged(level, pos, selfState);
         } else if (reconstructable && entity.reconstructionMedium > 0) {
             --entity.reconstructionMedium;
-            entity.reconstructionTime = 400; // TODO make into constant
+            entity.reconstructionTime = RECONSTRUCTION_DURATION;
             entity.fossil = entity.items.get(FOSSIL_SLOT).getItem();
             entity.analogue = entity.items.get(ANALOGUE_SLOT).getItem();
             setChanged(level, pos, selfState);
         }
 
-        // TODO possible future changes on the blockstate's properties
+        // TODO possible future changes on the blockstate's properties -aimi
     }
 
     private static Optional<RecipeHolder<FossilReconstructionRecipe>> getRecipe(Level level, NonNullList<ItemStack> items) {
@@ -149,7 +149,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
             resultStack.grow(1);
         }
 
-        level.levelEvent(LevelEvent.SOUND_BREWING_STAND_BREW, pos, 0); // TODO
+        //level.levelEvent(LevelEvent.SOUND_BREWING_STAND_BREW, pos, 0); TODO custom sound for when fossil reconstruction is finished -aimi
     }
 
     private static void shrinkSlot(Level level, BlockPos pos, NonNullList<ItemStack> items, int slotIndex) {

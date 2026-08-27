@@ -1,11 +1,11 @@
 package com.marbledhubb.antiquus.world.level.block.custom;
 
+import com.marbledhubb.antiquus.stats.ModStats;
 import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilAnalysisStandBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -70,7 +70,7 @@ public class FossilAnalysisStandBlock extends BaseEntityBlock {
         if (!level.isClientSide()) {
             if (level.getBlockEntity(pos) instanceof FossilAnalysisStandBlockEntity blockEntity) {
                 player.openMenu(blockEntity);
-                player.awardStat(Stats.INTERACT_WITH_BREWINGSTAND); // TODO
+                player.awardStat(ModStats.INTERACT_WITH_FOSSIL_ANALYSIS_STAND.get());
             }
         }
 

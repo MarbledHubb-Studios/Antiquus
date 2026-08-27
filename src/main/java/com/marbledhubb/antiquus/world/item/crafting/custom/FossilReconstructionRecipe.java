@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus.world.item.crafting.custom;
 
+import com.marbledhubb.antiquus.world.item.crafting.ModRecipeBookCategories;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipeTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -63,7 +64,7 @@ public class FossilReconstructionRecipe implements Recipe<FossilReconstructionRe
 
     @Override
     public @NonNull String group() {
-        return ""; // TODO
+        return "";
     }
 
     @Override
@@ -91,6 +92,6 @@ public class FossilReconstructionRecipe implements Recipe<FossilReconstructionRe
 
     @Override
     public @NonNull RecipeBookCategory recipeBookCategory() {
-        return null; // TODO
+        return ModRecipeBookCategories.FOSSIL_RECONSTRUCTION.get();
     }
 }
