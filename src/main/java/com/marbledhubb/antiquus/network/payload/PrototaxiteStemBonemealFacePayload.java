@@ -11,15 +11,15 @@ import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jspecify.annotations.NonNull;
 
-public record BonemealFacePayload(Direction face) implements CustomPacketPayload {
-    public static final Type<BonemealFacePayload> TYPE =
-            new Type<>(Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "bonemeal_face"));
+public record PrototaxiteStemBonemealFacePayload(Direction face) implements CustomPacketPayload {
+    public static final Type<PrototaxiteStemBonemealFacePayload> TYPE =
+            new Type<>(Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "prototaxite_stem_bonemeal_face"));
 
-    public static final StreamCodec<FriendlyByteBuf, BonemealFacePayload> STREAM_CODEC =
+    public static final StreamCodec<FriendlyByteBuf, PrototaxiteStemBonemealFacePayload> STREAM_CODEC =
             StreamCodec.composite(
                     ByteBufCodecs.idMapper(Direction::from3DDataValue, Direction::get3DDataValue),
-                    BonemealFacePayload::face,
-                    BonemealFacePayload::new
+                    PrototaxiteStemBonemealFacePayload::face,
+                    PrototaxiteStemBonemealFacePayload::new
             );
 
     @Override
@@ -27,7 +27,7 @@ public record BonemealFacePayload(Direction face) implements CustomPacketPayload
         return TYPE;
     }
 
-    public static void handle(BonemealFacePayload payload, IPayloadContext context) {
+    public static void handle(PrototaxiteStemBonemealFacePayload payload, IPayloadContext context) {
         PrototaxiteStemBlock.BONEMEALED_FACE.set(payload.face);
     }
 }

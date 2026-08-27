@@ -124,7 +124,7 @@ public class ChiselableBlockEntity extends BlockEntity {
 
     private void chiselingCompleted(ServerLevel level, LivingEntity user, ItemStack hammer, boolean dropContent) {
         if (dropContent) this.dropContent(level, user, hammer);
-        PacketDistributor.sendToAllPlayers(new ChiselBlockCompletePayload(this.getBlockPos()));
+        PacketDistributor.sendToPlayersInDimension(level, new ChiselBlockCompletePayload(this.getBlockPos()));
         Block turnsInto;
         if (this.getBlockState().getBlock() instanceof ChiselableBlock chiselableBlock) {
             turnsInto = chiselableBlock.getTurnsInto();

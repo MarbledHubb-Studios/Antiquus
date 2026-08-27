@@ -1,7 +1,7 @@
 package com.marbledhubb.antiquus.client.network;
 
 import com.marbledhubb.antiquus.network.payload.BiomeOverridesPayload;
-import com.marbledhubb.antiquus.network.payload.BonemealFacePayload;
+import com.marbledhubb.antiquus.network.payload.PrototaxiteStemBonemealFacePayload;
 import com.marbledhubb.antiquus.network.payload.ChiselBlockCompletePayload;
 import net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent;
 
@@ -12,8 +12,8 @@ public class ModClientNetworking {
                 BiomeOverridesPayload::handle
         );
         event.register(
-                BonemealFacePayload.TYPE,
-                BonemealFacePayload::handle
+                PrototaxiteStemBonemealFacePayload.TYPE,
+                PrototaxiteStemBonemealFacePayload::handle
         );
         event.register(
                 ChiselBlockCompletePayload.TYPE,
