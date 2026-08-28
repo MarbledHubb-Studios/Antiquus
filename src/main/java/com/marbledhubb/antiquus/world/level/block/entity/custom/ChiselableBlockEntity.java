@@ -195,6 +195,7 @@ public class ChiselableBlockEntity extends BlockEntity {
         }
     }
 
+    @Override
     public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
         CompoundTag tag = super.getUpdateTag(registries);
         tag.storeNullable(HIT_DIRECTION_TAG, Direction.LEGACY_ID_CODEC, this.hitDirection);
@@ -206,10 +207,12 @@ public class ChiselableBlockEntity extends BlockEntity {
         return tag;
     }
 
+    @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    @Override
     protected void loadAdditional(@NonNull ValueInput input) {
         super.loadAdditional(input);
         if (!this.tryLoadLootTable(input)) {
@@ -221,6 +224,7 @@ public class ChiselableBlockEntity extends BlockEntity {
         this.hitDirection = input.read(HIT_DIRECTION_TAG, Direction.LEGACY_ID_CODEC).orElse(null);
     }
 
+    @Override
     protected void saveAdditional(@NonNull ValueOutput output) {
         super.saveAdditional(output);
         if (!this.trySaveLootTable(output) && !this.item.isEmpty()) {

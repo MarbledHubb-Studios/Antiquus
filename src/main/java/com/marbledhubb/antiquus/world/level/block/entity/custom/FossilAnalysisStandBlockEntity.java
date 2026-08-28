@@ -9,10 +9,17 @@ import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.tags.ModItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
+import net.minecraft.world.ItemStackWithSlot;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -23,6 +30,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -30,13 +38,15 @@ import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
-    private static final int FOSSIL_SLOT = 0;
-    private static final int ANALOGUE_SLOT = 1;
-    private static final int RECONSTRUCTION_MEDIUM_SLOT = 2;
-    private static final int RESULT_SLOT = 3;
+    public static final int FOSSIL_SLOT = 0;
+    public static final int ANALOGUE_SLOT = 1;
+    public static final int RECONSTRUCTION_MEDIUM_SLOT = 2;
+    public static final int RESULT_SLOT = 3;
     private static final int[] SLOTS_FOR_UP = new int[]{FOSSIL_SLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{FOSSIL_SLOT, RESULT_SLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{ANALOGUE_SLOT, RECONSTRUCTION_MEDIUM_SLOT, RESULT_SLOT};
@@ -167,6 +177,30 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
     }
 
     @Override
+    public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
+        CompoundTag tag = super.getUpdateTag(registries);
+
+        ItemStack fossil = this.items.get(FOSSIL_SLOT);
+        if (!fossil.isEmpty()) {
+            List<ItemStackWithSlot> items = new ArrayList<>(1);
+            items.add(new ItemStackWithSlot(
+                    FOSSIL_SLOT,
+                    fossil
+            ));
+
+            RegistryOps<Tag> ops = registries.createSerializationContext(NbtOps.INSTANCE);
+            tag.store("Items", ItemStackWithSlot.CODEC.listOf(), ops, items);
+        }
+
+        return tag;
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
     protected void loadAdditional(@NonNull ValueInput input) {
         super.loadAdditional(input);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
@@ -220,5 +254,19 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
     @Override
     protected @NonNull AbstractContainerMenu createMenu(int containerId, @NonNull Inventory inventory) {
         return new FossilAnalysisStandMenu(containerId, inventory, this, this.dataAccess);
+    }
+
+    @Override
+    public void setItem(int slot, @NonNull ItemStack itemStack, boolean insideTransaction) {
+        super.setItem(slot, itemStack, insideTransaction);
+
+        if (slot == FOSSIL_SLOT && level != null && !level.isClientSide()) {
+            level.sendBlockUpdated(
+                    worldPosition,
+                    getBlockState(),
+                    getBlockState(),
+                    Block.UPDATE_CLIENTS
+            );
+        }
     }
 }

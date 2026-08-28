@@ -5,6 +5,7 @@ import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.client.model.ModModelLayers;
 import com.marbledhubb.antiquus.client.network.ModClientNetworking;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
+import com.marbledhubb.antiquus.client.renderer.blockentity.FossilAnalysisStandRenderer;
 import com.marbledhubb.antiquus.client.renderer.entity.TrigonotarbidRenderer;
 import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
 import com.marbledhubb.antiquus.world.particle.ModParticleTypes;
@@ -80,6 +81,10 @@ public class AntiquusClient {
         event.registerBlockEntityRenderer(
                 ModBlockEntityTypes.CHISELABLE_BLOCK.get(),
                 ChiselableBlockRenderer::new
+        );
+        event.registerBlockEntityRenderer(
+                ModBlockEntityTypes.FOSSIL_ANALYSIS_STAND.get(),
+                FossilAnalysisStandRenderer::new
         );
     }
 

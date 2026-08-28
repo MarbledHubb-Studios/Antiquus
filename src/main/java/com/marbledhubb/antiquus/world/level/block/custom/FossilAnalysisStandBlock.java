@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
@@ -28,12 +29,12 @@ import java.util.Map;
 
 public class FossilAnalysisStandBlock extends BaseEntityBlock {
     public static final MapCodec<FossilAnalysisStandBlock> CODEC = simpleCodec(FossilAnalysisStandBlock::new);
-    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final Map<Direction, VoxelShape> SHAPES = Shapes.rotateHorizontal(Shapes.or(
-            Block.box(5, 0, 4, 13, 2, 12),
-            Block.box(2, 0, 6, 5, 10, 10),
-            Block.box(5, 7, 7, 13, 9, 9),
-            Block.box(8, 4, 7, 10, 7, 9)));
+            Block.box(4, 0, 3, 12, 2, 11),
+            Block.box(6, 0, 11, 10, 10, 14),
+            Block.box(7, 7, 3, 9, 9, 11),
+            Block.box(7, 4, 6, 9, 7, 8)));
 
     @Override
     protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
@@ -57,7 +58,15 @@ public class FossilAnalysisStandBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getClockWise());
+        BlockState state = this.defaultBlockState();
+        Direction clickedFace = context.getClickedFace();
+        if (!context.replacingClickedOnBlock() && clickedFace.getAxis().isHorizontal()) {
+            state = state.setValue(FACING, clickedFace);
+        } else {
+            state = state.setValue(FACING, context.getHorizontalDirection().getOpposite());
+        }
+
+        return state;
     }
 
     @Override

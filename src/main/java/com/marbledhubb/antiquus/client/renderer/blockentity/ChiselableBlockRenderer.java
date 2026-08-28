@@ -32,6 +32,7 @@ public class ChiselableBlockRenderer implements BlockEntityRenderer<ChiselableBl
         return new ChiselableBlockRenderState();
     }
 
+    @Override
     public void extractRenderState(
             @NonNull ChiselableBlockEntity blockEntity,
             @NonNull ChiselableBlockRenderState state,
