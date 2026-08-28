@@ -128,7 +128,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
         if (entity.reconstructionTime > 0) {
             --entity.reconstructionTime;
             if (entity.reconstructionTime <= 0 && reconstructable) {
-                doReconstruction(level, pos, entity.items, recipe.get(), resultStack);
+                doReconstruction(level, pos, entity.items, recipe.get(), resultStack, entity.getBlockState());
             } else if (!reconstructable || !entity.items.get(FOSSIL_SLOT).is(entity.fossil) || !entity.items.get(ANALOGUE_SLOT).is(entity.analogue)) {
                 entity.reconstructionTime = 0;
             }
@@ -149,7 +149,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
         return ((RecipeManager) level.recipeAccess()).getRecipeFor(ModRecipeTypes.FOSSIL_RECONSTRUCTION.get(), new FossilReconstructionRecipeInput(items.get(FOSSIL_SLOT), items.get(ANALOGUE_SLOT)), level);
     }
 
-    private static void doReconstruction(Level level, BlockPos pos, NonNullList<ItemStack> items, RecipeHolder<FossilReconstructionRecipe> recipe, ItemStack resultStack) {
+    private static void doReconstruction(Level level, BlockPos pos, NonNullList<ItemStack> items, RecipeHolder<FossilReconstructionRecipe> recipe, ItemStack resultStack, BlockState state) {
         shrinkSlot(level, pos, items, FOSSIL_SLOT);
         shrinkSlot(level, pos, items, ANALOGUE_SLOT);
         FossilReconstructionRecipeInput input = new FossilReconstructionRecipeInput(items.get(FOSSIL_SLOT), items.get(ANALOGUE_SLOT));
@@ -159,6 +159,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
             resultStack.grow(1);
         }
 
+        updateClients(level, pos, state);
         //level.levelEvent(LevelEvent.SOUND_BREWING_STAND_BREW, pos, 0); TODO custom sound for when fossil reconstruction is finished -aimi
     }
 
@@ -260,13 +261,16 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
     public void setItem(int slot, @NonNull ItemStack itemStack, boolean insideTransaction) {
         super.setItem(slot, itemStack, insideTransaction);
 
-        if (slot == FOSSIL_SLOT && level != null && !level.isClientSide()) {
-            level.sendBlockUpdated(
-                    worldPosition,
-                    getBlockState(),
-                    getBlockState(),
-                    Block.UPDATE_CLIENTS
-            );
-        }
+        if (slot == FOSSIL_SLOT && level != null && !level.isClientSide())
+            updateClients(level, worldPosition, getBlockState());
+    }
+
+    private static void updateClients(Level level, BlockPos pos, BlockState state) {
+        level.sendBlockUpdated(
+                pos,
+                state,
+                state,
+                Block.UPDATE_CLIENTS
+        );
     }
 }

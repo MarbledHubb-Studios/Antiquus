@@ -44,7 +44,7 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
         this.addSlot(new FossilSlot(inventory.player.level().recipeAccess(), fossilAnalysisStand, FOSSIL_SLOT, 79, 17));
         this.addSlot(new Slot(fossilAnalysisStand, ANALOGUE_SLOT, 102, 24));
         this.addSlot(new ReconstructionMediumSlot(fossilAnalysisStand, RECONSTRUCTION_MEDIUM_SLOT, 56, 24));
-        this.addSlot(new Slot(fossilAnalysisStand, RESULT_SLOT, 79, 58));
+        this.addSlot(new ResultSlot(fossilAnalysisStand, RESULT_SLOT, 79, 58));
         this.addDataSlots(fossilAnalysisStandData);
         this.addStandardInventorySlots(inventory, 8, 84);
     }
@@ -137,6 +137,17 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
         @Override
         public Identifier getNoItemIcon() {
             return FossilAnalysisStandMenu.EMPTY_SLOT_FOSSIL;
+        }
+    }
+
+    private static class ResultSlot extends Slot {
+        public ResultSlot(Container container, int slot, int x, int y) {
+            super(container, slot, x, y);
+        }
+
+        @Override
+        public boolean mayPlace(@NonNull ItemStack itemStack) {
+            return false;
         }
     }
 }
