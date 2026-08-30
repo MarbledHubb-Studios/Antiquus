@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.advancements.triggers.ModCriteriaTriggers;
 import com.marbledhubb.antiquus.stats.ModStats;
 import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipeBookCategories;
@@ -60,8 +61,10 @@ public class Antiquus {
         ModRecipeBookCategories.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModStats.register(modEventBus);
+        ModCriteriaTriggers.register(modEventBus);
     }
 
+    // TODO remove these now that we have a proper reconstruction system -aimi
     private void registerCauldronInteractions(RegisterCauldronInteractionEvent.Interaction event) {
         registerFossilizedItemCauldronIteration(event, ModItems.FOSSILIZED_PROTOTAXITE_SPORES.get(), ModBlocks.PROTOTAXITE_SPORES.asItem());
         registerFossilizedItemCauldronIteration(event, ModItems.FOSSILIZED_PROTOTAXITE_BUD.get(), ModBlocks.PROTOTAXITE_BUD.asItem());

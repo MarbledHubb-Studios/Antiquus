@@ -1,5 +1,7 @@
 package com.marbledhubb.antiquus.world.level.block.entity.custom;
 
+import com.marbledhubb.antiquus.advancements.triggers.ModCriteriaTriggers;
+import com.marbledhubb.antiquus.world.item.custom.RockHammerItem;
 import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.world.level.block.state.properties.ModBlockStateProperties;
 import com.marbledhubb.antiquus.world.level.block.custom.ChiselableBlock;
@@ -39,6 +41,8 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ChiselableBlockEntity extends BlockEntity {
@@ -122,8 +126,8 @@ public class ChiselableBlockEntity extends BlockEntity {
 
     }
 
-    private void chiselingCompleted(ServerLevel level, LivingEntity user, ItemStack hammer, boolean dropContent) {
-        if (dropContent) this.dropContent(level, user, hammer);
+    private void chiselingCompleted(ServerLevel level, LivingEntity user, ItemStack hammer, boolean successful) {
+        if (successful) this.dropContent(level, user, hammer);
         PacketDistributor.sendToPlayersInDimension(level, new ChiselBlockCompletePayload(this.getBlockPos()));
         Block turnsInto;
         if (this.getBlockState().getBlock() instanceof ChiselableBlock chiselableBlock) {
@@ -133,6 +137,17 @@ public class ChiselableBlockEntity extends BlockEntity {
         }
 
         level.setBlock(this.worldPosition, turnsInto.defaultBlockState(), Block.UPDATE_ALL);
+
+        if (user instanceof ServerPlayer player) {
+            List<ItemStack> usedTools = new ArrayList<>();
+            ItemStack useStack = player.getUseItem();
+            usedTools.add(useStack);
+            if (useStack.getItem() instanceof RockHammerItem rockHammerItem) {
+                ItemStack chisel = rockHammerItem.getChisel(player);
+                if (!chisel.isEmpty()) usedTools.add(chisel);
+            }
+            ModCriteriaTriggers.CHISELED_BLOCK.get().trigger(player, successful, usedTools);
+        }
     }
 
     private void dropContent(ServerLevel level, LivingEntity user, ItemStack hammer) {

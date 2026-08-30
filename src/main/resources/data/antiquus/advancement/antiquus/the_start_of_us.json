@@ -1,5 +1,5 @@
 {
-  "parent": "antiquus:antiquus/root",
+  "parent": "antiquus:antiquus/reconstruct_fossil_content",
   "criteria": {
     "spores": {
       "conditions": {
@@ -19,8 +19,6 @@
     "icon": {
       "id": "antiquus:prototaxite_spores"
     },
-    "show_toast": true,
-    "hidden": true,
     "title": {
       "translate": "advancements.antiquus.the_start_of_us.title"
     }
@@ -29,6 +27,5 @@
     [
       "spores"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }

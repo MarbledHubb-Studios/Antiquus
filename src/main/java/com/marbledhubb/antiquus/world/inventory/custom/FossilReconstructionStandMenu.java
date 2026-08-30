@@ -1,11 +1,13 @@
 package com.marbledhubb.antiquus.world.inventory.custom;
 
 import com.marbledhubb.antiquus.Antiquus;
+import com.marbledhubb.antiquus.advancements.triggers.ModCriteriaTriggers;
 import com.marbledhubb.antiquus.tags.ModItemTags;
 import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipePropertySets;
 import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilReconstructionStandBlockEntity;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -148,6 +150,14 @@ public class FossilReconstructionStandMenu extends AbstractContainerMenu {
         @Override
         public boolean mayPlace(@NonNull ItemStack itemStack) {
             return false;
+        }
+
+        @Override
+        public void onTake(@NonNull Player player, @NonNull ItemStack carried) {
+            if (player instanceof ServerPlayer serverPlayer)
+                ModCriteriaTriggers.RECONSTRUCTED_FOSSIL_CONTENT.get().trigger(serverPlayer, carried);
+
+            super.onTake(player, carried);
         }
     }
 }

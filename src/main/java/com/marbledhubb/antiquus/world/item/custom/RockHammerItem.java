@@ -87,9 +87,7 @@ public class RockHammerItem extends Item {
                         if (level instanceof ServerLevel serverLevel) {
                             BlockEntity blockEntity = level.getBlockEntity(pos);
                             if (blockEntity instanceof ChiselableBlockEntity chiselableBlockEntity) {
-                                ItemStack chisel = entity.getItemInHand(entity.getUsedItemHand() == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
-                                if (!chisel.canPerformAction(ModItemAbilities.ROCK_CHISEL_CHISEL)) chisel = ItemStack.EMPTY;
-
+                                ItemStack chisel = getChisel(entity);
                                 if (chiselableBlockEntity.chisel(level.getGameTime(), serverLevel, player, blockHitResult.getDirection(), stack, chisel)) {
                                     if (chisel.isEmpty()) {
                                         stack.hurtAndBreak(2, player, stack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND);
@@ -135,6 +133,12 @@ public class RockHammerItem extends Item {
     @Override
     public boolean canPerformAction(@NonNull ItemInstance stack, @NonNull ItemAbility itemAbility) {
         return ModItemAbilities.DEFAULT_ROCK_HAMMER_ACTIONS.contains(itemAbility);
+    }
+
+    public ItemStack getChisel(LivingEntity entity) {
+        ItemStack chisel = entity.getItemInHand(entity.getUsedItemHand() == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
+        if (!chisel.canPerformAction(ModItemAbilities.ROCK_CHISEL_CHISEL)) chisel = ItemStack.EMPTY;
+        return chisel;
     }
 
     private record DustParticlesDelta(double xd, double yd, double zd) {

@@ -4,10 +4,19 @@
       "conditions": {
         "items": [
           {
+            "items": "#antiquus:fossil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "rock_tools": {
+      "conditions": {
+        "items": [
+          {
             "items": [
-              "antiquus:fossilized_prototaxite_spores",
-              "antiquus:fossilized_prototaxite_bud",
-              "antiquus:cooksonia"
+              "antiquus:rock_hammer",
+              "antiquus:rock_chisel"
             ]
           }
         ]
@@ -22,17 +31,17 @@
       "translate": "advancements.antiquus.root.description"
     },
     "icon": {
-      "id": "antiquus:fossilized_cooksonia"
+      "id": "antiquus:cooksonia"
     },
-    "show_toast": true,
+    "show_toast": false,
     "title": {
       "translate": "advancements.antiquus.root.title"
     }
   },
   "requirements": [
     [
-      "fossils"
+      "fossils",
+      "rock_tools"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }

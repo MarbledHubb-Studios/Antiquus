@@ -25,7 +25,6 @@
     "icon": {
       "id": "antiquus:prototaxite_stem"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.antiquus.creaks_of_the_past.title"
     }
@@ -34,6 +33,5 @@
     [
       "ancient_wetlands"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }

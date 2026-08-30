@@ -1,0 +1,31 @@
+{
+  "parent": "antiquus:antiquus/root",
+  "criteria": {
+    "obtain_fossil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#antiquus:fossil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.antiquus.obtain_fossil.description"
+    },
+    "icon": {
+      "id": "antiquus:fossilized_zosterophyllum"
+    },
+    "title": {
+      "translate": "advancements.antiquus.obtain_fossil.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_fossil"
+    ]
+  ]
+}
