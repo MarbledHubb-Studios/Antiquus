@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.core.Direction;
 
-public class FossilAnalysisStandRenderState extends BlockEntityRenderState {
+public class FossilReconstructionStandRenderState extends BlockEntityRenderState {
     public final ItemStackRenderState itemState = new ItemStackRenderState();
     public Direction facing;
 }

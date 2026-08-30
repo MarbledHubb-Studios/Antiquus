@@ -3,7 +3,7 @@ package com.marbledhubb.antiquus.world.level.block.entity;
 import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.world.level.block.ModBlocks;
 import com.marbledhubb.antiquus.world.level.block.entity.custom.ChiselableBlockEntity;
-import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilAnalysisStandBlockEntity;
+import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilReconstructionStandBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -19,9 +19,9 @@ public class ModBlockEntityTypes {
             "chiselable_block",
             () -> new BlockEntityType<>(ChiselableBlockEntity::new, ModBlocks.SUSPICIOUS_STONE.get())
     );
-    public static final Supplier<BlockEntityType<FossilAnalysisStandBlockEntity>> FOSSIL_ANALYSIS_STAND = BLOCK_ENTITY_TYPES.register(
-            "fossil_analysis_stand",
-            () -> new BlockEntityType<>(FossilAnalysisStandBlockEntity::new, ModBlocks.FOSSIL_ANALYSIS_STAND.get())
+    public static final Supplier<BlockEntityType<FossilReconstructionStandBlockEntity>> FOSSIL_RECONSTRUCTION_STAND = BLOCK_ENTITY_TYPES.register(
+            "fossil_reconstruction_stand",
+            () -> new BlockEntityType<>(FossilReconstructionStandBlockEntity::new, ModBlocks.FOSSIL_RECONSTRUCTION_STAND.get())
     );
 
     public static void register(IEventBus eventBus) {

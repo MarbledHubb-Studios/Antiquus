@@ -1,8 +1,8 @@
 package com.marbledhubb.antiquus.client.renderer.blockentity;
 
-import com.marbledhubb.antiquus.client.renderer.blockentity.state.FossilAnalysisStandRenderState;
-import com.marbledhubb.antiquus.world.level.block.custom.FossilAnalysisStandBlock;
-import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilAnalysisStandBlockEntity;
+import com.marbledhubb.antiquus.client.renderer.blockentity.state.FossilReconstructionStandRenderState;
+import com.marbledhubb.antiquus.world.level.block.custom.FossilReconstructionStandBlock;
+import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilReconstructionStandBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -17,33 +17,33 @@ import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-public class FossilAnalysisStandRenderer implements BlockEntityRenderer<FossilAnalysisStandBlockEntity, FossilAnalysisStandRenderState> {
+public class FossilReconstructionStandRenderer implements BlockEntityRenderer<FossilReconstructionStandBlockEntity, FossilReconstructionStandRenderState> {
     private final ItemModelResolver itemModelResolver;
 
-    public FossilAnalysisStandRenderer(BlockEntityRendererProvider.Context context) {
+    public FossilReconstructionStandRenderer(BlockEntityRendererProvider.Context context) {
         this.itemModelResolver = context.itemModelResolver();
     }
 
     @Override
-    public @NonNull FossilAnalysisStandRenderState createRenderState() {
-        return new FossilAnalysisStandRenderState();
+    public @NonNull FossilReconstructionStandRenderState createRenderState() {
+        return new FossilReconstructionStandRenderState();
     }
 
     @Override
     public void extractRenderState(
-            @NonNull FossilAnalysisStandBlockEntity blockEntity,
-            @NonNull FossilAnalysisStandRenderState state,
+            @NonNull FossilReconstructionStandBlockEntity blockEntity,
+            @NonNull FossilReconstructionStandRenderState state,
             float partialTicks,
             @NonNull Vec3 cameraPosition,
             ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress
     ) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
-        this.itemModelResolver.updateForTopItem(state.itemState, blockEntity.getItem(FossilAnalysisStandBlockEntity.FOSSIL_SLOT), ItemDisplayContext.FIXED, blockEntity.getLevel(), null, 0);
-        state.facing = blockEntity.getBlockState().getValue(FossilAnalysisStandBlock.FACING);
+        this.itemModelResolver.updateForTopItem(state.itemState, blockEntity.getItem(FossilReconstructionStandBlockEntity.FOSSIL_SLOT), ItemDisplayContext.FIXED, blockEntity.getLevel(), null, 0);
+        state.facing = blockEntity.getBlockState().getValue(FossilReconstructionStandBlock.FACING);
     }
 
     @Override
-    public void submit(FossilAnalysisStandRenderState state, @NonNull PoseStack poseStack, @NonNull SubmitNodeCollector submitNodeCollector, @NonNull CameraRenderState camera) {
+    public void submit(FossilReconstructionStandRenderState state, @NonNull PoseStack poseStack, @NonNull SubmitNodeCollector submitNodeCollector, @NonNull CameraRenderState camera) {
         if (state.itemState.isEmpty()) return;
 
         poseStack.pushPose();

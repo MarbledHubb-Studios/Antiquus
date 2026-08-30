@@ -1,11 +1,11 @@
 package com.marbledhubb.antiquus;
 
-import com.marbledhubb.antiquus.client.gui.screens.inventory.FossilAnalysisStandScreen;
+import com.marbledhubb.antiquus.client.gui.screens.inventory.FossilReconstructionStandScreen;
 import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.client.model.ModModelLayers;
 import com.marbledhubb.antiquus.client.network.ModClientNetworking;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
-import com.marbledhubb.antiquus.client.renderer.blockentity.FossilAnalysisStandRenderer;
+import com.marbledhubb.antiquus.client.renderer.blockentity.FossilReconstructionStandRenderer;
 import com.marbledhubb.antiquus.client.renderer.entity.TrigonotarbidRenderer;
 import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
 import com.marbledhubb.antiquus.world.particle.ModParticleTypes;
@@ -83,8 +83,8 @@ public class AntiquusClient {
                 ChiselableBlockRenderer::new
         );
         event.registerBlockEntityRenderer(
-                ModBlockEntityTypes.FOSSIL_ANALYSIS_STAND.get(),
-                FossilAnalysisStandRenderer::new
+                ModBlockEntityTypes.FOSSIL_RECONSTRUCTION_STAND.get(),
+                FossilReconstructionStandRenderer::new
         );
     }
 
@@ -110,7 +110,7 @@ public class AntiquusClient {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(ModMenuTypes.FOSSIL_ANALYSIS_STAND.get(), FossilAnalysisStandScreen::new);
+        event.register(ModMenuTypes.FOSSIL_RECONSTRUCTION_STAND.get(), FossilReconstructionStandScreen::new);
     }
 
     @SubscribeEvent

@@ -11,7 +11,7 @@ public class ModStats {
     public static final DeferredRegister<Identifier> STATS =
             DeferredRegister.create(BuiltInRegistries.CUSTOM_STAT, Antiquus.MOD_ID);
 
-    public static final DeferredHolder<Identifier, Identifier> INTERACT_WITH_FOSSIL_ANALYSIS_STAND = register("interact_with_fossil_analysis_stand");
+    public static final DeferredHolder<Identifier, Identifier> INTERACT_WITH_FOSSIL_RECONSTRUCTION_STAND = register("interact_with_fossil_reconstruction_stand");
 
     private static DeferredHolder<Identifier, Identifier> register(String name) {
         return STATS.register(name, () -> Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, name));

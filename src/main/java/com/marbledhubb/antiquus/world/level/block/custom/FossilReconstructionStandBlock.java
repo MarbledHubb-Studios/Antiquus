@@ -2,7 +2,7 @@ package com.marbledhubb.antiquus.world.level.block.custom;
 
 import com.marbledhubb.antiquus.stats.ModStats;
 import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
-import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilAnalysisStandBlockEntity;
+import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilReconstructionStandBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,8 +27,8 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Map;
 
-public class FossilAnalysisStandBlock extends BaseEntityBlock {
-    public static final MapCodec<FossilAnalysisStandBlock> CODEC = simpleCodec(FossilAnalysisStandBlock::new);
+public class FossilReconstructionStandBlock extends BaseEntityBlock {
+    public static final MapCodec<FossilReconstructionStandBlock> CODEC = simpleCodec(FossilReconstructionStandBlock::new);
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final Map<Direction, VoxelShape> SHAPES = Shapes.rotateHorizontal(Shapes.or(
             Block.box(4, 0, 3, 12, 2, 11),
@@ -41,19 +41,19 @@ public class FossilAnalysisStandBlock extends BaseEntityBlock {
         return CODEC;
     }
 
-    public FossilAnalysisStandBlock(Properties properties) {
+    public FossilReconstructionStandBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@NonNull BlockPos blockPos, @NonNull BlockState blockState) {
-        return new FossilAnalysisStandBlockEntity(blockPos, blockState);
+        return new FossilReconstructionStandBlockEntity(blockPos, blockState);
     }
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, @NonNull BlockState blockState, @NonNull BlockEntityType<T> type) {
-        return level.isClientSide() ? null : createTickerHelper(type, ModBlockEntityTypes.FOSSIL_ANALYSIS_STAND.get(), FossilAnalysisStandBlockEntity::serverTick);
+        return level.isClientSide() ? null : createTickerHelper(type, ModBlockEntityTypes.FOSSIL_RECONSTRUCTION_STAND.get(), FossilReconstructionStandBlockEntity::serverTick);
     }
 
     @Override
@@ -77,9 +77,9 @@ public class FossilAnalysisStandBlock extends BaseEntityBlock {
     @Override
     protected @NonNull InteractionResult useWithoutItem(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull BlockHitResult hitResult) {
         if (!level.isClientSide()) {
-            if (level.getBlockEntity(pos) instanceof FossilAnalysisStandBlockEntity blockEntity) {
+            if (level.getBlockEntity(pos) instanceof FossilReconstructionStandBlockEntity blockEntity) {
                 player.openMenu(blockEntity);
-                player.awardStat(ModStats.INTERACT_WITH_FOSSIL_ANALYSIS_STAND.get());
+                player.awardStat(ModStats.INTERACT_WITH_FOSSIL_RECONSTRUCTION_STAND.get());
             }
         }
 

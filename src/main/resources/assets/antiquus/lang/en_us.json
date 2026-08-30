@@ -22,7 +22,7 @@
   "block.antiquus.zosterophyllum": "Zosterophyllum",
   "block.antiquus.sporogonites": "Sporogonites",
   "block.antiquus.suspicious_stone": "Suspicious Stone",
-  "block.antiquus.fossil_analysis_stand": "Fossil Analysis Stand",
+  "block.antiquus.fossil_reconstruction_stand": "Fossil Reconstruction Stand",
   "block.antiquus.aglaophyton_stem": "Aglaophyton Stem",
   "block.antiquus.aglaophyton_block": "Aglaophyton Block",
   "block.antiquus.aglaophyton_sprout": "Aglaophyton Sprout",
@@ -34,7 +34,7 @@
   "item.antiquus.rock_hammer": "Rock Hammer",
   "item.antiquus.rock_chisel": "Rock Chisel",
   "item.antiquus.trigonotarbid_spawn_egg": "Trigonotarbid Spawn Egg",
-  "container.fossil_analysis": "Fossil Analysis Stand",
+  "container.fossil_reconstruction": "Fossil Reconstruction Stand",
   "sounds.antiquus.prototaxite_stem_creaking_ambience": "Prototaxite creaking sounds",
   "advancements.antiquus.root.title": "Antiquus",
   "advancements.antiquus.root.description": "Obtain any fossilized item",
@@ -47,5 +47,5 @@
   "advancements.antiquus.not_quite_a_fun_guy.title": "Not Quite a Fun-guy",
   "advancements.antiquus.not_quite_a_fun_guy.description": "Obtain any Prototaxite block",
   "antiquus.music.game.forgotten_life": "Forgotten Life - X_a_n_d_e_r",
-  "stat.antiquus.interact_with_fossil_analysis_stand": "Interactions with Fossil Analysis Stand"
+  "stat.antiquus.interact_with_fossil_reconstruction_stand": "Interactions with Fossil Reconstruction Stand"
 }

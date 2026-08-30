@@ -1,7 +1,7 @@
 package com.marbledhubb.antiquus.client.gui.screens.inventory;
 
 import com.marbledhubb.antiquus.Antiquus;
-import com.marbledhubb.antiquus.world.inventory.custom.FossilAnalysisStandMenu;
+import com.marbledhubb.antiquus.world.inventory.custom.FossilReconstructionStandMenu;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -11,12 +11,12 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import org.jspecify.annotations.NonNull;
 
-public class FossilAnalysisStandScreen extends AbstractContainerScreen<FossilAnalysisStandMenu> {
-    private static final Identifier RECONSTRUCTION_MEDIUM_LENGTH_SPRITE = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "container/fossil_analysis_stand/reconstruction_medium_length");
-    private static final Identifier RECONSTRUCTION_PROGRESS_SPRITE = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "container/fossil_analysis_stand/reconstruction_progress");
-    private static final Identifier FOSSIL_ANALYSIS_STAND_LOCATION = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "textures/gui/container/fossil_analysis_stand.png");
+public class FossilReconstructionStandScreen extends AbstractContainerScreen<FossilReconstructionStandMenu> {
+    private static final Identifier MEDIUM_LENGTH_SPRITE = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "container/fossil_reconstruction_stand/medium_length");
+    private static final Identifier RECONSTRUCTION_PROGRESS_SPRITE = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "container/fossil_reconstruction_stand/reconstruction_progress");
+    private static final Identifier FOSSIL_RECONSTRUCTION_STAND_LOCATION = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "textures/gui/container/fossil_reconstruction_stand.png");
 
-    public FossilAnalysisStandScreen(FossilAnalysisStandMenu menu, Inventory inventory, Component title) {
+    public FossilReconstructionStandScreen(FossilReconstructionStandMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
 
@@ -29,11 +29,11 @@ public class FossilAnalysisStandScreen extends AbstractContainerScreen<FossilAna
         super.extractBackground(graphics, mouseX, mouseY, a);
         int xo = (this.width - this.imageWidth) / 2;
         int yo = (this.height - this.imageHeight) / 2;
-        graphics.blit(RenderPipelines.GUI_TEXTURED, FOSSIL_ANALYSIS_STAND_LOCATION, xo, yo, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, FOSSIL_RECONSTRUCTION_STAND_LOCATION, xo, yo, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
         int reconstructionMedium = this.menu.getReconstructionMedium();
         int reconstructionMediumLength = Mth.clamp((18 * reconstructionMedium + 20 - 1) / 20, 0, 18);
         if (reconstructionMediumLength > 0) {
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, RECONSTRUCTION_MEDIUM_LENGTH_SPRITE, 18, 4, 0, 0, xo + 56, yo + 65, reconstructionMediumLength, 4);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, MEDIUM_LENGTH_SPRITE, 18, 4, 0, 0, xo + 56, yo + 65, reconstructionMediumLength, 4);
         }
 
         int tickCount = this.menu.getReconstructionTicks();

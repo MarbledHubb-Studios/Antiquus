@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "antiquus:item/fossil_analysis_stand"
+    "layer0": "antiquus:item/fossil_reconstruction_stand"
   }
 }

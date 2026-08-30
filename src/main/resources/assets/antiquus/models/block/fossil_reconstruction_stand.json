@@ -3,8 +3,8 @@
 	"credit": "Made by MarbledNull, with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "antiquus:block/fossil_analysis_stand",
-		"particle": "antiquus:block/fossil_analysis_stand"
+		"0": "antiquus:block/fossil_reconstruction_stand",
+		"particle": "antiquus:block/fossil_reconstruction_stand"
 	},
 	"elements": [
 		{
@@ -62,7 +62,7 @@
 	],
 	"groups": [
 		{
-			"name": "fossilAnalysisStand",
+			"name": "fossilReconstructionStand",
 			"origin": [7, 0, 6],
 			"scope": 0,
 			"color": 0,

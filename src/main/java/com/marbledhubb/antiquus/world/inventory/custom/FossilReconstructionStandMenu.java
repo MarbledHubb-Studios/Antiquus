@@ -4,7 +4,7 @@ import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.tags.ModItemTags;
 import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipePropertySets;
-import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilAnalysisStandBlockEntity;
+import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilReconstructionStandBlockEntity;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -16,7 +16,7 @@ import net.minecraft.world.item.crafting.RecipeAccess;
 import net.minecraft.world.item.crafting.RecipePropertySet;
 import org.jspecify.annotations.NonNull;
 
-public class FossilAnalysisStandMenu extends AbstractContainerMenu {
+public class FossilReconstructionStandMenu extends AbstractContainerMenu {
     private static final Identifier EMPTY_SLOT_RECONSTRUCTION_MEDIUM = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "container/slot/reconstruction_medium");
     private static final Identifier EMPTY_SLOT_FOSSIL = Identifier.fromNamespaceAndPath(Antiquus.MOD_ID, "container/slot/fossil");
     private static final int FOSSIL_SLOT = 0;
@@ -28,30 +28,30 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
     private static final int INV_SLOT_END = 31;
     private static final int USE_ROW_SLOT_START = 31;
     private static final int USE_ROW_SLOT_END = 40;
-    private final Container fossilAnalysisStand;
-    private final ContainerData fossilAnalysisStandData;
+    private final Container fossilReconstructionStand;
+    private final ContainerData fossilReconstructionStandData;
 
-    public FossilAnalysisStandMenu(int containerId, Inventory inventory) {
-        this(containerId, inventory, new SimpleContainer(SLOT_COUNT), new SimpleContainerData(FossilAnalysisStandBlockEntity.NUM_DATA_VALUES));
+    public FossilReconstructionStandMenu(int containerId, Inventory inventory) {
+        this(containerId, inventory, new SimpleContainer(SLOT_COUNT), new SimpleContainerData(FossilReconstructionStandBlockEntity.NUM_DATA_VALUES));
     }
 
-    public FossilAnalysisStandMenu(int containerId, Inventory inventory, Container fossilAnalysisStand, ContainerData fossilAnalysisStandData) {
-        super(ModMenuTypes.FOSSIL_ANALYSIS_STAND.get(), containerId);
-        checkContainerSize(fossilAnalysisStand, SLOT_COUNT);
-        checkContainerDataCount(fossilAnalysisStandData, FossilAnalysisStandBlockEntity.NUM_DATA_VALUES);
-        this.fossilAnalysisStand = fossilAnalysisStand;
-        this.fossilAnalysisStandData = fossilAnalysisStandData;
-        this.addSlot(new FossilSlot(inventory.player.level().recipeAccess(), fossilAnalysisStand, FOSSIL_SLOT, 79, 17));
-        this.addSlot(new Slot(fossilAnalysisStand, ANALOGUE_SLOT, 102, 24));
-        this.addSlot(new ReconstructionMediumSlot(fossilAnalysisStand, RECONSTRUCTION_MEDIUM_SLOT, 56, 24));
-        this.addSlot(new ResultSlot(fossilAnalysisStand, RESULT_SLOT, 79, 58));
-        this.addDataSlots(fossilAnalysisStandData);
+    public FossilReconstructionStandMenu(int containerId, Inventory inventory, Container fossilReconstructionStand, ContainerData fossilReconstructionStandData) {
+        super(ModMenuTypes.FOSSIL_RECONSTRUCTION_STAND.get(), containerId);
+        checkContainerSize(fossilReconstructionStand, SLOT_COUNT);
+        checkContainerDataCount(fossilReconstructionStandData, FossilReconstructionStandBlockEntity.NUM_DATA_VALUES);
+        this.fossilReconstructionStand = fossilReconstructionStand;
+        this.fossilReconstructionStandData = fossilReconstructionStandData;
+        this.addSlot(new FossilSlot(inventory.player.level().recipeAccess(), fossilReconstructionStand, FOSSIL_SLOT, 79, 17));
+        this.addSlot(new Slot(fossilReconstructionStand, ANALOGUE_SLOT, 102, 24));
+        this.addSlot(new ReconstructionMediumSlot(fossilReconstructionStand, RECONSTRUCTION_MEDIUM_SLOT, 56, 24));
+        this.addSlot(new ResultSlot(fossilReconstructionStand, RESULT_SLOT, 79, 58));
+        this.addDataSlots(fossilReconstructionStandData);
         this.addStandardInventorySlots(inventory, 8, 84);
     }
 
     @Override
     public boolean stillValid(@NonNull Player player) {
-        return this.fossilAnalysisStand.stillValid(player);
+        return this.fossilReconstructionStand.stillValid(player);
     }
 
     @Override
@@ -94,11 +94,11 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
     }
 
     public int getReconstructionMedium() {
-        return this.fossilAnalysisStandData.get(FossilAnalysisStandBlockEntity.DATA_RECONSTRUCTION_MEDIUM_USES);
+        return this.fossilReconstructionStandData.get(FossilReconstructionStandBlockEntity.DATA_RECONSTRUCTION_MEDIUM_USES);
     }
 
     public int getReconstructionTicks() {
-        return this.fossilAnalysisStandData.get(FossilAnalysisStandBlockEntity.DATA_RECONSTRUCTION_TIME);
+        return this.fossilReconstructionStandData.get(FossilReconstructionStandBlockEntity.DATA_RECONSTRUCTION_TIME);
     }
 
     private static class ReconstructionMediumSlot extends Slot {
@@ -117,7 +117,7 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
 
         @Override
         public Identifier getNoItemIcon() {
-            return FossilAnalysisStandMenu.EMPTY_SLOT_RECONSTRUCTION_MEDIUM;
+            return FossilReconstructionStandMenu.EMPTY_SLOT_RECONSTRUCTION_MEDIUM;
         }
     }
 
@@ -136,7 +136,7 @@ public class FossilAnalysisStandMenu extends AbstractContainerMenu {
 
         @Override
         public Identifier getNoItemIcon() {
-            return FossilAnalysisStandMenu.EMPTY_SLOT_FOSSIL;
+            return FossilReconstructionStandMenu.EMPTY_SLOT_FOSSIL;
         }
     }
 

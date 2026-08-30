@@ -1,6 +1,6 @@
 package com.marbledhubb.antiquus.world.level.block.entity.custom;
 
-import com.marbledhubb.antiquus.world.inventory.custom.FossilAnalysisStandMenu;
+import com.marbledhubb.antiquus.world.inventory.custom.FossilReconstructionStandMenu;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipePropertySets;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipeTypes;
 import com.marbledhubb.antiquus.world.item.crafting.custom.FossilReconstructionRecipe;
@@ -42,37 +42,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
+public class FossilReconstructionStandBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
     public static final int FOSSIL_SLOT = 0;
     public static final int ANALOGUE_SLOT = 1;
-    public static final int RECONSTRUCTION_MEDIUM_SLOT = 2;
+    public static final int MEDIUM_SLOT = 2;
     public static final int RESULT_SLOT = 3;
     private static final int[] SLOTS_FOR_UP = new int[]{FOSSIL_SLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{FOSSIL_SLOT, RESULT_SLOT};
-    private static final int[] SLOTS_FOR_SIDES = new int[]{ANALOGUE_SLOT, RECONSTRUCTION_MEDIUM_SLOT, RESULT_SLOT};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{ANALOGUE_SLOT, MEDIUM_SLOT, RESULT_SLOT};
     private static final int RECONSTRUCTION_MEDIUM_USES = 20;
     private static final int RECONSTRUCTION_DURATION = 400;
     public static final int DATA_RECONSTRUCTION_TIME = 0;
     public static final int DATA_RECONSTRUCTION_MEDIUM_USES = 1;
     public static final int NUM_DATA_VALUES = 2;
-    private static final Component DEFAULT_NAME = Component.translatable("container.fossil_analysis");
+    private static final Component DEFAULT_NAME = Component.translatable("container.fossil_reconstruction");
     private NonNullList<ItemStack> items;
     private int reconstructionTime;
     private Item fossil;
     private Item analogue;
-    private int reconstructionMedium;
+    private int medium;
     protected final ContainerData dataAccess;
 
-    public FossilAnalysisStandBlockEntity(BlockPos worldPosition, BlockState blockState) {
-        super(ModBlockEntityTypes.FOSSIL_ANALYSIS_STAND.get(), worldPosition, blockState);
+    public FossilReconstructionStandBlockEntity(BlockPos worldPosition, BlockState blockState) {
+        super(ModBlockEntityTypes.FOSSIL_RECONSTRUCTION_STAND.get(), worldPosition, blockState);
         this.items = NonNullList.withSize(4, ItemStack.EMPTY);
         this.dataAccess = new ContainerData() {
             @Override
             public int get(int dataId) {
                 int i;
                 switch (dataId) {
-                    case DATA_RECONSTRUCTION_TIME -> i = FossilAnalysisStandBlockEntity.this.reconstructionTime;
-                    case DATA_RECONSTRUCTION_MEDIUM_USES -> i = FossilAnalysisStandBlockEntity.this.reconstructionMedium;
+                    case DATA_RECONSTRUCTION_TIME -> i = FossilReconstructionStandBlockEntity.this.reconstructionTime;
+                    case DATA_RECONSTRUCTION_MEDIUM_USES -> i = FossilReconstructionStandBlockEntity.this.medium;
                     default -> i = 0;
                 }
 
@@ -82,8 +82,8 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
             @Override
             public void set(int dataId, int value) {
                 switch (dataId) {
-                    case DATA_RECONSTRUCTION_TIME -> FossilAnalysisStandBlockEntity.this.reconstructionTime = value;
-                    case DATA_RECONSTRUCTION_MEDIUM_USES -> FossilAnalysisStandBlockEntity.this.reconstructionMedium = value;
+                    case DATA_RECONSTRUCTION_TIME -> FossilReconstructionStandBlockEntity.this.reconstructionTime = value;
+                    case DATA_RECONSTRUCTION_MEDIUM_USES -> FossilReconstructionStandBlockEntity.this.medium = value;
                 }
 
             }
@@ -115,10 +115,10 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
         this.items = items;
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState selfState, FossilAnalysisStandBlockEntity entity) {
-        if (entity.reconstructionMedium <= 0 && entity.items.get(RECONSTRUCTION_MEDIUM_SLOT).is(ModItemTags.FOSSIL_RECONSTRUCTION_MEDIUM)) {
-            entity.reconstructionMedium = RECONSTRUCTION_MEDIUM_USES;
-            shrinkSlot(level, pos, entity.items, RECONSTRUCTION_MEDIUM_SLOT);
+    public static void serverTick(Level level, BlockPos pos, BlockState selfState, FossilReconstructionStandBlockEntity entity) {
+        if (entity.medium <= 0 && entity.items.get(MEDIUM_SLOT).is(ModItemTags.FOSSIL_RECONSTRUCTION_MEDIUM)) {
+            entity.medium = RECONSTRUCTION_MEDIUM_USES;
+            shrinkSlot(level, pos, entity.items, MEDIUM_SLOT);
             setChanged(level, pos, selfState);
         }
 
@@ -134,8 +134,8 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
             }
 
             setChanged(level, pos, selfState);
-        } else if (reconstructable && entity.reconstructionMedium > 0) {
-            --entity.reconstructionMedium;
+        } else if (reconstructable && entity.medium > 0) {
+            --entity.medium;
             entity.reconstructionTime = RECONSTRUCTION_DURATION;
             entity.fossil = entity.items.get(FOSSIL_SLOT).getItem();
             entity.analogue = entity.items.get(ANALOGUE_SLOT).getItem();
@@ -212,7 +212,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
             this.analogue = this.items.get(ANALOGUE_SLOT).getItem();
         }
 
-        this.reconstructionMedium = input.getByteOr("ReconstructionMedium", (byte)0);
+        this.medium = input.getByteOr("ReconstructionMedium", (byte)0);
     }
 
     @Override
@@ -220,7 +220,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
         super.saveAdditional(output);
         output.putShort("ReconstructionTime", (short)this.reconstructionTime);
         ContainerHelper.saveAllItems(output, this.items);
-        output.putByte("ReconstructionMedium", (byte)this.reconstructionMedium);
+        output.putByte("ReconstructionMedium", (byte)this.medium);
     }
 
     @Override
@@ -228,7 +228,7 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
         return switch (slot) {
             case FOSSIL_SLOT -> this.level.recipeAccess().propertySet(ModRecipePropertySets.FOSSIL_RECONSTRUCTION_FOSSIL).test(itemStack);
             case ANALOGUE_SLOT -> true;
-            case RECONSTRUCTION_MEDIUM_SLOT -> itemStack.is(ModItemTags.FOSSIL_RECONSTRUCTION_MEDIUM);
+            case MEDIUM_SLOT -> itemStack.is(ModItemTags.FOSSIL_RECONSTRUCTION_MEDIUM);
             default -> false;
         };
     }
@@ -249,12 +249,12 @@ public class FossilAnalysisStandBlockEntity extends BaseContainerBlockEntity imp
 
     @Override
     public boolean canTakeItemThroughFace(int slot, @NonNull ItemStack itemStack, @NonNull Direction direction) {
-        return slot == RECONSTRUCTION_MEDIUM_SLOT || slot == RESULT_SLOT;
+        return slot == MEDIUM_SLOT || slot == RESULT_SLOT;
     }
 
     @Override
     protected @NonNull AbstractContainerMenu createMenu(int containerId, @NonNull Inventory inventory) {
-        return new FossilAnalysisStandMenu(containerId, inventory, this, this.dataAccess);
+        return new FossilReconstructionStandMenu(containerId, inventory, this, this.dataAccess);
     }
 
     @Override
