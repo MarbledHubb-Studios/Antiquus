@@ -14,10 +14,8 @@ public class ModCriteriaTriggers {
     public static final DeferredRegister<CriterionTrigger<?>> TRIGGER_TYPES =
             DeferredRegister.create(Registries.TRIGGER_TYPE, Antiquus.MOD_ID);
 
-    public static final Supplier<ChiseledBlockTrigger> CHISELED_BLOCK =
-            TRIGGER_TYPES.register("chiseled_block", ChiseledBlockTrigger::new);
-    public static final Supplier<ReconstructedFossilContentTrigger> RECONSTRUCTED_FOSSIL_CONTENT =
-            TRIGGER_TYPES.register("reconstructed_fossil_content", ReconstructedFossilContentTrigger::new);
+    public static final Supplier<ChiseledBlockTrigger> CHISELED_BLOCK = TRIGGER_TYPES.register("chiseled_block", ChiseledBlockTrigger::new);
+    public static final Supplier<ReconstructedFossilContentTrigger> RECONSTRUCTED_FOSSIL_CONTENT = TRIGGER_TYPES.register("reconstructed_fossil_content", ReconstructedFossilContentTrigger::new);
 
     public static void register(IEventBus modEventBus) {
         TRIGGER_TYPES.register(modEventBus);
