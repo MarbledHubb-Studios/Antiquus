@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sporogonites": {
+      "conditions": {
+        "items": [
+          {
+            "items": "antiquus:sporogonites"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "antiquus:green_dye_from_sporogonites"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sporogonites"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "antiquus:green_dye_from_sporogonites"
+    ]
+  }
+}

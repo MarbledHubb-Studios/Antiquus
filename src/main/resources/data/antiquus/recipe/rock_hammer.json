@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": "#c:rods/wooden",
-    "X": "minecraft:iron_ingot"
+    "X": "#minecraft:iron_tool_materials"
   },
   "pattern": [
     " X ",

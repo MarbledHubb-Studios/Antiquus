@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_prototaxite_bud": {
+      "conditions": {
+        "items": [
+          {
+            "items": "antiquus:prototaxite_bud"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "antiquus:prototaxite_spores_from_prototaxite_bud"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_prototaxite_bud"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "antiquus:prototaxite_spores_from_prototaxite_bud"
+    ]
+  }
+}
