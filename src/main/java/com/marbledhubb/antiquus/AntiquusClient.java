@@ -13,7 +13,7 @@ import com.marbledhubb.antiquus.world.level.saveddata.BiomeOverride;
 import com.marbledhubb.antiquus.client.particle.GroundFogParticle;
 import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.world.entity.ModEntityTypes;
-import com.marbledhubb.antiquus.world.item.custom.ModItemUseAnimations;
+import com.marbledhubb.antiquus.world.item.ModItemUseAnimations;
 import com.marbledhubb.antiquus.world.item.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;

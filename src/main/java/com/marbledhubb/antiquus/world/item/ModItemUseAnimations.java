@@ -1,4 +1,4 @@
-package com.marbledhubb.antiquus.world.item.custom;
+package com.marbledhubb.antiquus.world.item;
 
 import net.minecraft.world.item.ItemUseAnimation;
 

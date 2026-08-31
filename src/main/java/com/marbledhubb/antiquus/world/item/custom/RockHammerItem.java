@@ -1,5 +1,7 @@
 package com.marbledhubb.antiquus.world.item.custom;
 
+import com.marbledhubb.antiquus.world.item.ModItemAbilities;
+import com.marbledhubb.antiquus.world.item.ModItemUseAnimations;
 import com.marbledhubb.antiquus.world.level.block.custom.ChiselableBlock;
 import com.marbledhubb.antiquus.world.level.block.entity.custom.ChiselableBlockEntity;
 import net.minecraft.core.BlockPos;

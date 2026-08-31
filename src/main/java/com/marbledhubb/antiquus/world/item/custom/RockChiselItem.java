@@ -1,5 +1,7 @@
 package com.marbledhubb.antiquus.world.item.custom;
 
+import com.marbledhubb.antiquus.world.item.ModItemAbilities;
+import com.marbledhubb.antiquus.world.item.ModItemUseAnimations;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;

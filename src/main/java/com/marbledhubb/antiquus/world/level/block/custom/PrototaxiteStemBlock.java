@@ -1,5 +1,6 @@
 package com.marbledhubb.antiquus.world.level.block.custom;
 
+import com.marbledhubb.antiquus.world.level.biome.ModBiomes;
 import com.marbledhubb.antiquus.world.level.block.ModBlocks;
 import com.marbledhubb.antiquus.world.particle.ModParticleTypes;
 import com.marbledhubb.antiquus.world.level.saveddata.BiomeOverrides;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
@@ -119,7 +121,13 @@ public class PrototaxiteStemBlock extends Block implements BonemealableBlock {
         Direction face = BONEMEALED_FACE.get();
         Vec3 itemPos = Vec3.atCenterOf(pos).add(face.getUnitVec3().scale(0.51)).add(randomOffsetAlongFace(level.getRandom(), face, 0.7));
 
-        ItemEntity entity = new ItemEntity(level, itemPos.x(), itemPos.y(), itemPos.z(), ModBlocks.PROTOTAXITE_SPORES.toStack());
+        DeferredBlock<Block> spores;
+        if (isPrototaxiteInAncientWetlands(level, pos) && random.nextBoolean()) {
+            spores = ModBlocks.FERTILE_PROTOTAXITE_SPORES;
+        } else {
+            spores = ModBlocks.PROTOTAXITE_SPORES;
+        }
+        ItemEntity entity = new ItemEntity(level, itemPos.x(), itemPos.y(), itemPos.z(), spores.toStack());
         entity.setDefaultPickUpDelay();
         level.addFreshEntity(entity);
     }
@@ -202,5 +210,16 @@ public class PrototaxiteStemBlock extends Block implements BonemealableBlock {
         }
 
         return 110;
+    }
+
+    private boolean isPrototaxiteInAncientWetlands(LevelReader levelReader, BlockPos pos) {
+        int height = 1;
+        while (true) {
+            BlockState belowState = levelReader.getBlockState(pos.below(height));
+            if (!belowState.is(this)) {
+                return levelReader.getBiome(pos.below(height - 1)).is(ModBiomes.ANCIENT_WETLANDS);
+            }
+            height++;
+        }
     }
 }

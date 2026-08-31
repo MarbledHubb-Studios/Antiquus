@@ -1,6 +1,5 @@
-package com.marbledhubb.antiquus.world.item.custom;
+package com.marbledhubb.antiquus.world.item;
 
-import com.marbledhubb.antiquus.world.item.ModItems;
 import com.marbledhubb.antiquus.world.level.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -27,6 +26,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.PROTOTAXITE_BLOCK);
                 output.accept(ModBlocks.PROTOTAXITE_BUD);
                 output.accept(ModBlocks.PROTOTAXITE_SPORES);
+                output.accept(ModBlocks.FERTILE_PROTOTAXITE_SPORES);
                 output.accept(ModBlocks.COOKSONIA);
                 output.accept(ModBlocks.ZOSTEROPHYLLUM);
                 output.accept(ModBlocks.SPOROGONITES);

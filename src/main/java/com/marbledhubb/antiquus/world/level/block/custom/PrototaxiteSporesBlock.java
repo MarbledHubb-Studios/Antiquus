@@ -34,7 +34,7 @@ public class PrototaxiteSporesBlock extends Block implements BonemealableBlock {
     @Override
     protected void randomTick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, RandomSource random) {
         if (random.nextInt(5) == 0)
-            level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
+            grow(level, pos, random);
     }
 
     @Override
@@ -49,6 +49,10 @@ public class PrototaxiteSporesBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+        grow(level, pos, random);
+    }
+
+    protected void grow(ServerLevel level, BlockPos pos, RandomSource random) {
         level.setBlockAndUpdate(pos, ModBlocks.PROTOTAXITE_BUD.get().defaultBlockState());
     }
 
@@ -64,7 +68,7 @@ public class PrototaxiteSporesBlock extends Block implements BonemealableBlock {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         } else {
-            return belowState.is(ModBlockTags.SILURIAN_REPLACEABLE) || belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH);
+            return belowState.is(ModBlockTags.SUPPORTS_PROTOTAXITE_GROWTH);
         }
     }
 }

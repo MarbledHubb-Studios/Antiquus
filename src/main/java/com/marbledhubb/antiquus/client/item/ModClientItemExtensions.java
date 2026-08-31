@@ -1,7 +1,7 @@
 package com.marbledhubb.antiquus.client.item;
 
 import com.marbledhubb.antiquus.client.ModArmPoses;
-import com.marbledhubb.antiquus.world.item.custom.ModItemUseAnimations;
+import com.marbledhubb.antiquus.world.item.ModItemUseAnimations;
 import com.marbledhubb.antiquus.world.item.custom.RockHammerItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;

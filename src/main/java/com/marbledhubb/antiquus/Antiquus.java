@@ -16,7 +16,7 @@ import com.marbledhubb.antiquus.world.entity.ModEntityTypes;
 import com.marbledhubb.antiquus.world.entity.ai.attributes.ModDefaultAttributes;
 import com.marbledhubb.antiquus.world.entity.ai.sensing.ModSensorTypes;
 import com.marbledhubb.antiquus.world.item.ModItems;
-import com.marbledhubb.antiquus.world.item.custom.ModCreativeModeTabs;
+import com.marbledhubb.antiquus.world.item.ModCreativeModeTabs;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;

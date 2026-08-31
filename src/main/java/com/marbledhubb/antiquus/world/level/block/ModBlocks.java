@@ -3,12 +3,14 @@ package com.marbledhubb.antiquus.world.level.block;
 import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.data.worldgen.features.ModConfiguredFeatures;
 import com.marbledhubb.antiquus.world.item.ModItems;
+import com.marbledhubb.antiquus.world.item.custom.FoilBlockItem;
 import com.marbledhubb.antiquus.world.level.block.custom.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -19,6 +21,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class ModBlocks {
@@ -39,12 +42,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CUT_ANCIENT_SANDSTONE = registerBlockWithItem("cut_ancient_sandstone", properties -> new Block(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final DeferredBlock<SlabBlock> CUT_ANCIENT_SANDSTONE_SLAB = registerBlockWithItem("cut_ancient_sandstone_slab", properties -> new SlabBlock(properties.mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
 
-    public static final DeferredBlock<Block> COOKSONIA = registerBlockWithItem("cooksonia", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY,properties.noCollision().sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ).instabreak().pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> POTTED_COOKSONIA = registerBlockWithItem("potted_cooksonia", properties -> new FlowerPotBlock(COOKSONIA.get(),properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> COOKSONIA = registerBlockWithItem("cooksonia", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY, properties.noCollision().sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ).instabreak().pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> POTTED_COOKSONIA = registerBlockWithItem("potted_cooksonia", properties -> new FlowerPotBlock(COOKSONIA.get(), properties.sound(SoundType.STONE).strength(2f).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> ZOSTEROPHYLLUM = registerBlockWithItem("zosterophyllum", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY, properties.instabreak().noCollision().pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.WET_GRASS)));
     public static final DeferredBlock<Block> SPOROGONITES = registerBlockWithItem("sporogonites", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY, properties.instabreak().noCollision().pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.WET_GRASS)));
 
     public static final DeferredBlock<Block> PROTOTAXITE_SPORES = registerBlockWithItem("prototaxite_spores", properties -> new PrototaxiteSporesBlock(properties.noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> FERTILE_PROTOTAXITE_SPORES = registerBlockWithItem("fertile_prototaxite_spores", properties -> new FertilePrototaxiteSporesBlock(properties.noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), FoilBlockItem::new);
     public static final DeferredBlock<Block> PROTOTAXITE_BUD = registerBlockWithItem("prototaxite_bud", properties -> new PrototaxiteBudBlock(properties.noCollision().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<PrototaxiteStemBlock> PROTOTAXITE_STEM = registerBlockWithItem("prototaxite_stem", properties -> new PrototaxiteStemBlock(properties.randomTicks().sound(SoundType.FUNGUS).strength(2f)));
     public static final DeferredBlock<Block> PROTOTAXITE_BLOCK = registerBlockWithItem("prototaxite_block", properties -> new Block(properties.sound(SoundType.FUNGUS).strength(2f)));
@@ -64,8 +68,12 @@ public class ModBlocks {
     public static final DeferredBlock<FlowerBlock> AGLAOPHYTON_SPROUT = registerBlockWithItem("aglaophyton_sprout", properties -> new FlowerBlock(SuspiciousStewEffects.EMPTY, properties.instabreak().noCollision().pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS)));
 
     private static <B extends Block> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
+        return registerBlockWithItem(name, func, BlockItem::new);
+    }
+
+    private static <B extends Block, I extends BlockItem> DeferredBlock<B> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends B> func, BiFunction<B, Item.Properties, ? extends I> itemFactory) {
         DeferredBlock<B> toReturn = BLOCKS.registerBlock(name, func);
-        ModItems.ITEMS.registerItem(name, properties -> new BlockItem(toReturn.get(), properties.useBlockDescriptionPrefix()));
+        ModItems.ITEMS.registerItem(name, properties -> itemFactory.apply(toReturn.get(), properties.useBlockDescriptionPrefix()));
         return toReturn;
     }
 

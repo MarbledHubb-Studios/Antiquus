@@ -1,4 +1,4 @@
-package com.marbledhubb.antiquus.world.item.custom;
+package com.marbledhubb.antiquus.world.item;
 
 import com.google.common.collect.Sets;
 import net.neoforged.neoforge.common.ItemAbility;
