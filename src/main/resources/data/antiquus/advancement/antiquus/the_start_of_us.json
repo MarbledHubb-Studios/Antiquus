@@ -1,15 +1,16 @@
 {
   "parent": "antiquus:antiquus/reconstruct_fossil_content",
   "criteria": {
-    "spores": {
+    "placed_fertile": {
+      "trigger": "minecraft:placed_block",
       "conditions": {
-        "items": [
+        "location": [
           {
-            "items": "antiquus:prototaxite_spores"
+            "condition": "minecraft:block_state_property",
+            "block": "antiquus:fertile_prototaxite_spores"
           }
         ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      }
     }
   },
   "display": {
@@ -17,7 +18,7 @@
       "translate": "advancements.antiquus.the_start_of_us.description"
     },
     "icon": {
-      "id": "antiquus:prototaxite_spores"
+      "id": "antiquus:fertile_prototaxite_spores"
     },
     "title": {
       "translate": "advancements.antiquus.the_start_of_us.title"
@@ -25,7 +26,7 @@
   },
   "requirements": [
     [
-      "spores"
+      "placed_fertile"
     ]
   ]
 }

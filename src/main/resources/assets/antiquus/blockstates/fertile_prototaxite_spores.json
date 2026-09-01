@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "antiquus:block/prototaxite_spores"
+      "model": "antiquus:block/fertile_prototaxite_spores"
     }
   }
 }

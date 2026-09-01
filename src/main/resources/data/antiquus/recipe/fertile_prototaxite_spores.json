@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "antiquus:prototaxite_spores",
+    "X": "minecraft:bone_meal"
+  },
+  "pattern": [
+    "#X",
+    "X#"
+  ],
+  "result": {
+    "id": "antiquus:fertile_prototaxite_spores"
+  }
+}
