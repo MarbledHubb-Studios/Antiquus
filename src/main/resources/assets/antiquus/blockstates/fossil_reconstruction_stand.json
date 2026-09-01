@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "antiquus:block/fossil_reconstruction_stand",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "antiquus:block/fossil_reconstruction_stand",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "antiquus:block/fossil_reconstruction_stand",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "antiquus:block/fossil_reconstruction_stand",
+      "y": 270
+    }
+  }
+}

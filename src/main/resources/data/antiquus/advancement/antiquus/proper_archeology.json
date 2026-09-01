@@ -1,0 +1,38 @@
+{
+  "parent": "antiquus:antiquus/root",
+  "criteria": {
+    "proper_archeology": {
+      "trigger": "antiquus:chiseled_block",
+      "conditions": {
+        "used_tools": [
+          {
+            "items": [
+              "antiquus:rock_hammer"
+            ]
+          },
+          {
+            "items": [
+              "antiquus:rock_chisel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.antiquus.proper_archeology.description"
+    },
+    "icon": {
+      "id": "antiquus:rock_chisel"
+    },
+    "title": {
+      "translate": "advancements.antiquus.proper_archeology.title"
+    }
+  },
+  "requirements": [
+    [
+      "proper_archeology"
+    ]
+  ]
+}

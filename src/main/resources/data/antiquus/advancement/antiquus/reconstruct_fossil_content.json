@@ -1,0 +1,24 @@
+{
+  "parent": "antiquus:antiquus/obtain_fossil",
+  "criteria": {
+    "reconstruct_fossil_content": {
+      "trigger": "antiquus:reconstructed_fossil_content"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.antiquus.reconstruct_fossil_content.description"
+    },
+    "icon": {
+      "id": "antiquus:zosterophyllum"
+    },
+    "title": {
+      "translate": "advancements.antiquus.reconstruct_fossil_content.title"
+    }
+  },
+  "requirements": [
+    [
+      "reconstruct_fossil_content"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_zosterophyllum": {
+      "conditions": {
+        "items": [
+          {
+            "items": "antiquus:zosterophyllum"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "antiquus:lime_dye_from_zosterophyllum"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_zosterophyllum"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "antiquus:lime_dye_from_zosterophyllum"
+    ]
+  }
+}

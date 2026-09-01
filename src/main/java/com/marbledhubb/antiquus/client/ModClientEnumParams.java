@@ -1,6 +1,6 @@
 package com.marbledhubb.antiquus.client;
 
-import com.marbledhubb.antiquus.level.item.custom.RockHammerItem;
+import com.marbledhubb.antiquus.world.item.custom.RockHammerItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;

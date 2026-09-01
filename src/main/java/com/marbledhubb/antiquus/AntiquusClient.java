@@ -1,17 +1,20 @@
 package com.marbledhubb.antiquus;
 
+import com.marbledhubb.antiquus.client.gui.screens.inventory.FossilReconstructionStandScreen;
 import com.marbledhubb.antiquus.client.item.ModClientItemExtensions;
 import com.marbledhubb.antiquus.client.model.ModModelLayers;
 import com.marbledhubb.antiquus.client.network.ModClientNetworking;
 import com.marbledhubb.antiquus.client.renderer.blockentity.ChiselableBlockRenderer;
+import com.marbledhubb.antiquus.client.renderer.blockentity.FossilReconstructionStandRenderer;
 import com.marbledhubb.antiquus.client.renderer.entity.TrigonotarbidRenderer;
-import com.marbledhubb.antiquus.level.particle.ModParticleTypes;
-import com.marbledhubb.antiquus.level.saved_data.BiomeOverride;
+import com.marbledhubb.antiquus.world.inventory.ModMenuTypes;
+import com.marbledhubb.antiquus.world.particle.ModParticleTypes;
+import com.marbledhubb.antiquus.world.level.saveddata.BiomeOverride;
 import com.marbledhubb.antiquus.client.particle.GroundFogParticle;
-import com.marbledhubb.antiquus.level.block.entity.ModBlockEntityTypes;
-import com.marbledhubb.antiquus.level.entity.ModEntityTypes;
-import com.marbledhubb.antiquus.level.item.custom.ModItemUseAnimations;
-import com.marbledhubb.antiquus.level.item.ModItems;
+import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
+import com.marbledhubb.antiquus.world.entity.ModEntityTypes;
+import com.marbledhubb.antiquus.world.item.ModItemUseAnimations;
+import com.marbledhubb.antiquus.world.item.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -34,10 +37,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -82,6 +82,10 @@ public class AntiquusClient {
                 ModBlockEntityTypes.CHISELABLE_BLOCK.get(),
                 ChiselableBlockRenderer::new
         );
+        event.registerBlockEntityRenderer(
+                ModBlockEntityTypes.FOSSIL_RECONSTRUCTION_STAND.get(),
+                FossilReconstructionStandRenderer::new
+        );
     }
 
     @SubscribeEvent
@@ -102,6 +106,11 @@ public class AntiquusClient {
             particle.setLifetime((int) (16d / random.nextFloat() * 0.6d + 60d));
             return particle;
         }
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.FOSSIL_RECONSTRUCTION_STAND.get(), FossilReconstructionStandScreen::new);
     }
 
     @SubscribeEvent

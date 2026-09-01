@@ -1,8 +1,8 @@
 package com.marbledhubb.antiquus.client.renderer.blockentity;
 
 import com.marbledhubb.antiquus.client.renderer.blockentity.state.ChiselableBlockRenderState;
-import com.marbledhubb.antiquus.level.block.state.properties.ModBlockStateProperties;
-import com.marbledhubb.antiquus.level.block.entity.custom.ChiselableBlockEntity;
+import com.marbledhubb.antiquus.world.level.block.state.properties.ModBlockStateProperties;
+import com.marbledhubb.antiquus.world.level.block.entity.custom.ChiselableBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -32,6 +32,7 @@ public class ChiselableBlockRenderer implements BlockEntityRenderer<ChiselableBl
         return new ChiselableBlockRenderState();
     }
 
+    @Override
     public void extractRenderState(
             @NonNull ChiselableBlockEntity blockEntity,
             @NonNull ChiselableBlockRenderState state,

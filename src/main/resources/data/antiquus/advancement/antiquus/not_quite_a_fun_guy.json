@@ -22,7 +22,6 @@
     "icon": {
       "id": "antiquus:prototaxite_block"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.antiquus.not_quite_a_fun_guy.title"
     }
@@ -31,6 +30,5 @@
     [
       "not_quite_a_fun_guy"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }

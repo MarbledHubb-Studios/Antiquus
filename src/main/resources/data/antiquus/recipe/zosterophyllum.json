@@ -1,0 +1,8 @@
+{
+  "type": "antiquus:fossil_reconstruction",
+  "fossil": "antiquus:fossilized_zosterophyllum",
+  "analogue": "minecraft:mangrove_propagule",
+  "result": {
+    "id": "antiquus:zosterophyllum"
+  }
+}

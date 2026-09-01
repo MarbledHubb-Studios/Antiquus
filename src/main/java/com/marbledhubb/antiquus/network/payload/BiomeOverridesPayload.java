@@ -2,7 +2,7 @@ package com.marbledhubb.antiquus.network.payload;
 
 import com.marbledhubb.antiquus.Antiquus;
 import com.marbledhubb.antiquus.AntiquusClient;
-import com.marbledhubb.antiquus.level.saved_data.BiomeOverride;
+import com.marbledhubb.antiquus.world.level.saveddata.BiomeOverride;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;

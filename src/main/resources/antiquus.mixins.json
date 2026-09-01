@@ -6,7 +6,8 @@
   "mixins": [
     "BoneMealItemMixin",
     "LevelReaderMixin",
-    "NaturalSpawnerMixin"
+    "NaturalSpawnerMixin",
+    "RecipeManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

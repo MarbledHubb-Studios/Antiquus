@@ -26,7 +26,6 @@
     "icon": {
       "id": "minecraft:sniffer_egg"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.antiquus.a_familiar_place.title"
     }
@@ -38,6 +37,5 @@
     [
       "a_familiar_place"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }
