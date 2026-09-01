@@ -1,0 +1,11 @@
+{
+  "type": "antiquus:fossil_reconstruction",
+  "fossil": "antiquus:fossilized_prototaxite_spores",
+  "analogue": [
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom"
+  ],
+  "result": {
+    "id": "antiquus:prototaxite_spores"
+  }
+}

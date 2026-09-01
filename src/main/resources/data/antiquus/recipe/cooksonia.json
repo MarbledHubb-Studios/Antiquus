@@ -1,7 +1,10 @@
 {
   "type": "antiquus:fossil_reconstruction",
   "fossil": "antiquus:fossilized_cooksonia",
-  "analogue": "minecraft:stick",
+  "analogue": [
+    "minecraft:fern",
+    "minecraft:large_fern"
+  ],
   "result": {
     "id": "antiquus:cooksonia"
   }
