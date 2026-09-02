@@ -31,21 +31,21 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ZOSTEROPHYLLUM);
                 output.accept(ModBlocks.SPOROGONITES);
 
-                output.accept(ModBlocks.AGLAOPHYTON_STEM);
-                output.accept(ModBlocks.AGLAOPHYTON_BLOCK);
-                output.accept(ModBlocks.AGLAOPHYTON_SPROUT);
-
-                output.accept(ModBlocks.ANCIENT_SAND);
-                output.accept(ModBlocks.ANCIENT_SANDSTONE);
-                output.accept(ModBlocks.ANCIENT_SANDSTONE_STAIRS);
-                output.accept(ModBlocks.ANCIENT_SANDSTONE_SLAB);
-                output.accept(ModBlocks.ANCIENT_SANDSTONE_WALL);
-                output.accept(ModBlocks.CHISELED_ANCIENT_SANDSTONE);
-                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE);
-                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE_STAIRS);
-                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE_SLAB);
-                output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE);
-                output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE_SLAB);
+//                output.accept(ModBlocks.AGLAOPHYTON_STEM);
+//                output.accept(ModBlocks.AGLAOPHYTON_BLOCK);
+//                output.accept(ModBlocks.AGLAOPHYTON_SPROUT);
+//
+//                output.accept(ModBlocks.ANCIENT_SAND);
+//                output.accept(ModBlocks.ANCIENT_SANDSTONE);
+//                output.accept(ModBlocks.ANCIENT_SANDSTONE_STAIRS);
+//                output.accept(ModBlocks.ANCIENT_SANDSTONE_SLAB);
+//                output.accept(ModBlocks.ANCIENT_SANDSTONE_WALL);
+//                output.accept(ModBlocks.CHISELED_ANCIENT_SANDSTONE);
+//                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE);
+//                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE_STAIRS);
+//                output.accept(ModBlocks.SMOOTH_ANCIENT_SANDSTONE_SLAB);
+//                output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE);
+//                output.accept(ModBlocks.CUT_ANCIENT_SANDSTONE_SLAB);
 
                 output.accept(ModBlocks.FOSSIL_RECONSTRUCTION_STAND);
                 output.accept(ModBlocks.SUSPICIOUS_STONE);
@@ -53,10 +53,10 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
                 output.accept(ModItems.FOSSILIZED_COOKSONIA);
                 output.accept(ModItems.FOSSILIZED_ZOSTEROPHYLLUM);
-                output.accept(ModItems.FOSSILIZED_AGLAOPHYTON_SPROUT);
+                //output.accept(ModItems.FOSSILIZED_AGLAOPHYTON_SPROUT);
                 output.accept(ModItems.ROCK_HAMMER);
                 output.accept(ModItems.ROCK_CHISEL);
-                output.accept(ModItems.TRIGONOTARBID_SPAWN_EGG);
+                //output.accept(ModItems.TRIGONOTARBID_SPAWN_EGG);
             }).build());
 
     public static void register(IEventBus eventBus) {
