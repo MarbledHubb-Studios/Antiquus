@@ -23,11 +23,6 @@
           "type": "minecraft:item",
           "name": "antiquus:fossilized_prototaxite_bud",
           "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "antiquus:fossilized_aglaophyton_sprout",
-          "weight": 3
         }
       ]
     }
