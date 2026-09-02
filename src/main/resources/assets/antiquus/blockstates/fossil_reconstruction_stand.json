@@ -1,20 +1,352 @@
 {
-  "variants": {
-    "facing=east": {
-      "model": "antiquus:block/fossil_reconstruction_stand",
-      "y": 90
+  "multipart": [
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand",
+        "y": 0
+      }
     },
-    "facing=north": {
-      "model": "antiquus:block/fossil_reconstruction_stand",
-      "y": 0
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand",
+        "y": 90
+      }
     },
-    "facing=south": {
-      "model": "antiquus:block/fossil_reconstruction_stand",
-      "y": 180
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand",
+        "y": 180
+      }
     },
-    "facing=west": {
-      "model": "antiquus:block/fossil_reconstruction_stand",
-      "y": 270
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "1"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "2"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "3"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_3",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "4"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_4",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "5"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_5",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "6"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_6",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "7"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_7",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "water_level": "8"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_8",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "1"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_1"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "2"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_2"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "3"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_3"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "4"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_4"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "5"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_5"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "6"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_6"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "7"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_7"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "water_level": "8"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_8"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "1"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "2"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_2",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "3"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_3",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "4"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_4",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "5"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_5",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "6"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_6",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "7"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_7",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "water_level": "8"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_8",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "1"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "2"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_2",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "3"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_3",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "4"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_4",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "5"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_5",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "6"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_6",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "7"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_7",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "water_level": "8"
+      },
+      "apply": {
+        "model": "antiquus:block/fossil_reconstruction_stand_water_8",
+        "y": 270
+      }
     }
-  }
+  ]
 }

@@ -5,6 +5,7 @@ import com.marbledhubb.antiquus.world.item.crafting.ModRecipePropertySets;
 import com.marbledhubb.antiquus.world.item.crafting.ModRecipeTypes;
 import com.marbledhubb.antiquus.world.item.crafting.custom.FossilReconstructionRecipe;
 import com.marbledhubb.antiquus.world.item.crafting.custom.FossilReconstructionRecipeInput;
+import com.marbledhubb.antiquus.world.level.block.custom.FossilReconstructionStandBlock;
 import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.tags.ModItemTags;
 import net.minecraft.core.BlockPos;
@@ -50,7 +51,8 @@ public class FossilReconstructionStandBlockEntity extends BaseContainerBlockEnti
     private static final int[] SLOTS_FOR_UP = new int[]{FOSSIL_SLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{FOSSIL_SLOT, RESULT_SLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{ANALOGUE_SLOT, MEDIUM_SLOT, RESULT_SLOT};
-    private static final int RECONSTRUCTION_MEDIUM_USES = 20;
+    private static final int MEDIUM_USES = 20;
+    private static final float WATER_LEVEL_DIVISOR = 2.5f;
     private static final int RECONSTRUCTION_DURATION = 400;
     public static final int DATA_RECONSTRUCTION_TIME = 0;
     public static final int DATA_RECONSTRUCTION_MEDIUM_USES = 1;
@@ -116,10 +118,13 @@ public class FossilReconstructionStandBlockEntity extends BaseContainerBlockEnti
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState selfState, FossilReconstructionStandBlockEntity entity) {
+        boolean updateWaterLevel = false;
+
         if (entity.medium <= 0 && entity.items.get(MEDIUM_SLOT).is(ModItemTags.FOSSIL_RECONSTRUCTION_MEDIUM)) {
-            entity.medium = RECONSTRUCTION_MEDIUM_USES;
+            entity.medium = MEDIUM_USES;
             shrinkSlot(level, pos, entity.items, MEDIUM_SLOT);
             setChanged(level, pos, selfState);
+            updateWaterLevel = true;
         }
 
         Optional<RecipeHolder<FossilReconstructionRecipe>> recipe = getRecipe(level, entity.items);
@@ -140,9 +145,14 @@ public class FossilReconstructionStandBlockEntity extends BaseContainerBlockEnti
             entity.fossil = entity.items.get(FOSSIL_SLOT).getItem();
             entity.analogue = entity.items.get(ANALOGUE_SLOT).getItem();
             setChanged(level, pos, selfState);
+            updateWaterLevel = true;
         }
 
-        // TODO possible future changes on the blockstate's properties -aimi
+        if (updateWaterLevel) {
+            int waterLevel = (int) Math.ceil(entity.medium / WATER_LEVEL_DIVISOR);
+            if (waterLevel != selfState.getValue(FossilReconstructionStandBlock.WATER_LEVEL))
+                level.setBlock(pos, selfState.setValue(FossilReconstructionStandBlock.WATER_LEVEL, waterLevel), Block.UPDATE_CLIENTS);
+        }
     }
 
     private static Optional<RecipeHolder<FossilReconstructionRecipe>> getRecipe(Level level, NonNullList<ItemStack> items) {
@@ -181,14 +191,17 @@ public class FossilReconstructionStandBlockEntity extends BaseContainerBlockEnti
     public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
         CompoundTag tag = super.getUpdateTag(registries);
 
-        ItemStack fossil = this.items.get(FOSSIL_SLOT);
-        if (!fossil.isEmpty()) {
-            List<ItemStackWithSlot> items = new ArrayList<>(1);
-            items.add(new ItemStackWithSlot(
-                    FOSSIL_SLOT,
-                    fossil
-            ));
+        List<ItemStackWithSlot> items = new ArrayList<>(2);
 
+        ItemStack fossil = this.items.get(FOSSIL_SLOT);
+        if (!fossil.isEmpty())
+            items.add(new ItemStackWithSlot(FOSSIL_SLOT, fossil));
+
+        ItemStack result = this.items.get(RESULT_SLOT);
+        if (!result.isEmpty())
+            items.add(new ItemStackWithSlot(RESULT_SLOT, result));
+
+        if (!items.isEmpty()) {
             RegistryOps<Tag> ops = registries.createSerializationContext(NbtOps.INSTANCE);
             tag.store("Items", ItemStackWithSlot.CODEC.listOf(), ops, items);
         }

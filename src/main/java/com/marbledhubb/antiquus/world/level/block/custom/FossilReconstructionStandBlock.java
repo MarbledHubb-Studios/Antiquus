@@ -3,6 +3,7 @@ package com.marbledhubb.antiquus.world.level.block.custom;
 import com.marbledhubb.antiquus.stats.ModStats;
 import com.marbledhubb.antiquus.world.level.block.entity.ModBlockEntityTypes;
 import com.marbledhubb.antiquus.world.level.block.entity.custom.FossilReconstructionStandBlockEntity;
+import com.marbledhubb.antiquus.world.level.block.state.properties.ModBlockStateProperties;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -30,11 +32,14 @@ import java.util.Map;
 public class FossilReconstructionStandBlock extends BaseEntityBlock {
     public static final MapCodec<FossilReconstructionStandBlock> CODEC = simpleCodec(FossilReconstructionStandBlock::new);
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final IntegerProperty WATER_LEVEL = ModBlockStateProperties.WATER_LEVEL;
     private static final Map<Direction, VoxelShape> SHAPES = Shapes.rotateHorizontal(Shapes.or(
-            Block.box(4, 0, 3, 12, 2, 11),
-            Block.box(6, 0, 11, 10, 10, 14),
-            Block.box(7, 7, 3, 9, 9, 11),
-            Block.box(7, 4, 6, 9, 7, 8)));
+            Block.box(4, 0, 4, 12, 2, 12),
+            Block.box(6, 0, 12, 10, 10, 16),
+            Block.box(2, 0, 7, 4, 10, 9),
+            Block.box(4, 7, 4, 12, 9, 12),
+            Block.box(7, 4, 7, 9, 7, 9),
+            Block.box(12, 0, 7, 14, 10, 9)));
 
     @Override
     protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
@@ -43,7 +48,7 @@ public class FossilReconstructionStandBlock extends BaseEntityBlock {
 
     public FossilReconstructionStandBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATER_LEVEL, 0));
     }
 
     @Override
@@ -93,7 +98,7 @@ public class FossilReconstructionStandBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, WATER_LEVEL);
     }
 
     @Override

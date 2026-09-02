@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
@@ -38,7 +39,9 @@ public class FossilReconstructionStandRenderer implements BlockEntityRenderer<Fo
             ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress
     ) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
-        this.itemModelResolver.updateForTopItem(state.itemState, blockEntity.getItem(FossilReconstructionStandBlockEntity.FOSSIL_SLOT), ItemDisplayContext.FIXED, blockEntity.getLevel(), null, 0);
+        ItemStack stack = blockEntity.getItem(FossilReconstructionStandBlockEntity.FOSSIL_SLOT);
+        if (stack.isEmpty()) stack = blockEntity.getItem(FossilReconstructionStandBlockEntity.RESULT_SLOT);
+        this.itemModelResolver.updateForTopItem(state.itemState, stack, ItemDisplayContext.FIXED, blockEntity.getLevel(), null, 0);
         state.facing = blockEntity.getBlockState().getValue(FossilReconstructionStandBlock.FACING);
     }
 
@@ -48,9 +51,9 @@ public class FossilReconstructionStandRenderer implements BlockEntityRenderer<Fo
 
         poseStack.pushPose();
         poseStack.translate(
-                0.5f + state.facing.getStepX() * 0.0625f,
+                0.5f,
                 0.140625f,
-                0.5f + state.facing.getStepZ() * 0.0625f);
+                0.5f);
         poseStack.scale(0.5f, 0.5f, 0.5f);
         poseStack.mulPose(Axis.YP.rotationDegrees(-state.facing.toYRot() + 180));
         poseStack.mulPose(Axis.XP.rotationDegrees(90));
