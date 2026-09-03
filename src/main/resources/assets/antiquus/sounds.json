@@ -10,17 +10,17 @@
       {
         "name": "antiquus:music/game/forgotten_life",
         "stream": true,
-        "weight": 3
+        "weight": 2
       },
       {
         "name": "antiquus:music/game/fossils",
         "stream": true,
-        "weight": 2
+        "weight": 1.5
       },
       {
         "name": "antiquus:music/game/old",
         "stream": true,
-        "weight": 2
+        "weight": 1.5
       },
       {
         "name": "antiquus:music/game/primal",
