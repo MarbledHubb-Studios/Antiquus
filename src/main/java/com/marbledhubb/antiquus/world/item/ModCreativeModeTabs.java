@@ -53,6 +53,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.FOSSILIZED_PROTOTAXITE_SPORES);
                 output.accept(ModItems.FOSSILIZED_COOKSONIA);
                 output.accept(ModItems.FOSSILIZED_ZOSTEROPHYLLUM);
+                output.accept(ModItems.FOSSILIZED_SPOROGONITES);
                 //output.accept(ModItems.FOSSILIZED_AGLAOPHYTON_SPROUT);
                 output.accept(ModItems.ROCK_HAMMER);
                 output.accept(ModItems.ROCK_CHISEL);

@@ -24,6 +24,7 @@ public class ModItems {
     public static final DeferredItem<Item> FOSSILIZED_COOKSONIA = ITEMS.registerSimpleItem("fossilized_cooksonia");
     public static final DeferredItem<Item> FOSSILIZED_ZOSTEROPHYLLUM = ITEMS.registerSimpleItem("fossilized_zosterophyllum");
     //public static final DeferredItem<Item> FOSSILIZED_AGLAOPHYTON_SPROUT = ITEMS.registerSimpleItem("fossilized_aglaophyton_sprout");
+    public static final DeferredItem<Item> FOSSILIZED_SPOROGONITES = ITEMS.registerSimpleItem("fossilized_sporogonites");
 
     // TODO probably change the durability of these two. currently they have the same durability as a brush. it could be interesting if the chisel had a smaller durability -aimi
     // TODO agreed -mn

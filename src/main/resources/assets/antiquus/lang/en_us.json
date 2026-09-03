@@ -31,6 +31,7 @@
   "item.antiquus.fossilized_prototaxite_spores": "Fossilized Prototaxite Spores",
   "item.antiquus.fossilized_prototaxite_bud": "Fossilized Prototaxite Bud",
   "item.antiquus.fossilized_cooksonia": "Fossilized Cooksonia",
+  "item.antiquus.fossilized_sporogonites": "Fossilized Sporogonites",
   "item.antiquus.fossilized_aglaophyton_sprout": "Fossilized Aglaophyton Sprout",
   "item.antiquus.rock_hammer": "Rock Hammer",
   "item.antiquus.rock_chisel": "Rock Chisel",
@@ -54,5 +55,8 @@
   "advancements.antiquus.not_quite_a_fun_guy.title": "Not Quite a Fun-guy",
   "advancements.antiquus.not_quite_a_fun_guy.description": "Obtain any Prototaxite block",
   "antiquus.music.game.forgotten_life": "Forgotten Life - X_a_n_d_e_r",
+  "antiquus.music.game.fossils": "Fossils - X_a_n_d_e_r",
+  "antiquus.music.game.old": "Old - X_a_n_d_e_r",
+  "antiquus.music.game.primal": "Primal - X_a_n_d_e_r",
   "stat.antiquus.interact_with_fossil_reconstruction_stand": "Interactions with Fossil Reconstruction Stand"
 }
